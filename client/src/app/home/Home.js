@@ -4,6 +4,7 @@ import axios from "axios";
 import NavBar from "../../components/navbar/navbar";
 
 // TODO: change the thumnail image for each link
+// TODO: add side panel with card display, etc.
 
 export default function Home() {
   // To display the data from data retrieved from api
