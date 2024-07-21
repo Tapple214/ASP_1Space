@@ -1,0 +1,135 @@
+/* Button */
+
+.logo {
+  height: 35px;
+  width: 35px;
+}
+
+.toggle-button {
+  position: fixed;
+  top: 20px;
+  left: 7px;
+  width: 45px;
+  z-index: 1001;
+}
+
+.toggle-button.open {
+  background-color: #ffffff;
+  border: none;
+}
+
+.toggle-button.close {
+  background-color: #ffffff;
+  border: none;
+}
+
+/* Icon widget */
+
+.icon-widget-container {
+  position: fixed;
+  top: 8rem;
+  left: 7px;
+  height: auto;
+  width: 45px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-widget {
+  height: 40px;
+  width: 40px;
+  color: #1f1f1f;
+}
+
+.dashboard {
+  background-color: white;
+}
+
+.task-manager {
+  background-color: #e29dd4;
+}
+
+.finance-organizer {
+  background-color: #a139a2;
+}
+
+.budget-hub {
+  background-color: #6248a8;
+}
+
+/* Cover aka icon container */
+
+.cover-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100vh;
+  background-color: #1f1f1f;
+  /* background-color: blue; */
+  z-index: 1000;
+}
+
+/* NavBar */
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: -190px;
+  width: 250px;
+  height: 100vh;
+  background-color: #1f1f1f;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 999;
+  overflow-y: hidden;
+}
+
+.navbar-open .navbar {
+  left: 0;
+}
+
+/* Nav links */
+
+.nav-links {
+  position: absolute;
+  top: 8rem;
+}
+
+.navbar .nav-link {
+  color: white;
+  padding-left: 65px;
+  display: block;
+  background-color: #1f1f1f;
+  width: 90%;
+  border-radius: 15px;
+}
+
+.navbar .nav-link:hover {
+  color: white;
+  background-color: #333333;
+  width: 90%;
+  border-radius: 15px;
+}
+
+#oneSpace {
+  background-color: #1f1f1f;
+}
+
+#oneSpace:hover {
+  background-color: #1f1f1f;
+}
