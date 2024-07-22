@@ -39,7 +39,7 @@ export default function Home() {
           {pageLinks.map((link, index) => (
             <div className="card my-3 d-flex flex-row" key={index}>
               <img className="thumbnail" src={link.img} alt={link.alt}></img>
-              <div className="d-flex flex-column justify-content-center">
+              <div className="d-flex flex-column justify-content-center ms-2">
                 <h4>
                   <a
                     href={link.url}
