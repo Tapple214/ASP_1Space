@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
         description:
           "Stay on top of your to-dos! Add, label, and manage tasks while earning fun badges along the way!",
         url: "#",
-        img: "/images/finance-board.png",
+        img: "/images/task-manager.png",
         alt: "Task Manager",
       },
       {
@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
         name: "Budget Hub",
         description:
           "Join piggy bank the astronaut to hunt for the latest budget deals around you!",
-        img: "/images/finance-board.png",
+        img: "/images/budget-hub.png",
         alt: "Budget Hub",
       },
     ],

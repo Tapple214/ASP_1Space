@@ -4,6 +4,7 @@ import axios from "axios";
 import NavBar from "../../components/navbar/navbar";
 
 // TODO: change the thumnail image for each link
+// TODO: add side panel with card display, etc.
 
 export default function Home() {
   // To display the data from data retrieved from api
@@ -38,7 +39,7 @@ export default function Home() {
           {pageLinks.map((link, index) => (
             <div className="card my-3 d-flex flex-row" key={index}>
               <img className="thumbnail" src={link.img} alt={link.alt}></img>
-              <div className="d-flex flex-column justify-content-center">
+              <div className="d-flex flex-column justify-content-center ms-2">
                 <h4>
                   <a
                     href={link.url}
