@@ -12,7 +12,7 @@ export default function Home() {
   const [pageLinks, setPageLinks] = useState([]);
 
   // Fetch data from server
-  const fetchHomData = async () => {
+  const fetchHomeData = async () => {
     try {
       // Wait for axios to fetch the data from http://localhost:3001/
       const res = await axios.get("http://localhost:3001/");
@@ -27,7 +27,7 @@ export default function Home() {
 
   // Without dependencies, the effect will run on every render/page refresh
   useEffect(() => {
-    fetchHomData();
+    fetchHomeData();
   }, []);
   return (
     <>

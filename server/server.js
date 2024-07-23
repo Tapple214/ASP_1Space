@@ -1,4 +1,3 @@
-// Entry point
 const express = require("express");
 const app = express();
 const port = 3001;
@@ -39,6 +38,16 @@ app.get("/", (req, res) => {
         alt: "Budget Hub",
       },
     ],
+  });
+});
+
+// Sending data to http://localhost:3001/login - Login page
+app.get("/login", (req, res) => {
+  res.json({
+    Title: "Welcome to 1Space",
+    Subtitle: "Login to begin your adventure",
+    Logo: "/images/logo.png",
+    Rocket: "/images/rocket.png",
   });
 });
 
