@@ -116,14 +116,12 @@
   display: block;
   background-color: #1f1f1f;
   width: 90%;
-  border-radius: 15px;
 }
 
 .navbar .nav-link:hover {
   color: white;
   background-color: #333333;
   width: 90%;
-  border-radius: 15px;
 }
 
 #oneSpace {

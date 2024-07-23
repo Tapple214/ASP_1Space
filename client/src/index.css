@@ -13,7 +13,6 @@ html,
 body {
   height: 100%;
   margin: 0;
-  padding-left: 30px; /* To account for the navbar */
 }
 
 #root {
