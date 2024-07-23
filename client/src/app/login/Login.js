@@ -1,6 +1,7 @@
 // import "../home/Home.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../login/Login.css";
 
 export default function Login() {
   // To display the data from data retrieved from api
@@ -25,11 +26,20 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="Login p-3">
-      <h1>{LoginData.Title}</h1>
-      <p>{LoginData.Subtitle}</p>
-      {LoginData.Logo && <img src={LoginData.Logo} alt="Logo" />}
-      {LoginData.Rocket && <img src={LoginData.Rocket} alt="Rocket" />}
+    <div className="Login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
+      <div className="card d-flex flex-row w-75 h-50 rounded-4">
+        <div className="rocket-container position-absolute">
+          {LoginData.Rocket && (
+            <img src={LoginData.Rocket} id="rocket" alt="Rocket" />
+          )}
+        </div>
+
+        <div className="d-flex flex-column justify-content-center align-items-center mx-auto me-5 pe-5">
+          {LoginData.Logo && <img src={LoginData.Logo} id="logo" alt="Logo" />}
+          <h1>{LoginData.Title}</h1>
+          <p>{LoginData.Subtitle}</p>
+        </div>
+      </div>
     </div>
   );
 }
