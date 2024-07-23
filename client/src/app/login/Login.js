@@ -38,6 +38,8 @@ export default function Login() {
           {LoginData.Logo && <img src={LoginData.Logo} id="logo" alt="Logo" />}
           <h1>{LoginData.Title}</h1>
           <p>{LoginData.Subtitle}</p>
+
+          <div>{/* Google sign-in/up */}</div>
         </div>
       </div>
     </div>
