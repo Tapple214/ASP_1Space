@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../login/Login.css";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
   // To display the data from data retrieved from api
@@ -39,7 +40,17 @@ export default function Login() {
           <h1>{LoginData.Title}</h1>
           <p>{LoginData.Subtitle}</p>
 
-          <div>{/* Google sign-in/up */}</div>
+          <div>
+            {" "}
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
