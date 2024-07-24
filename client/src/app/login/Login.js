@@ -4,6 +4,8 @@ import axios from "axios";
 import "../login/Login.css";
 import { GoogleLogin } from "@react-oauth/google";
 
+// TODO: implement data retrieval after db is set up
+
 export default function Login() {
   // To display the data from data retrieved from api
   const [LoginData, setLoginData] = useState({});
@@ -28,7 +30,7 @@ export default function Login() {
 
   return (
     <div className="login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
-      <div className="card d-flex flex-row w-75 h-50 rounded-4">
+      <div className="card d-flex flex-row w-75 h-50 rounded-5">
         <div className="rocket-container position-absolute">
           {LoginData.Rocket && (
             <img src={LoginData.Rocket} id="rocket" alt="Rocket" />
@@ -40,8 +42,7 @@ export default function Login() {
           <h1>{LoginData.Title}</h1>
           <p>{LoginData.Subtitle}</p>
 
-          <div>
-            {" "}
+          <div className="d-flex flex-column justify-content-center align-items-center text-center">
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
@@ -50,6 +51,13 @@ export default function Login() {
                 console.log("Login Failed");
               }}
             />
+
+            <br />
+
+            <p className="disclaimer px-5">
+              By clicking continue, you agree to sharing your name and email
+              with 1Space.
+            </p>
           </div>
         </div>
       </div>
