@@ -111,7 +111,7 @@ export default function NavBar() {
           <Nav.Link href="#taskmanager" className="mb-2">
             Task Manager
           </Nav.Link>
-          <Nav.Link href="#FinanceBoard" className="mb-2">
+          <Nav.Link href="/financial-organizer" className="mb-2">
             Finance Board
           </Nav.Link>
           <Nav.Link href="#BudgetHub" className="mb-2">
