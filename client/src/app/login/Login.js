@@ -26,7 +26,7 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="Login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
+    <div className="login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
       <div className="card d-flex flex-row w-75 h-50 rounded-4">
         <div className="rocket-container position-absolute">
           {LoginData.Rocket && (
@@ -34,7 +34,7 @@ export default function Login() {
           )}
         </div>
 
-        <div className="d-flex flex-column justify-content-center align-items-center mx-auto me-5 pe-5">
+        <div className="login-message d-flex flex-column justify-content-center align-items-center mx-auto">
           {LoginData.Logo && <img src={LoginData.Logo} id="logo" alt="Logo" />}
           <h1>{LoginData.Title}</h1>
           <p>{LoginData.Subtitle}</p>
