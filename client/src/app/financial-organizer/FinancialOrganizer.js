@@ -55,41 +55,52 @@ const FinancialOrganizer = () => {
           <div className="summary">
             <h3>Your Summary</h3>
             <div className="summary-details">
-              <p>You've spent: SGD 300</p>
-              <p>Budget left: SGD 1200</p>
+              <div>
+                <p>You've spent</p>
+                <p>SGD 300</p>
+              </div>
+              <div>
+                <p>Budget left</p>
+                <p>SGD 1200</p>
+              </div>
             </div>
           </div>
         </div>
         <div className="right-section">
-          <div className="transaction-form">
-            <form>
-              <input type="text" placeholder="Title" />
-              <input type="date" placeholder="Current date" />
-              <input type="text" placeholder="Category" />
-              <input type="number" placeholder="$" />
-              <button type="submit">+</button>
-            </form>
-          </div>
-          <div className="transaction-list">
-            <div className="transaction-item">
-              <div className="transaction-header">
-                <h4>June 5 Hang out (Movies)</h4>
-                <div className="transaction-buttons">
-                  <button className="edit-button">✏️</button>
-                  <button className="delete-button">🗑️</button>
+          <div className="transactions-container">
+            <div className="transaction-form">
+              <form>
+                <div className="form-inputs">
+                  <input type="text" placeholder="Title" className="title-input" />
+                  <input type="date" placeholder="Current date" className="date-input" />
+                  <input type="text" placeholder="Category" className="category-input" />
+                  <textarea placeholder="Description for transaction" className="description-input"></textarea>
+                  <input type="number" placeholder="$" className="amount-input" />
                 </div>
-              </div>
-              <p>Body Soap, Eggs, Bread, AAA batteries</p>
+                <button type="submit" className="add-button">+</button>
+              </form>
             </div>
-            <div className="transaction-item">
-              <div className="transaction-header">
-                <h4>June 6 Groceries</h4>
-                <div className="transaction-buttons">
-                  <button className="edit-button">✏️</button>
-                  <button className="delete-button">🗑️</button>
+            <div className="transaction-list">
+              <div className="transaction-item">
+                <div className="transaction-header">
+                  <h4>June 5 Hang out (Movies)</h4>
+                  <div className="transaction-buttons">
+                    <button className="edit-button">✏️</button>
+                    <button className="delete-button">🗑️</button>
+                  </div>
                 </div>
+                <p>Body Soap, Eggs, Bread, AAA batteries</p>
               </div>
-              <p>Body Soap, Eggs, Bread, AAA batteries</p>
+              <div className="transaction-item">
+                <div className="transaction-header">
+                  <h4>June 6 Groceries</h4>
+                  <div className="transaction-buttons">
+                    <button className="edit-button">✏️</button>
+                    <button className="delete-button">🗑️</button>
+                  </div>
+                </div>
+                <p>Body Soap, Eggs, Bread, AAA batteries</p>
+              </div>
             </div>
           </div>
         </div>

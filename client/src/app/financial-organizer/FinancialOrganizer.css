@@ -1,95 +1,241 @@
+/* src/app/financial-organizer/FinancialOrganizer.css */
+
 .content {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    margin-left: 60px; /* To account for the navbar */
-    gap: 20px;
-  }
-  
-  .left-section, .right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .financial-overview, .summary, .transaction-form, .transaction-list {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .financial-overview {
-    width: 100%;
-  }
-  
-  .summary {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .transaction-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    gap: 10px;
-  }
-  
-  .transaction-form input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-right: 10px;
-  }
-  
-  .transaction-form button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .transaction-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .transaction-item {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .transaction-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .transaction-buttons {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .edit-button, .delete-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-  }
-  
-  .edit-button {
-    color: #4caf50;
-  }
-  
-  .delete-button {
-    color: #f44336;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px; /* Increase padding top and bottom */
+  margin-left: 60px; 
+  gap: 40px; /* Increase gap between left and right sections */
+}
+
+.left-section, .right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.financial-overview, .summary, .transactions-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.financial-overview {
+  width: 100%; /* Make it 100% to take full space of left-section */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto; 
+  padding: 10px;
+  box-sizing: border-box; 
+}
+
+.financial-overview h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px; 
+  font-weight: bold;
+  text-align: center; 
+}
+
+.financial-overview table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+}
+
+.financial-overview th, .financial-overview td {
+  padding: 4px;
+  padding-left: 30px;
+  text-align: left;
+  font-weight: bold;
+  border: none; 
+}
+
+.financial-overview th {
+  background-color: #fff;
+  font-weight: bold;
+  color: #555;
+}
+
+.financial-overview td {
+  border: none;
+  color: #666;
+}
+
+.financial-overview tbody tr:first-child td {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.financial-overview tbody tr:last-child td {
+  border-top: 1px solid #f0f0f0;
+}
+
+.summary {
+  width: 100%; /* Make it 100% to take full space of left-section */
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.summary-details {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.summary-details p {
+  margin: 0;
+  font-weight: normal; /* Unbold text within the section */
+}
+
+.transactions-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.transaction-form {
+  background-color: #a142f4;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row; /* Changed from column to row */
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between; /* Ensure space between inputs and button */
+  position: relative;
+  width: calc(100% - 80px); /* Adjust width to make space for the button */
+}
+
+.transaction-form .form-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.transaction-form .title-input,
+.transaction-form .date-input,
+.transaction-form .category-input,
+.transaction-form .description-input,
+.transaction-form .amount-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+}
+
+.transaction-form .title-input,
+.transaction-form .date-input,
+.transaction-form .category-input,
+.transaction-form .amount-input {
+  width: 18%;
+}
+
+.transaction-form .description-input {
+  flex-basis: 100%;
+  height: 40px;
+  resize: none; /* Remove resize option */
+}
+
+.add-button {
+  background-color: #000;
+  color: #fff;
+  font-size: 1.5em;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: -60px; /* Position button in the white section */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.transaction-item {
+  background-color: #7a00ff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  background-color: #4c00b0;
+  padding: 10px;
+  border-radius: 15px 15px 0 0;
+  width: 100%;
+}
+
+.transaction-header h4 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.transaction-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.transaction-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.transaction-buttons .edit-button {
+  color: #ffc107;
+}
+
+.transaction-buttons .delete-button {
+  color: #f44336;
+}
+
+.transaction-item p {
+  margin: 10px 0 0 0;
+  padding: 10px;
+  background-color: #5a00e5;
+  border-radius: 0 0 15px 15px;
+  font-size: 0.9em;
+}
