@@ -3,6 +3,9 @@ import { Button, Nav } from "react-bootstrap";
 import "../navbar/navbar.css";
 import logo from "../navbar/logo.png";
 
+// TODO: add this to app and use conditionals to toggle between different pages to prevent navbar from closing
+// TODO: add logout
+
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -113,7 +116,10 @@ export default function NavBar() {
         </div>
       </div>
 
-      <div className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}>
+      <div
+        className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}
+        onClick={toggleNavbar}
+      >
         <Nav.Link
           href="/"
           id="oneSpace"
