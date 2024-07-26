@@ -7,6 +7,20 @@ const corsOptions = {
   origin: "http://localhost:3000",
 };
 
+// Set up SQLite
+// Items in the global namespace are accessible throught out the node application
+const sqlite3 = require("sqlite3").verbose();
+global.db = new sqlite3.Database("./database.db", function (err) {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  } else {
+    console.log("Database connected");
+    // tell SQLite to pay attention to foreign key constraints
+    global.db.run("PRAGMA foreign_keys=ON");
+  }
+});
+
 app.use(cors(corsOptions));
 
 // Sending data to http://localhost:3001/ - Home page
