@@ -93,7 +93,6 @@ const FinancialOrganizer = () => {
                     <button className="delete-button">🗑️</button>
                   </div>
                 </div>
-                <p>Body Soap, Eggs, Bread, AAA batteries</p>
               </div>
               <div className="transaction-item">
                 <div className="transaction-header">

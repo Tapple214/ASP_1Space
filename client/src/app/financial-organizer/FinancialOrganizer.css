@@ -116,14 +116,14 @@
 }
 
 .transaction-form {
-  background-color: #a142f4;
+  background-color: #9731b1;
   padding: 20px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
-  width: calc(100% - 60px); /* Adjust width to make space for the button */
+  width: calc(100% - 50px); /* Adjust width to make space for the button */
 }
 
 .transaction-form .form-inputs {
@@ -144,23 +144,36 @@
 .transaction-form .description-input,
 .transaction-form .amount-input {
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 25px;
   border: none;
   font-size: 1em;
 }
 
 .transaction-form .title-input,
-.transaction-form .date-input,
-.transaction-form .category-input {
+.transaction-form .date-input {
   flex: 1;
+  height: 25px;
 }
 
-.transaction-form .description-input {
-  flex: 2;
+.transaction-form .title-input {
+  margin-right: 50px; /* Add this line to create a gap between title and date input */
+}
+
+.transaction-form .category-input {
+  width: calc(100% / 3); /* Make widths equal */
+  height: 25px;
 }
 
 .transaction-form .amount-input {
-  flex: 0.5;
+  flex: right;
+  width: calc(100% / 3);
+  height: calc(2.5 * 1.5em);
+}
+
+.transaction-form .description-input {
+  flex: 1;
+  width: calc(100% / 3) * 2;
+  height: calc(2.5 * 1.5em);
 }
 
 .add-button {
@@ -176,7 +189,7 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  right: -6%; /* Position button outside the purple section */
+  right: -55px; /* Position button outside the purple section */
   top: 50%;
   transform: translateY(-50%);
 }
@@ -188,7 +201,7 @@
 }
 
 .transaction-item {
-  background-color: #7a00ff;
+  background-color: #9731b1;
   color: #fff;
   padding: 10px;
   border-radius: 20px;
@@ -201,7 +214,7 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  background-color: #4c00b0;
+
   padding: 10px;
   border-radius: 15px 15px 0 0;
   width: 100%;
@@ -236,7 +249,8 @@
 .transaction-item p {
   margin: 10px 0 0 0;
   padding: 10px;
-  background-color: #5a00e5;
-  border-radius: 0 0 15px 15px;
+  color: black;
+  background-color: white;
+  border-radius:15px;
   font-size: 0.9em;
 }
