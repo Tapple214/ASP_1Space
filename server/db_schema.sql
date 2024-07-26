@@ -3,80 +3,45 @@ PRAGMA foreign_keys=ON;
 
 BEGIN TRANSACTION;
 
--- Table for authors
-CREATE TABLE IF NOT EXISTS author (
-    author_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    author_name TEXT NOT NULL UNIQUE,
-    author_password TEXT NOT NULL
+-- Table for users
+CREATE TABLE IF NOT EXISTS user (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_email TEXT NOT NULL UNIQUE,
+    user_name TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 );
 
--- Table for author's blog 
-CREATE TABLE IF NOT EXISTS blog (
-    blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    blog_title TEXT NOT NULL,
-    blog_subtitle TEXT NOT NULL,
-    author_name TEXT NOT NULL,
-    blog_views INTEGER DEFAULT 0,
+-- Table for task entries in the task manager page
+CREATE TABLE IF NOT EXISTS task (
+    task_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    task_name TEXT NOT NULL,
+    task_description TEXT NOT NULL,
+    task_category TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    author_id INTEGER,
-    FOREIGN KEY (author_id) REFERENCES author(author_id)
-);
+    finish_by DATETIME,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+)
 
--- Table for articles 
-CREATE TABLE IF NOT EXISTS article (
-    article_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    article_title TEXT NOT NULL,
-    article_content TEXT NOT NULL,
-    article_tag TEXT,
-    article_image TEXT,
-    article_type TEXT,
-    author_name TEXT,
-    article_views INTEGER DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    blog_id INTEGER, 
-    author_id INTEGER,
-    FOREIGN KEY (blog_id) REFERENCES blog(blog_id),
-    FOREIGN KEY (author_id) REFERENCES author(author_id)
-);
+-- Table for badges in the task manager page
+CREATE TABLE IF NOT EXISTS badge (
+    badge_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    badge_name TEXT NOT NULL,
+    badge_description TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- The date when the badge was achieved
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+)
 
--- Table for blog comments 
-CREATE TABLE IF NOT EXISTS blogComment (
-    comment_id INTEGER PRIMARY KEY,
-    comment_name TEXT,
-    content TEXT NOT NULL,
+-- Table for expense entries in the finance board page
+CREATE TABLE IF NOT EXISTS expense (
+    expense_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    expense_name TEXT NOT NULL,
+    expense_description TEXT NOT NULL,
+    expense_category TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    blog_id INTEGER,
-    FOREIGN KEY (blog_id) REFERENCES blog(blog_id)
-);
-
--- Table for article comments 
-CREATE TABLE IF NOT EXISTS articleComment (
-    comment_id INTEGER PRIMARY KEY,
-    comment_name TEXT,
-    content TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    article_id INTEGER,
-    FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE
-);
-
--- Table for article's likes/dislikes 
-CREATE TABLE IF NOT EXISTS blogFeedback (
-    feedback_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    like_count INTEGER DEFAULT 0,
-    dislike_count INTEGER DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    blog_id INTEGER,
-    FOREIGN KEY (blog_id) REFERENCES blog(blog_id)
-);
-
-CREATE TABLE IF NOT EXISTS articleFeedback (
-    feedback_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    like_count INTEGER DEFAULT 0,
-    dislike_count INTEGER DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    article_id INTEGER,
-    FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE
-);
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+)
 
 COMMIT;
