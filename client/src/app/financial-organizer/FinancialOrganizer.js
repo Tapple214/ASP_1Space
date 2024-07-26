@@ -71,11 +71,15 @@ const FinancialOrganizer = () => {
             <div className="transaction-form">
               <form>
                 <div className="form-inputs">
-                  <input type="text" placeholder="Title" className="title-input" />
-                  <input type="date" placeholder="Current date" className="date-input" />
-                  <input type="text" placeholder="Category" className="category-input" />
-                  <textarea placeholder="Description for transaction" className="description-input"></textarea>
-                  <input type="number" placeholder="$" className="amount-input" />
+                  <div className="form-row">
+                    <input type="text" placeholder="Title" className="title-input" />
+                    <input type="date" placeholder="Current date" className="date-input" />
+                    <input type="text" placeholder="Category" className="category-input" />
+                  </div>
+                  <div className="form-row">
+                    <input type="text" placeholder="Description for transaction" className="description-input" />
+                    <input type="number" placeholder="$" className="amount-input" />
+                  </div>
                 </div>
                 <button type="submit" className="add-button">+</button>
               </form>
