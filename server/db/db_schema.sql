@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS user (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_email TEXT NOT NULL UNIQUE,
     user_name TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table for task entries in the task manager page
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS task (
     finish_by DATETIME,
     user_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
-)
+);
 
 -- Table for badges in the task manager page
 CREATE TABLE IF NOT EXISTS badge (
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS badge (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- The date when the badge was achieved
     user_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
-)
+);
 
 -- Table for expense entries in the finance board page
 CREATE TABLE IF NOT EXISTS expense (
@@ -42,6 +42,6 @@ CREATE TABLE IF NOT EXISTS expense (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
-)
+);
 
 COMMIT;

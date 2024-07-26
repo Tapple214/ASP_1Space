@@ -10,7 +10,7 @@ const corsOptions = {
 // Set up SQLite
 // Items in the global namespace are accessible throught out the node application
 const sqlite3 = require("sqlite3").verbose();
-global.db = new sqlite3.Database("./database.db", function (err) {
+global.db = new sqlite3.Database("./db/1Space-db.db", function (err) {
   if (err) {
     console.error(err);
     process.exit(1);
