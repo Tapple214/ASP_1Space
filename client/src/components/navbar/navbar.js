@@ -135,7 +135,7 @@ export default function NavBar() {
           <Nav.Link href="/" className="mb-4">
             Dashboard
           </Nav.Link>
-          <Nav.Link href="#taskmanager" className="mb-2">
+          <Nav.Link href="/taskManager" className="mb-2">
             Task Manager
           </Nav.Link>
           <Nav.Link href="/financial-organizer" className="mb-2">

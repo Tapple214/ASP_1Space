@@ -1,6 +1,7 @@
 import "../home/Home.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import NavBar from "../../components/navbar/navbar";
 
 export default function Home() {
   //   // To display the data from data retrieved from api
@@ -26,6 +27,7 @@ export default function Home() {
   //   }, []);
   return (
     <div className="App p-3">
+      <NavBar></NavBar>
       {/* <h1 className="">{homeData.Title}</h1>
       <p>{homeData.Subtitle}</p>
 
