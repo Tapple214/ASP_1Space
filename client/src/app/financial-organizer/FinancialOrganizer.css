@@ -123,7 +123,7 @@
   flex-direction: column;
   gap: 10px;
   position: relative;
-  width: calc(100% - 50px); /* Adjust width to make space for the button */
+  width: calc(100% - 50px); 
 }
 
 .transaction-form .form-inputs {
@@ -156,11 +156,11 @@
 }
 
 .transaction-form .title-input {
-  margin-right: 50px; /* Add this line to create a gap between title and date input */
+  margin-right: 50px; 
 }
 
 .transaction-form .category-input {
-  width: calc(100% / 3); /* Make widths equal */
+  width: calc(100% / 3);
   height: 25px;
 }
 
@@ -189,7 +189,7 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  right: -55px; /* Position button outside the purple section */
+  right: -55px;
   top: 50%;
   transform: translateY(-50%);
 }
