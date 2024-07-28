@@ -1,0 +1,38 @@
+[
+  {
+    "name": "First Launch",
+    "achievement": "You've kickstarted your journey by creating your first task!",
+    "img": "/images/first-launch.png",
+    "alt": "First Launch"
+  },
+  {
+    "name": "First Orbit",
+    "achievement": "You're on a roll! Completed 3 tasks!",
+    "img": "/images/first-orbit.png",
+    "alt": "First Orbit"
+  },
+  {
+    "name": "Rocket Rider",
+    "achievement": "Zooming ahead! Completed 5 tasks before 5pm for 3 days straight!",
+    "img": "/images/rocket-rider.png",
+    "alt": "Rocket Rider"
+  },
+  {
+    "name": "Galactic Traveler",
+    "achievement": "On a mission! Completed 10 tasks before 5pm for 6 consecutive days!",
+    "img": "/images/galactic-traveler.png",
+    "alt": "Galactic Traveler"
+  },
+  {
+    "name": "Star Seeker",
+    "achievement": "Star performer! Completed 3 'urgent' tasks in 5 days!",
+    "img": "/images/star-seeker.png",
+    "alt": "Star Seeker"
+  },
+  {
+    "name": "Stellar Navigator",
+    "achievement": "Badge collector! You've earned 5 badges!",
+    "img": "/images/stellar-navigator.png",
+    "alt": "Stellar Navigator"
+  }
+]
