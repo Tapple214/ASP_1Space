@@ -5,10 +5,20 @@
 }
 
 .left-section, .right-section {
-    /* flex: 1; */
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-top: 2%;
+}
+
+.left-section {
+    padding-left: 10%;
+}
+
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .task-form {
@@ -36,6 +46,12 @@
     background-color: #4caf50;
     color: white;
     cursor: pointer;
+}
+
+.category-label {
+    background-color: #4caf50;
+    border-radius: 5px;
+    padding: 2px;
 }
 
 .transaction-list {
@@ -76,7 +92,20 @@
     color: #f44336;
 }
 
+.badges, .missions {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 70%;
+}
+
 .badges img {
     width: 100px;
     height: auto;
+}
+
+.help-button {
+    float: right;
 }
