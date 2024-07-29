@@ -2,6 +2,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../login/Login.css";
+import { GoogleLogin } from "@react-oauth/google";
+
+// TODO: implement data retrieval after db is set up
 
 export default function Login() {
   // To display the data from data retrieved from api
@@ -26,18 +29,36 @@ export default function Login() {
   }, []);
 
   return (
-    <div className="Login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
-      <div className="card d-flex flex-row w-75 h-50 rounded-4">
+    <div className="login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
+      <div className="card d-flex flex-row w-75 h-50 rounded-5">
         <div className="rocket-container position-absolute">
           {LoginData.Rocket && (
             <img src={LoginData.Rocket} id="rocket" alt="Rocket" />
           )}
         </div>
 
-        <div className="d-flex flex-column justify-content-center align-items-center mx-auto me-5 pe-5">
+        <div className="login-message d-flex flex-column justify-content-center align-items-center mx-auto">
           {LoginData.Logo && <img src={LoginData.Logo} id="logo" alt="Logo" />}
           <h1>{LoginData.Title}</h1>
           <p>{LoginData.Subtitle}</p>
+
+          <div className="d-flex flex-column justify-content-center align-items-center text-center">
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+
+            <br />
+
+            <p className="disclaimer px-5">
+              By clicking continue, you agree to sharing your name and email
+              with 1Space.
+            </p>
+          </div>
         </div>
       </div>
     </div>
