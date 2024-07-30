@@ -1,0 +1,32 @@
+[
+    {
+        "name": "affordable pastries",
+        "description": "This underrated bakery in a hawker centre has cafe-quality croissants, cakes, brownies and tarts from just $3.80",
+        "location": "7 Maxwell Road, #02-128 Amoy Street Food Centre, Singapore 069111",
+        "details": "10.30am–3pm (Mon to Fri), Closed on Sat, Sun and Public Holidays"
+    },
+    {
+        "name": "mala buffet",
+        "description": "This restaurant in the CBD is serving free flow all-you-can-eat mala xiang guo at just S$10 nett for a limited time only",
+        "location": "182 Cecil Street, #02-07/08 Frasers Tower, Singapore 069547",
+        "details": "11am–9pm (Mon to Fri), Closed on Sat & Sun"
+    },
+    {
+        "name": "mookata buffet",
+        "description": "ABC886 Mookata is open till late with an all-you-can-eat buffet alongside free-flow basil pork rice for just S$19.90",
+        "location": "28 Tai Seng Street, Sakae building Level 1 Sinfoodie food court, Singapore 534106",
+        "details": "11am–11pm (Tue to Fri), 5pm–11pm (Sat & Sun), Closed on Mon"
+    },
+    {
+        "name": "beer atm",
+        "description": "Little Island Brewing Co @ Changi Village has a “Beer ATM” with DIY beer dispensers and beers on tap from just S$1.90",
+        "location": "6 Changi Village Road, #01-01/02, Singapore 509907",
+        "details": "3pm–10pm (Tue to Thur), 12pm–12am (Fri to Sat), 12pm–10pm (Sun), Closed on Mon"
+    },
+    {
+        "name": "prata buffet",
+        "description": "The popular Springleaf Prata Place is having a S$9.90 prata buffet with over 25 varieties of sweet & savoury prata from now till 30 June 2024",
+        "location": "218 Pasir Panjang Rd, #01-03, Singapore 118579",
+        "details": "8am—10pm (Mon to Sun)"
+    }
+]
