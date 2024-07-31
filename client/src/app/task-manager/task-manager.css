@@ -30,18 +30,19 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     gap: 10px;
-    background-color:#E29DD4 ;
+    background-color:#F6D0EE;
 }
 
 .task-form input {
     flex: 1;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 30px;
     border: 1px solid #ddd;
-    margin-right: 10px;
+    /* margin-right: 10px; */
+    margin: 10px;
 }
 
 .task-form button {
@@ -51,7 +52,6 @@
     background-color: #4caf50;
     color: white;
     cursor: pointer;
-    margin-left: 10px;
 }
 
 .category-label {
@@ -64,18 +64,35 @@
     box-sizing: border-box;
 }
 
+.description {
+    width: 97%;
+}
+
+.category {
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
 .transaction-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+.transaction-list p {
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 12px;
+}
+
 .transaction-item {
-    background-color:#E29DD4 ;
+    background-color:#F6D0EE;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
+    padding-left: 5%;
 }
 
 .transaction-header {
@@ -83,6 +100,11 @@
     justify-content:space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.transaction-header h4 {
+    text-align: left;
+    color: #A139A2;
 }
 
 .transaction-buttons {

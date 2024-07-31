@@ -5,6 +5,10 @@ import axios from "axios";
 import { Navbar } from "react-bootstrap";
 
 export default function taskManager() {
+
+  const currentDateTime = new Date();
+  const date = currentDateTime.toDateString();
+
   return(
     <>
       <NavBar />
@@ -12,26 +16,31 @@ export default function taskManager() {
         <div className="left-section">
           <div className="task-form">
             <form>
-              <input type="text" placeholder="Title" />
-              <input type="date" placeholder="Current date" />
-              <select className="category">
-                <option value="default">Choose a category</option>
-                <option value="Type1">Urgent</option>
-                <option value="Type2">OTOT</option>
-                <option value="Type3">Important</option>
-                <option value="Type4">Chill</option>
-                <option value="Type5">Undefined</option>
-              </select>
-              <button type="submit">+</button>
-              <textarea name="description"></textarea>
+              <div className="form-left">
+                <input type="text" placeholder="Title" />
+                <input type="date" placeholder={date}  value={date} />
+                <select className="category">
+                  <option value="default">Choose a category</option>
+                  <option value="Type1">Urgent</option>
+                  <option value="Type2">OTOT</option>
+                  <option value="Type3">Important</option>
+                  <option value="Type4">Chill</option>
+                  <option value="Type5">Undefined</option>
+                </select>
+                <input type="text" placeholder="Description" className="description"/>
+              </div>
+              <div className="form-right">
+                <button type="submit">+</button>
+              </div>
             </form>
           </div>
           <div className="transaction-list">
             <div className="transaction-item">
               <div className="transaction-header">
-                <h4>Organize study table</h4>
-                <label className="category-label">Category</label>
+                <h4>June 5</h4>
+                <h4>Organize study table</h4> 
                 <div className="transaction-buttons">
+                  <label className="category-label">Category</label>
                   <button className="edit-button">✏️</button>
                   <button className="delete-button">🗑️</button>
                   <button className="task-complete">✔</button>
@@ -41,9 +50,10 @@ export default function taskManager() {
             </div>
             <div className="transaction-item">
               <div className="transaction-header">
+                <h4>June 6</h4>
                 <h4>Finish task</h4>
-                <label className="category-label">Category</label>
                 <div className="transaction-buttons">
+                  <label className="category-label">Category</label>
                   <button className="edit-button">✏️</button>
                   <button className="delete-button">🗑️</button>
                   <button className="task-complete">✔</button>
