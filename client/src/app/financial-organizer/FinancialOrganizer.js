@@ -74,7 +74,12 @@ const FinancialOrganizer = () => {
                   <div className="form-row">
                     <input type="text" placeholder="Title" className="title-input" />
                     <input type="date" placeholder="Current date" className="date-input" />
-                    <input type="text" placeholder="Category" className="category-input" />
+                    <select className="category-input">
+                      <option value="">Category</option>
+                      <option value="food">Food</option>
+                      <option value="transport">Transport</option>
+                      <option value="entertainment">Entertainment</option>
+                    </select>
                   </div>
                   <div className="form-row">
                     <input type="text" placeholder="Description for transaction" className="description-input" />
