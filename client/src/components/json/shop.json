@@ -1,30 +1,35 @@
 [
     {
         "name": "affordable makeup",
+        "image": "/images/shop_makeup.png",
         "description": "10 affordable viral high-end luxury makeup dupes",
         "location": "",
         "details": "available at drugstores like Guardian & Watsons"
     },
     {
         "name": "sunscreens",
+        "image": "/images/shop_sunscreen.png",
         "description": "6 best sunscreens under S$20 for acne-prone and sensitive skin",
         "location": "",
         "details": "Click the link to find out more!"
     },
     {
         "name": "Daiso makeup",
+        "image": "/images/shop_daiso.png",
         "description": "This underrated makeup brand that went viral in Japan can be found at Daiso with high-quality products from just S$2.16",
         "location": "",
         "details": "Available at Daiso shops"
     },
     {
         "name": "puffer bags",
+        "image": "/images/shop_bag.png",
         "description": "10 affordable puffer bags you can easily find in Singapore for under S$17",
         "location": "",
         "details": "Click the link to find out more!"
     },
     {
         "name": "eyeliners",
+        "image": "/images/shop_eyeliner.png",
         "description": "10 drugstore eyeliners you can get in Singapore for under S$25 that are waterproof and smudge free",
         "location": "",
         "details": "Click the link to find out more!"
