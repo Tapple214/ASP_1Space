@@ -78,7 +78,7 @@ export default function NavBar() {
             </div>
           </a>
 
-          <a href="/">
+          <a href="/financial-organizer">
             <div className="finance-organizer icon-widget d-flex justify-content-center align-items-center mb-2 rounded-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@ export default function NavBar() {
           <Nav.Link href="#taskmanager" className="mb-2">
             Task Manager
           </Nav.Link>
-          <Nav.Link href="#FinanceBoard" className="mb-2">
+          <Nav.Link href="/financial-organizer" className="mb-2">
             Finance Board
           </Nav.Link>
           <Nav.Link href="#BudgetHub" className="mb-2">

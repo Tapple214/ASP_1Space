@@ -3,6 +3,7 @@ const app = express();
 const port = 3001;
 const cors = require("cors");
 const path = require("path");
+const { url } = require("inspector");
 const corsOptions = {
   origin: "http://localhost:3000",
 };
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
         name: "Finance Board",
         description:
           "Keep your budget in check! Easily track income and expenses to stay financially savvy.",
+        url: "/financial-organizer",
         img: "/images/finance-board.png",
         alt: "Finance Board",
       },
