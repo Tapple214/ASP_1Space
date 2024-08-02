@@ -27,19 +27,23 @@ export default function taskManager() {
                   <option value="Type4">Chill</option>
                   <option value="Type5">Undefined</option>
                 </select>
-                <input type="text" placeholder="Description" className="description"/>
+                <input type="text" placeholder="Description of task" className="description"/>
               </div>
               <div className="form-right">
                 <button type="submit">+</button>
               </div>
             </form>
           </div>
-          <div className="transaction-list">
-            <div className="transaction-item">
-              <div className="transaction-header">
-                <h4>June 5</h4>
-                <h4>Organize study table</h4> 
-                <div className="transaction-buttons">
+          <div className="task-list">
+            <div className="task-item">
+              <div className="task-header">
+                <div className="task-date">
+                  <h4>June 5</h4>
+                </div>
+                <div className="task-title">
+                  <h4>Organize study table</h4>
+                </div>
+                <div className="task-buttons">
                   <label className="category-label">Category</label>
                   <button className="edit-button">✏️</button>
                   <button className="delete-button">🗑️</button>
@@ -48,11 +52,15 @@ export default function taskManager() {
               </div>
               <p>Laptop, notepad, charger, glasses, bottle</p>
             </div>
-            <div className="transaction-item">
-              <div className="transaction-header">
-                <h4>June 6</h4>
-                <h4>Finish task</h4>
-                <div className="transaction-buttons">
+            <div className="task-item">
+              <div className="task-header">
+                <div className="task-date">
+                  <h4>June 6</h4>
+                </div>
+                <div className="task-title">
+                  <h4>Finish task</h4>
+                </div>
+                <div className="task-buttons">
                   <label className="category-label">Category</label>
                   <button className="edit-button">✏️</button>
                   <button className="delete-button">🗑️</button>

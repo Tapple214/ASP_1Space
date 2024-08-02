@@ -14,7 +14,7 @@
 }
 
 .left-section {
-    border-radius: 10px;
+    border-radius: 35px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 5% 2%;
 }
@@ -25,15 +25,11 @@
     align-items: center;
 }
 
-.task-form {
+.task-form form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
-    padding: 10px;
-    border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    gap: 10px;
-    background-color:#F6D0EE;
+    justify-content: center;
 }
 
 .task-form input {
@@ -41,17 +37,88 @@
     padding: 10px;
     border-radius: 30px;
     border: 1px solid #ddd;
-    /* margin-right: 10px; */
     margin: 10px;
 }
 
+.form-left {
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    background-color:#F6D0EE;
+}
+
+.form-right {
+    text-align: center;
+    margin-left: 10px;
+    background-color: white;
+}
+
 .task-form button {
+    font-size: 75px;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
-    background-color: #4caf50;
-    color: white;
+    background-color: white;
+    color: black;
     cursor: pointer;
+}
+
+.category {
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.description {
+    width: 97%;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-list p {
+    background-color: white;
+    border-radius: 30px;
+    padding: 8px;
+    padding-left: 15px;
+    align-items: center;
+}
+
+.task-item {
+    background-color:#F6D0EE;
+    padding: 10px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+
+.task-header {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-date {
+    color: #A139A2;
+    flex: 1;
+}
+
+.task-title {
+    flex: 2;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 5px;
 }
 
 .category-label {
@@ -62,54 +129,6 @@
     width: 100px;
     text-align: center;
     box-sizing: border-box;
-}
-
-.description {
-    width: 97%;
-}
-
-.category {
-    border-radius: 30px;
-    padding: 10px;
-    margin: 10px;
-}
-
-.transaction-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.transaction-list p {
-    background-color: white;
-    border-radius: 30px;
-    padding-left: 12px;
-}
-
-.transaction-item {
-    background-color:#F6D0EE;
-    padding: 10px;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    padding-left: 5%;
-}
-
-.transaction-header {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.transaction-header h4 {
-    text-align: left;
-    color: #A139A2;
-}
-
-.transaction-buttons {
-    display: flex;
-    gap: 5px;
 }
 
 .edit-button, .delete-button, .task-complete {
@@ -128,7 +147,7 @@
 }
 
 .badges, .missions {
-    border-radius: 10px;
+    border-radius: 35px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     text-align: center;
     padding-top: 2%;
@@ -141,9 +160,15 @@
     height: auto;
 }
 
+.badges h1{
+    padding-left: 10%;
+}
+
 .help-button {
     float: right;
+    margin-right: 5%;
     border-style: none;
+    border-radius: 100%;
     background-color: white;
 }
 
