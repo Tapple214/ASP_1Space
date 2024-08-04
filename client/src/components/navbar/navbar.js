@@ -60,7 +60,7 @@ export default function NavBar() {
             </div>
           </a>
 
-          <a href="/">
+          <a href="/taskManager">
             <div className="task-manager icon-widget d-flex justify-content-center align-items-center mb-2 rounded-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
