@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
         name: "Task Manager",
         description:
           "Stay on top of your to-dos! Add, label, and manage tasks while earning fun badges along the way!",
-        url: "#",
+        url: "/taskManager",
         img: "/images/task-manager.png",
         alt: "Task Manager",
       },
