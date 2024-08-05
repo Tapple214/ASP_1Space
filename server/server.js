@@ -111,26 +111,18 @@ app.post("/authenticate", (req, res) => {
 
 // Logout handling
 app.post("/logout", (req, res) => {
-  const { idToken } = req.body;
-  console.log("Received ID Token for logout:", idToken);
-
-  // Delete user token from the database
-  db.run(`DELETE FROM user WHERE user_token = ?`, [idToken], function (err) {
+  // Destroy session
+  req.session.destroy((err) => {
     if (err) {
-      console.error("Error processing logout:", err.message);
+      console.error("Error destroying session:", err.message);
       return res.status(500).json({ message: "Failed to logout." });
     }
 
-    // Destroy session
-    req.session.destroy((err) => {
-      if (err) {
-        console.error("Error destroying session:", err.message);
-        return res.status(500).json({ message: "Failed to logout." });
-      }
+    // Optionally clear session cookies here if necessary
+    res.clearCookie("connect.sid");
 
-      console.log("User logged out and session destroyed.");
-      res.json({ message: "Logout successful." });
-    });
+    console.log("User logged out and session destroyed.");
+    res.json({ message: "Logout successful." });
   });
 });
 
