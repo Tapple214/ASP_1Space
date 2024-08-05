@@ -20,11 +20,40 @@ global.db = new sqlite3.Database("./db/database.db", function (err) {
   }
 });
 
+// Middleware function
+function requireLogin(req, res, next) {
+  // Extract token from Authorization header (assuming Bearer token)
+  const token = req.headers["authorization"]?.split(" ")[1]; // `Authorization: Bearer <token>`
+
+  if (!token) {
+    return res.status(401).json({ message: "No token provided" });
+  }
+
+  // Check if token exists in the database
+  global.db.get(
+    "SELECT * FROM user WHERE user_token = ?",
+    [token],
+    (err, row) => {
+      if (err) {
+        console.error("Error querying token:", err.message);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+
+      if (!row) {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      // Token is valid, proceed with the request
+      next();
+    }
+  );
+}
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Sending data to http://localhost:3001/ - Home page
-app.get("/", (req, res) => {
+// Sending data to http://localhost:3001/Home - Home page
+app.get("/Home", (req, res) => {
   res.json({
     Title: "Dashboard",
     Subtitle: "Hi (username) Explore your 1Space!",
@@ -57,7 +86,7 @@ app.get("/", (req, res) => {
 });
 
 // Sending data to http://localhost:3001/login - Login page
-app.get("/login", (req, res) => {
+app.get("/login", requireLogin, (req, res) => {
   res.json({
     Title: "Welcome to 1Space",
     Subtitle: "Login to begin your adventure",

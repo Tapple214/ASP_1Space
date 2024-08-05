@@ -5,7 +5,6 @@ import logo from "../navbar/logo.png";
 import axios from "axios";
 
 // TODO: add this to app and use conditionals to toggle between different pages to prevent navbar from closing
-// TODO: add logout
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
