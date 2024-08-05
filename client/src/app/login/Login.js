@@ -25,7 +25,7 @@ export default function Login() {
         console.log("Token sent successfully");
 
         // Redirect to the home page after successful login
-        navigate("/");
+        navigate("/Home");
       } catch (error) {
         console.error("Error sending token:", error);
       }
