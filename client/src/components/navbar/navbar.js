@@ -14,14 +14,21 @@ export default function NavBar() {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout = async () => {
-    try {
-      await axios.post("http://localhost:3001/logout");
-      // Handle successful logout
-      console.log("Logout successful");
-      window.location.href = "/login"; // Replace with your actual login page URL
-    } catch (error) {
-      console.error("Logout failed:", error);
+  const handleLogout = async (credentialResponse) => {
+    if (credentialResponse?.credential) {
+      const idToken = credentialResponse.credential;
+      try {
+        await axios.post("http://localhost:3001/logout", {
+          idToken,
+        });
+        // Handle successful logout
+        console.log("Logout successful");
+        window.location.href = "/login"; // Replace with your actual login page URL
+      } catch (error) {
+        console.error("Logout failed:", error);
+      }
+    } else {
+      console.log("No credential received.");
     }
   };
 

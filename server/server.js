@@ -73,9 +73,8 @@ app.post("/authenticate", (req, res) => {
 
   // Insert or update user token
   db.run(
-    `INSERT INTO user (user_token) VALUES (?)
-     ON CONFLICT(user_token) DO UPDATE SET user_token = ?`,
-    [idToken, idToken],
+    `INSERT OR REPLACE INTO user (user_token) VALUES (?)`,
+    [idToken],
     function (err) {
       if (err) {
         console.error("Error processing token:", err.message);
@@ -102,6 +101,25 @@ app.post("/logout", (req, res) => {
 
     console.log("User logged out.");
     res.json({ message: "Logout successful." });
+  });
+});
+
+// --- TO CHECK ---
+
+/**
+ * @desc Check to see users
+ */
+app.get("/list-users", (req, res, next) => {
+  // Define the query
+  query = "SELECT * FROM user;";
+
+  // Execute the query and render the page with the results
+  global.db.all(query, function (err, rows) {
+    if (err) {
+      next(err); // Send the error on to the error handler
+    } else {
+      res.json(rows); // Render page as simple json
+    }
   });
 });
 

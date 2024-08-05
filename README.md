@@ -44,7 +44,7 @@ To run the application in development mode, follow these steps:
 Test the app by browsing to the following routes, these would list contents their respective tables:
 
 - http://localhost:3000
-- http://localhost:3000/list-authors
+- http://localhost:3001/list-users
 
 ### Important Notes
 
