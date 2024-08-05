@@ -12,7 +12,7 @@ export default function Login() {
   // Fetch data from server
   const fetchLoginData = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/login");
+      const res = await axios.get("http://localhost:3001/");
       console.log(res.data);
       setLoginData(res.data);
     } catch (error) {

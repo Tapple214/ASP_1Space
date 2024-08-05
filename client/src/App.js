@@ -8,8 +8,8 @@ import TaskManager from "./app/task-manager/task-manager";
 function App() {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
       <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/financial-organizer" element={<FinancialOrganizer />} />
       <Route path="/taskManager" element={<TaskManager />} />
       {/* Add other routes here */}
