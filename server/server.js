@@ -8,6 +8,17 @@ const corsOptions = {
   origin: "http://localhost:3000",
 };
 
+const session = require("express-session");
+
+app.use(
+  session({
+    secret: "1SPacESeSSIonSecReT",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
+);
+
 // Set up SQLite
 const sqlite3 = require("sqlite3").verbose();
 global.db = new sqlite3.Database("./db/database.db", function (err) {
@@ -22,38 +33,18 @@ global.db = new sqlite3.Database("./db/database.db", function (err) {
 
 // Middleware function
 function requireLogin(req, res, next) {
-  // Extract token from Authorization header (assuming Bearer token)
-  const token = req.headers["authorization"]?.split(" ")[1]; // `Authorization: Bearer <token>`
-
-  if (!token) {
-    return res.status(401).json({ message: "No token provided" });
+  if (req.session.token) {
+    next();
+  } else {
+    res.redirect("/login");
   }
-
-  // Check if token exists in the database
-  global.db.get(
-    "SELECT * FROM user WHERE user_token = ?",
-    [token],
-    (err, row) => {
-      if (err) {
-        console.error("Error querying token:", err.message);
-        return res.status(500).json({ message: "Internal server error" });
-      }
-
-      if (!row) {
-        return res.status(401).json({ message: "Invalid token" });
-      }
-
-      // Token is valid, proceed with the request
-      next();
-    }
-  );
 }
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
 // Sending data to http://localhost:3001/Home - Home page
-app.get("/Home", (req, res) => {
+app.get("/home", (req, res) => {
   res.json({
     Title: "Dashboard",
     Subtitle: "Hi (username) Explore your 1Space!",
@@ -86,7 +77,7 @@ app.get("/Home", (req, res) => {
 });
 
 // Sending data to http://localhost:3001/login - Login page
-app.get("/login", requireLogin, (req, res) => {
+app.get("/login", (req, res) => {
   res.json({
     Title: "Welcome to 1Space",
     Subtitle: "Login to begin your adventure",
@@ -110,7 +101,9 @@ app.post("/authenticate", (req, res) => {
         return res.status(500).json({ message: "Failed to process token." });
       }
 
-      console.log("Token processed.");
+      // Store token in session
+      req.session.token = idToken;
+      console.log("Token processed and session created.");
       res.json({ message: "Token received and processed." });
     }
   );
@@ -128,8 +121,16 @@ app.post("/logout", (req, res) => {
       return res.status(500).json({ message: "Failed to logout." });
     }
 
-    console.log("User logged out.");
-    res.json({ message: "Logout successful." });
+    // Destroy session
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error destroying session:", err.message);
+        return res.status(500).json({ message: "Failed to logout." });
+      }
+
+      console.log("User logged out and session destroyed.");
+      res.json({ message: "Logout successful." });
+    });
   });
 });
 
