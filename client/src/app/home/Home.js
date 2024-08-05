@@ -14,8 +14,8 @@ export default function Home() {
   // Fetch data from server
   const fetchHomeData = async () => {
     try {
-      // Wait for axios to fetch the data from http://localhost:3001/
-      const res = await axios.get("http://localhost:3001/");
+      // Wait for axios to fetch the data from http://localhost:3001/Home
+      const res = await axios.get("http://localhost:3001/home");
       // To test and see if data is being successfully sent
       console.log(res.data);
       setHomeData(res.data);

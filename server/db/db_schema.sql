@@ -6,8 +6,7 @@ BEGIN TRANSACTION;
 -- Table for users
 CREATE TABLE IF NOT EXISTS user (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_email TEXT NOT NULL UNIQUE,
-    user_name TEXT NOT NULL,
+    user_token TEXT NOT NULL UNIQUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -20,6 +19,7 @@ CREATE TABLE IF NOT EXISTS task (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     finish_by DATETIME,
     user_id INTEGER,
+    is_complete BOOLEAN DEFAULT false,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS expense (
     expense_category TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER,
+    is_complete BOOLEAN DEFAULT false,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 

@@ -3,12 +3,36 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../login/Login.css";
 import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 // TODO: implement data retrieval after db is set up
 
 export default function Login() {
+  const navigate = useNavigate();
+
   // To display the data from data retrieved from api
   const [LoginData, setLoginData] = useState({});
+
+  const handleLoginSuccess = async (credentialResponse) => {
+    if (credentialResponse?.credential) {
+      const idToken = credentialResponse.credential;
+      console.log("ID Token:", idToken);
+
+      try {
+        await axios.post("http://localhost:3001/authenticate", {
+          idToken,
+        });
+        console.log("Token sent successfully");
+
+        // Redirect to the home page after successful login
+        navigate("/home");
+      } catch (error) {
+        console.error("Error sending token:", error);
+      }
+    } else {
+      console.log("No credential received.");
+    }
+  };
 
   // Fetch data from server
   const fetchLoginData = async () => {
@@ -44,9 +68,7 @@ export default function Login() {
 
           <div className="d-flex flex-column justify-content-center align-items-center text-center">
             <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                console.log(credentialResponse);
-              }}
+              onSuccess={handleLoginSuccess}
               onError={() => {
                 console.log("Login Failed");
               }}
