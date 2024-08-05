@@ -6,7 +6,8 @@ BEGIN TRANSACTION;
 -- Table for users
 CREATE TABLE IF NOT EXISTS user (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_token TEXT NOT NULL UNIQUE,
+    user_email TEXT NOT NULL UNIQUE,
+    user_name TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

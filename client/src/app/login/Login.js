@@ -41,6 +41,8 @@ export default function Login() {
       // Send token to backend for authentication
       await axios.post("http://localhost:3001/authenticate", {
         idToken: credential,
+        email: email,
+        name: name,
       });
       console.log("Token sent successfully");
 

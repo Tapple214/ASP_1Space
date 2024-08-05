@@ -3,7 +3,6 @@ const app = express();
 const port = 3001;
 const cors = require("cors");
 const path = require("path");
-const { url } = require("inspector");
 const corsOptions = {
   origin: "http://localhost:3000",
 };
@@ -33,7 +32,7 @@ global.db = new sqlite3.Database("./db/database.db", function (err) {
 
 // Middleware function
 function requireLogin(req, res, next) {
-  if (req.session.token) {
+  if (req.session.user && req.session.email) {
     next();
   } else {
     res.redirect("/login");
@@ -87,26 +86,50 @@ app.get("/login", (req, res) => {
 });
 
 // Login handling
+
 app.post("/authenticate", (req, res) => {
-  const { idToken } = req.body;
-  console.log("Received ID Token:", idToken);
+  const { idToken, email, name } = req.body;
 
-  // Insert or update user token
-  db.run(
-    `INSERT OR REPLACE INTO user (user_token) VALUES (?)`,
-    [idToken],
-    function (err) {
-      if (err) {
-        console.error("Error processing token:", err.message);
-        return res.status(500).json({ message: "Failed to process token." });
-      }
+  // console.log("Received ID Token:", idToken);
+  console.log("Email:", email);
+  console.log("Name:", name);
 
-      // Store token in session
-      req.session.token = idToken;
-      console.log("Token processed and session created.");
-      res.json({ message: "Token received and processed." });
+  // Check if the email already exists in the user table
+  db.get(`SELECT * FROM user WHERE user_email = ?`, [email], (err, row) => {
+    if (err) {
+      console.error(err.message);
+      return res.status(500).json({ error: "Database error" });
     }
-  );
+
+    if (row) {
+      // Email exists, update the session and respond
+      req.session.user = {
+        email: email,
+        name: name,
+      };
+      res.json({ message: "User authenticated and session created" });
+    } else {
+      // Email does not exist, insert new entry
+      db.run(
+        `INSERT INTO user (user_email, user_name) VALUES (?, ?)`,
+        [email, name],
+        function (err) {
+          if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: "Database error" });
+          }
+
+          // Create a session for the user
+          req.session.user = {
+            email: email,
+            name: name,
+          };
+
+          res.json({ message: "User authenticated and session created" });
+        }
+      );
+    }
+  });
 });
 
 // Logout handling
