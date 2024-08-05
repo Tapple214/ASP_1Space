@@ -39,6 +39,13 @@ To run the application in development mode, follow these steps:
 4. Start the client:
    `npm run dev`
 
+### TO CHECK
+
+Test the app by browsing to the following routes, these would list contents their respective tables:
+
+- http://localhost:3000
+- http://localhost:3000/list-authors
+
 ### Important Notes
 
 - **Ensure that the server is running before starting the client.** The client development will not function properly if the server is not running.

@@ -9,20 +9,19 @@ const corsOptions = {
 };
 
 // Set up SQLite
-// Items in the global namespace are accessible throught out the node application
 const sqlite3 = require("sqlite3").verbose();
-global.db = new sqlite3.Database("./db/1Space-db.db", function (err) {
+global.db = new sqlite3.Database("./db/database.db", function (err) {
   if (err) {
     console.error(err);
     process.exit(1);
   } else {
     console.log("Database connected");
-    // tell SQLite to pay attention to foreign key constraints
     global.db.run("PRAGMA foreign_keys=ON");
   }
 });
 
 app.use(cors(corsOptions));
+app.use(express.json());
 
 // Sending data to http://localhost:3001/ - Home page
 app.get("/", (req, res) => {
@@ -64,6 +63,45 @@ app.get("/login", (req, res) => {
     Subtitle: "Login to begin your adventure",
     Logo: "/images/logo.png",
     Rocket: "/images/rocket.png",
+  });
+});
+
+// Login handling
+app.post("/authenticate", (req, res) => {
+  const { idToken } = req.body;
+  console.log("Received ID Token:", idToken);
+
+  // Insert or update user token
+  db.run(
+    `INSERT INTO user (user_token) VALUES (?)
+     ON CONFLICT(user_token) DO UPDATE SET user_token = ?`,
+    [idToken, idToken],
+    function (err) {
+      if (err) {
+        console.error("Error processing token:", err.message);
+        return res.status(500).json({ message: "Failed to process token." });
+      }
+
+      console.log("Token processed.");
+      res.json({ message: "Token received and processed." });
+    }
+  );
+});
+
+// Logout handling
+app.post("/logout", (req, res) => {
+  const { idToken } = req.body;
+  console.log("Received ID Token for logout:", idToken);
+
+  // Delete user token from the database
+  db.run(`DELETE FROM user WHERE user_token = ?`, [idToken], function (err) {
+    if (err) {
+      console.error("Error processing logout:", err.message);
+      return res.status(500).json({ message: "Failed to logout." });
+    }
+
+    console.log("User logged out.");
+    res.json({ message: "Logout successful." });
   });
 });
 
