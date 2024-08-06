@@ -5,6 +5,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
+// To enable cross-origin cookies
 axios.defaults.withCredentials = true;
 
 export default function Login() {
