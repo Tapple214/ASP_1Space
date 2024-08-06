@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../../components/navbar/navbar";
 
+// To enable cross-origin cookies
+axios.defaults.withCredentials = true;
+
 // TODO: change the thumbnail image for each link
 // TODO: add side panel with card display, etc.
 

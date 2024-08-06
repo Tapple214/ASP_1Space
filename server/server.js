@@ -103,7 +103,7 @@ app.get("/home", requireLogin, (req, res) => {
   console.log("Session object in /home:", req.session);
   res.json({
     Title: "Dashboard",
-    Subtitle: `Hi ${req.session.name}, Explore your 1Space!`,
+    Subtitle: `Hi ${req.session.user.name}, Explore your 1Space!`,
     Links: [
       {
         name: "Task Manager",
