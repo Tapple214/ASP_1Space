@@ -5,6 +5,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
+axios.defaults.withCredentials = true;
+
 export default function Login() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({});

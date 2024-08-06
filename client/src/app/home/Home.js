@@ -17,7 +17,7 @@ export default function Home() {
       // Wait for axios to fetch the data from http://localhost:3001/home
       const res = await axios.get("http://localhost:3001/home");
       // To test and see if data is being successfully sent
-      console.log(res.data);
+      console.log("hpme data", res.data);
       setHomeData(res.data);
       setPageLinks(res.data.Links || []);
     } catch (error) {

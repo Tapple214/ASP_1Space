@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const corsOptions = {
   origin: "http://localhost:3000",
+  credentials: true,
 };
 
 const session = require("express-session");
@@ -18,7 +19,6 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: false,
-      maxAge: 24 * 60 * 60 * 1000,
     },
   })
 );
@@ -48,8 +48,13 @@ app.get("/", (req, res) => {
 app.post("/authenticate", (req, res) => {
   const { idToken, email, name } = req.body;
 
-  console.log("Email:", email);
-  console.log("Name:", name);
+  console.log("Email in eithenticacte:", email);
+  console.log("Session alsoooo:", req.session);
+
+  req.session.token = { id: idToken };
+  req.session.user = { name: name, email: email };
+
+  console.log("Session after setting:", req.session);
 
   db.get(`SELECT * FROM user WHERE user_email = ?`, [email], (err, row) => {
     if (err) {
@@ -58,12 +63,6 @@ app.post("/authenticate", (req, res) => {
     }
 
     if (row) {
-      req.session.token = idToken;
-      req.session.name = name;
-      req.session.email = email;
-
-      console.log("Session after setting:", req.session);
-
       res.json({ message: "User authenticated and session created" });
     } else {
       db.run(
@@ -75,11 +74,11 @@ app.post("/authenticate", (req, res) => {
             return res.status(500).json({ error: "Database error" });
           }
 
-          req.session.token = idToken;
-          req.session.name = name;
-          req.session.email = email;
+          // req.session.token = idToken;
+          // req.session.name = name;
+          // req.session.email = email;
 
-          console.log("Session after setting:", req.session);
+          // console.log("Session after setting:", req.session);
 
           res.json({ message: "User authenticated and session created" });
         }
@@ -90,17 +89,17 @@ app.post("/authenticate", (req, res) => {
 
 // Middleware to check if the user is logged in
 function requireLogin(req, res, next) {
-  console.log(req.session.token);
-  console.log(req.session);
+  console.log("inside require login", req.session.user);
+  console.log("same bro", req.sessionStore.sessions);
 
-  if (req.session.name && req.session.token) {
-    return next();
+  if (req.session.user) {
+    next();
   } else {
-    return res.redirect("/");
+    res.redirect("/");
   }
 }
 
-app.get("/home", (req, res) => {
+app.get("/home", requireLogin, (req, res) => {
   console.log("Session object in /home:", req.session);
   res.json({
     Title: "Dashboard",
