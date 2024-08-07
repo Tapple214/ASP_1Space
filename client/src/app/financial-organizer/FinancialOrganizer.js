@@ -3,7 +3,7 @@ import NavBar from "../../components/navbar/navbar";
 import "./FinancialOrganizer.css";
 import EntryOutput from "../../components/entry-output/entry-output";
 import axios from "axios";
-import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
+import { Row, Col, Table } from "react-bootstrap";
 
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
@@ -107,6 +107,26 @@ const ExpenseForm = () => {
 };
 
 export default function FinancialOrganizer() {
+  const [expenses, setExpenses] = useState([]);
+
+  const fetchExpenses = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/expense-get");
+      console.log(res.data);
+      setExpenses(res.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchExpenses();
+  }, []);
+
+  const handleDelete = (id) => {
+    setExpenses(expenses.filter((expense) => expense.id !== id));
+  };
+
   return (
     <>
       <NavBar />
@@ -176,7 +196,20 @@ export default function FinancialOrganizer() {
             <div className="transactions-container">
               <ExpenseForm />
               <div className="transaction-list">
-                <EntryOutput date="#" title="#" description="#" />
+                {expenses.length > 0 ? (
+                  expenses.map((expense) => (
+                    <EntryOutput
+                      key={expense.expense_id}
+                      id={expense.expense_id}
+                      date={expense.created_at}
+                      title={expense.expense_name}
+                      description={expense.expense_description}
+                      onDelete={handleDelete}
+                    />
+                  ))
+                ) : (
+                  <p>No expenses to display.</p>
+                )}
               </div>
             </div>
           </Col>

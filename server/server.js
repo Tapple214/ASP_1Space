@@ -155,6 +155,37 @@ app.post("/expense-add", requireLogin, (req, res) => {
   );
 });
 
+app.get("/expense-get", requireLogin, async (req, res) => {
+  try {
+    const query = "SELECT * FROM expense;";
+    const rows = await new Promise((resolve, reject) => {
+      db.all(query, (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching expenses: ", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.delete("/expense-delete/:id", requireLogin, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Replace the following with your database deletion logic
+    await db.run("DELETE FROM expense WHERE expense_id = ?", [id]);
+    res.status(200).json({ message: "Expense deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting expense" });
+  }
+});
+
 // Logout handling
 app.post("/logout", (req, res) => {
   // Destroy session
