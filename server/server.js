@@ -48,13 +48,8 @@ app.get("/", (req, res) => {
 app.post("/authenticate", (req, res) => {
   const { idToken, email, name } = req.body;
 
-  console.log("Email in eithenticacte:", email);
-  console.log("Session alsoooo:", req.session);
-
   req.session.token = { id: idToken };
   req.session.user = { name: name, email: email };
-
-  console.log("Session after setting:", req.session);
 
   db.get(`SELECT * FROM user WHERE user_email = ?`, [email], (err, row) => {
     if (err) {
@@ -74,12 +69,6 @@ app.post("/authenticate", (req, res) => {
             return res.status(500).json({ error: "Database error" });
           }
 
-          // req.session.token = idToken;
-          // req.session.name = name;
-          // req.session.email = email;
-
-          // console.log("Session after setting:", req.session);
-
           res.json({ message: "User authenticated and session created" });
         }
       );
@@ -89,9 +78,6 @@ app.post("/authenticate", (req, res) => {
 
 // Middleware to check if the user is logged in
 function requireLogin(req, res, next) {
-  console.log("inside require login", req.session.user);
-  console.log("same bro", req.sessionStore.sessions);
-
   if (req.session.user) {
     next();
   } else {
@@ -100,7 +86,6 @@ function requireLogin(req, res, next) {
 }
 
 app.get("/home", requireLogin, (req, res) => {
-  console.log("Session object in /home:", req.session);
   res.json({
     Title: "Dashboard",
     Subtitle: `Hi ${req.session.user.name}, Explore your 1Space!`,
@@ -132,6 +117,44 @@ app.get("/home", requireLogin, (req, res) => {
   });
 });
 
+// Adding expense entry
+app.post("/expense-add", requireLogin, (req, res) => {
+  const { title, category, description, amount } = req.body;
+  const { email, name } = req.session.user;
+
+  console.log(req.body);
+  console.log(req.session.user);
+
+  // Query to get the user_id based on email and name
+  db.get(
+    `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`,
+    [email, name],
+    (err, row) => {
+      if (err) {
+        return res.status(500).json({ error: "Database error" });
+      }
+
+      if (!row) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const userId = row.user_id;
+
+      db.run(
+        `INSERT INTO expense (expense_name, expense_description, expense_category, expense_amount, user_id)
+         VALUES (?, ?, ?, ?, ?)`,
+        [title, description, category, amount, userId],
+        function (err) {
+          if (err) {
+            return res.status(500).json({ error: "Failed to add expense" });
+          }
+          res.status(201).json({ message: "Expense added successfully" });
+        }
+      );
+    }
+  );
+});
+
 // Logout handling
 app.post("/logout", (req, res) => {
   // Destroy session
@@ -155,6 +178,21 @@ app.post("/logout", (req, res) => {
  */
 app.get("/list-users", (req, res, next) => {
   const query = "SELECT * FROM user;";
+
+  global.db.all(query, function (err, rows) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+/**
+ * @desc Check to see expense entries
+ */
+app.get("/list-expense-entries", (req, res, next) => {
+  const query = "SELECT * FROM expense;";
 
   global.db.all(query, function (err, rows) {
     if (err) {

@@ -45,6 +45,7 @@ Test the app by browsing to the following routes, these would list contents thei
 
 - http://localhost:3000
 - http://localhost:3001/list-users
+  http://localhost:3001/list-expense-entries
 
 ### Important Notes
 
