@@ -140,7 +140,7 @@ export default function FinancialOrganizer() {
       <NavBar />
       <div className="ps-5 ms-4 me-3 mt-4">
         <Row>
-          <Col md={8} lg={6} className="mb-4">
+          <Col md={12} lg={4} className="mb-4">
             <div className="financial-overview">
               <h2>Enter your financial overview!</h2>
               <Table striped bordered hover>
@@ -200,7 +200,7 @@ export default function FinancialOrganizer() {
             </div>
           </Col>
 
-          <Col md={4} lg={6}>
+          <Col md={12} lg={8}>
             <div className="transactions-container">
               <ExpenseForm fetchExpenses={fetchExpenses} />
               <div className="transaction-list">
