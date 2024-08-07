@@ -1,26 +1,30 @@
 .content {
   display: flex;
   justify-content: space-between;
-  padding: 40px 20px;
+  padding: 40px;
   margin-left: 60px; 
   gap: 40px;
+  box-shadow: none; 
 }
 
-.left-section, .right-section {
+.left-sec, .right-sec {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  box-shadow: none;
 }
+
 
 .financial-overview, .summary, .transactions-container {
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .financial-overview {
-  width: 100%;
+  width: 100%; /* Reduce the size by half */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,11 +32,13 @@
   height: auto; 
   padding: 10px;
   box-sizing: border-box; 
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .financial-overview h2 {
   font-size: 1.5em;
-  color: #333;
+  color: black;
   margin-bottom: 10px; 
   font-weight: bold;
   text-align: center; 
@@ -55,12 +61,12 @@
 .financial-overview th {
   background-color: #fff;
   font-weight: bold;
-  color: #555;
+  color: black;
 }
 
 .financial-overview td {
   border: none;
-  color: #666;
+  color: black;
 }
 
 .financial-overview tbody tr:first-child td {
@@ -69,6 +75,15 @@
 
 .financial-overview tbody tr:last-child td {
   border-top: 1px solid #f0f0f0;
+}
+
+/* Removing outlines from input boxes */
+.financial-overview input {
+  outline: none;
+  border: none;
+  width: 100%; /* Ensure inputs take full width of the cell */
+  padding: 8px; /* Adjust padding for better text alignment */
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
 .summary {
@@ -170,7 +185,6 @@
   background-color: #fff; 
   color: #333; 
 }
-
 
 .transaction-form .amount-input {
   flex: right;
