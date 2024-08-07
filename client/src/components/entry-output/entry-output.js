@@ -6,6 +6,7 @@ export default function EntryOutput({
   title,
   description,
   onDelete,
+  amount,
 }) {
   const handleDelete = async () => {
     try {
@@ -22,7 +23,9 @@ export default function EntryOutput({
     <div className="transaction-item">
       <div className="transaction-header">
         <h4>
-          <span> {date} </span> {title}
+          <span className="fw-bold">{title}</span>
+          <span className="opacity-50"> • {date} • </span>
+          {amount} SGD
         </h4>
         <div className="transaction-buttons">
           <button className="edit-button">✏️</button>
@@ -31,7 +34,7 @@ export default function EntryOutput({
           </button>
         </div>
       </div>
-      <p>{description}</p>
+      {description === "" ? <></> : <p>{description}</p>}
     </div>
   );
 }

@@ -212,6 +212,7 @@ export default function FinancialOrganizer() {
                       date={expense.created_at}
                       title={expense.expense_name}
                       description={expense.expense_description}
+                      amount={expense.expense_amount}
                       onDelete={handleDelete}
                     />
                   ))
