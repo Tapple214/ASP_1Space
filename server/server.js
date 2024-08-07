@@ -36,13 +36,21 @@ global.db = new sqlite3.Database("./db/database.db", function (err) {
   }
 });
 
+// Middleware to check if the user is logged in
+function requireLogin(req, res, next) {
+  console.log("Checking login status...");
+  if (req.session.user) {
+    console.log("User is logged in:", req.session.user);
+    return next();
+  } else {
+    console.log("User is not logged in. Redirecting to home.");
+    return res.redirect("/");
+  }
+}
+
 app.get("/", (req, res) => {
-  res.json({
-    Title: "Welcome to 1Space",
-    Subtitle: "Login to begin your adventure",
-    Logo: "/images/logo.png",
-    Rocket: "/images/rocket.png",
-  });
+  // Send the HTML file to the client
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Login handling
@@ -76,15 +84,6 @@ app.post("/authenticate", (req, res) => {
     }
   });
 });
-
-// Middleware to check if the user is logged in
-function requireLogin(req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    res.redirect("/");
-  }
-}
 
 app.get("/home", requireLogin, (req, res) => {
   res.json({
@@ -179,10 +178,18 @@ app.delete("/expense-delete/:id", requireLogin, async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Replace the following with your database deletion logic
-    await db.run("DELETE FROM expense WHERE expense_id = ?", [id]);
+    await new Promise((resolve, reject) => {
+      db.run("DELETE FROM expense WHERE expense_id = ?", [id], function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
     res.status(200).json({ message: "Expense deleted successfully" });
   } catch (error) {
+    console.error("Error deleting expense:", error);
     res.status(500).json({ message: "Error deleting expense" });
   }
 });

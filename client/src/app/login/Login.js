@@ -65,15 +65,14 @@ export default function Login() {
     <div className="login h-100 p-3 d-flex flex-column justify-content-center align-items-center">
       <div className="card d-flex flex-row w-75 h-50 rounded-5">
         <div className="rocket-container position-absolute">
-          {loginData.Rocket && (
-            <img src={loginData.Rocket} id="rocket" alt="Rocket" />
-          )}
+          <img src="/images/rocket.png" id="rocket" alt="Rocket" />
         </div>
 
         <div className="login-message d-flex flex-column justify-content-center align-items-center mx-auto">
-          {loginData.Logo && <img src={loginData.Logo} id="logo" alt="Logo" />}
-          <h1>{loginData.Title}</h1>
-          <p>{loginData.Subtitle}</p>
+          <img src="/images/logo.png" id="logo" alt="Logo" />
+
+          <h1>Welcome to 1Space</h1>
+          <p>Login to begin your adventure</p>
 
           <div className="d-flex flex-column justify-content-center align-items-center text-center">
             <GoogleLogin
