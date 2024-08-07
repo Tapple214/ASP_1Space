@@ -1,8 +1,46 @@
-import React from 'react';
-import NavBar from '../../components/navbar/navbar';
-import './FinancialOrganizer.css';
+import React from "react";
+import NavBar from "../../components/navbar/navbar";
+import "./FinancialOrganizer.css";
+import EntryOutput from "../../components/entry-output/entry-output";
 
-const FinancialOrganizer = () => {
+// Input form component
+const Form = () => {
+  return (
+    <div className="transaction-form">
+      <form>
+        <div className="form-inputs">
+          <div className="form-row">
+            <input type="text" placeholder="Title" className="title-input" />
+            <input
+              type="date"
+              placeholder="Current date"
+              className="date-input"
+            />
+            <select className="category-input">
+              <option value="">Category</option>
+              <option value="food">Food</option>
+              <option value="transport">Transport</option>
+              <option value="entertainment">Entertainment</option>
+            </select>
+          </div>
+          <div className="form-row">
+            <input
+              type="text"
+              placeholder="Description for transaction"
+              className="description-input"
+            />
+            <input type="number" placeholder="$" className="amount-input" />
+          </div>
+        </div>
+        <button type="submit" className="add-button">
+          +
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default function FinancialOrganizer() {
   return (
     <>
       <NavBar />
@@ -66,55 +104,19 @@ const FinancialOrganizer = () => {
             </div>
           </div>
         </div>
+
         <div className="right-section">
           <div className="transactions-container">
-            <div className="transaction-form">
-              <form>
-                <div className="form-inputs">
-                  <div className="form-row">
-                    <input type="text" placeholder="Title" className="title-input" />
-                    <input type="date" placeholder="Current date" className="date-input" />
-                    <select className="category-input">
-                      <option value="">Category</option>
-                      <option value="food">Food</option>
-                      <option value="transport">Transport</option>
-                      <option value="entertainment">Entertainment</option>
-                    </select>
-                  </div>
-                  <div className="form-row">
-                    <input type="text" placeholder="Description for transaction" className="description-input" />
-                    <input type="number" placeholder="$" className="amount-input" />
-                  </div>
-                </div>
-                <button type="submit" className="add-button">+</button>
-              </form>
-            </div>
+            {/* Expense entry form */}
+            <Form />
+
+            {/* Entry outputs */}
             <div className="transaction-list">
-              <div className="transaction-item">
-                <div className="transaction-header">
-                  <h4>June 5 Hang out (Movies)</h4>
-                  <div className="transaction-buttons">
-                    <button className="edit-button">✏️</button>
-                    <button className="delete-button">🗑️</button>
-                  </div>
-                </div>
-              </div>
-              <div className="transaction-item">
-                <div className="transaction-header">
-                  <h4>June 6 Groceries</h4>
-                  <div className="transaction-buttons">
-                    <button className="edit-button">✏️</button>
-                    <button className="delete-button">🗑️</button>
-                  </div>
-                </div>
-                <p>Body Soap, Eggs, Bread, AAA batteries</p>
-              </div>
+              <EntryOutput date="#" title="#" description="#" />
             </div>
           </div>
         </div>
       </div>
     </>
   );
-};
-
-export default FinancialOrganizer;
+}
