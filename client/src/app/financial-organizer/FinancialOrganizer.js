@@ -7,9 +7,9 @@ import { Row, Col, Table } from "react-bootstrap";
 
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
-// Input form component
 
-const ExpenseForm = () => {
+// Input form component
+const ExpenseForm = ({ fetchExpenses }) => {
   const [todayDate, setTodayDate] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -45,9 +45,10 @@ const ExpenseForm = () => {
         },
         { withCredentials: true }
       );
-      console.log(title, todayDate, category, description, amount, "submitted");
+
+      // Refresh the expense list after adding a new expense
+      fetchExpenses();
     } catch (error) {
-      // Handle error (e.g., show an error message)
       console.error("Error submitting form:", error);
     }
   };
@@ -123,8 +124,15 @@ export default function FinancialOrganizer() {
     fetchExpenses();
   }, []);
 
-  const handleDelete = (id) => {
-    setExpenses(expenses.filter((expense) => expense.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/expense-delete/${id}`, {
+        withCredentials: true,
+      });
+      setExpenses(expenses.filter((expense) => expense.expense_id !== id));
+    } catch (error) {
+      console.error("Error deleting expense:", error);
+    }
   };
 
   return (
@@ -194,7 +202,7 @@ export default function FinancialOrganizer() {
 
           <Col md={4} lg={6}>
             <div className="transactions-container">
-              <ExpenseForm />
+              <ExpenseForm fetchExpenses={fetchExpenses} />
               <div className="transaction-list">
                 {expenses.length > 0 ? (
                   expenses.map((expense) => (

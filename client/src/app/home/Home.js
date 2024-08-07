@@ -6,7 +6,6 @@ import NavBar from "../../components/navbar/navbar";
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
 
-// TODO: change the thumbnail image for each link
 // TODO: add side panel with card display, etc.
 
 export default function Home() {
@@ -19,6 +18,7 @@ export default function Home() {
     try {
       // Wait for axios to fetch the data from http://localhost:3001/home
       const res = await axios.get("http://localhost:3001/home");
+
       // To test and see if data is being successfully sent
       setHomeData(res.data);
       setPageLinks(res.data.Links || []);

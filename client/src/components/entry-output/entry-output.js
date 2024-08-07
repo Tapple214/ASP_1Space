@@ -10,7 +10,6 @@ export default function EntryOutput({
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:3001/expense-delete/${id}`);
-      // Call the onDelete function to update the UI or refresh the list
       if (onDelete) {
         onDelete(id);
       }
