@@ -6,6 +6,9 @@ import Form from "../../components/form/form";
 import { Row, Col } from "react-bootstrap";
 import EntryOutput from "../../components/entry-output/entry-output";
 
+// To enable cross-origin cookies
+axios.defaults.withCredentials = true;
+
 export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
   const type = "task";
@@ -13,7 +16,6 @@ export default function TaskManager() {
   const fetchTasks = async () => {
     try {
       const res = await axios.get(`http://localhost:3001/get/${type}`);
-      console.log(res.data);
       setTasks(res.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -29,9 +31,9 @@ export default function TaskManager() {
       await axios.delete(`http://localhost:3001/delete/${type}/${id}`, {
         withCredentials: true,
       });
-      setTasks(tasks.filter((task) => task.expense_id !== id));
+      setTasks(tasks.filter((task) => task.task_id !== id));
     } catch (error) {
-      console.error("Error deleting expense:", error);
+      console.error("Error deleting task:", error);
     }
   };
 
@@ -65,7 +67,7 @@ export default function TaskManager() {
                     />
                   ))
                 ) : (
-                  <p>No expenses to display.</p>
+                  <p>No tasks to display.</p>
                 )}
               </div>
             </div>

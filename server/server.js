@@ -123,9 +123,6 @@ app.post("/add/:type", requireLogin, (req, res) => {
   const { title, category, description, amount } = req.body;
   const { email, name } = req.session.user;
 
-  console.log(req.body);
-  console.log(req.session.user);
-
   if (type === "transaction") {
     // Query to get the user_id based on email and name
     db.get(
@@ -249,6 +246,22 @@ app.delete("/delete/:type/:id", requireLogin, async (req, res) => {
     } catch (error) {
       console.error("Error deleting expense:", error);
       res.status(500).json({ message: "Error deleting expense" });
+    }
+  } else {
+    try {
+      await new Promise((resolve, reject) => {
+        db.run("DELETE FROM task WHERE task_id = ?", [id], function (err) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+      res.status(200).json({ message: "task deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      res.status(500).json({ message: "Error deleting task" });
     }
   }
 });

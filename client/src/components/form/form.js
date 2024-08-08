@@ -19,13 +19,7 @@ export default function Form({ type, fetchData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted with data:", {
-      title,
-      todayDate,
-      category,
-      description,
-      amount,
-    });
+
     try {
       await axios.post(
         `http://localhost:3001/add/${type}`,

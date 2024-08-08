@@ -65,7 +65,6 @@ export default function FinancialOrganizer() {
   const fetchExpenses = async () => {
     try {
       const res = await axios.get(`http://localhost:3001/get/${type}`);
-      console.log(res.data);
       setExpenses(res.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
