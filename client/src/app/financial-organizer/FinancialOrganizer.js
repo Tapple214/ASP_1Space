@@ -27,8 +27,10 @@ export default function FinancialOrganizer() {
   }, []);
 
   const handleDelete = async (id) => {
+    const type = "transaction";
+
     try {
-      await axios.delete(`http://localhost:3001/expense-delete/${id}`, {
+      await axios.delete(`http://localhost:3001/delete/${type}/${id}`, {
         withCredentials: true,
       });
       setExpenses(expenses.filter((expense) => expense.expense_id !== id));

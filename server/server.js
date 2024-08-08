@@ -206,23 +206,29 @@ app.get("/expense-get", requireLogin, async (req, res) => {
   }
 });
 
-app.delete("/expense-delete/:id", requireLogin, async (req, res) => {
-  const { id } = req.params;
+app.delete("/delete/:type/:id", requireLogin, async (req, res) => {
+  const { type, id } = req.params;
 
-  try {
-    await new Promise((resolve, reject) => {
-      db.run("DELETE FROM expense WHERE expense_id = ?", [id], function (err) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
+  if (type === "transaction") {
+    try {
+      await new Promise((resolve, reject) => {
+        db.run(
+          "DELETE FROM expense WHERE expense_id = ?",
+          [id],
+          function (err) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
+          }
+        );
       });
-    });
-    res.status(200).json({ message: "Expense deleted successfully" });
-  } catch (error) {
-    console.error("Error deleting expense:", error);
-    res.status(500).json({ message: "Error deleting expense" });
+      res.status(200).json({ message: "Expense deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting expense:", error);
+      res.status(500).json({ message: "Error deleting expense" });
+    }
   }
 });
 

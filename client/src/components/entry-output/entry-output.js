@@ -11,7 +11,7 @@ export default function EntryOutput({
 }) {
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3001/expense-delete/${id}`);
+      await axios.delete(`http://localhost:3001/delete/${type}/${id}`);
       if (onDelete) {
         onDelete(id);
       }
