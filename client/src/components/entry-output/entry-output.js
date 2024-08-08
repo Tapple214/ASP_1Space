@@ -21,8 +21,8 @@ export default function EntryOutput({
   };
 
   return (
-    <div className={type === "finance" ? "transaction-item" : ""}>
-      <div className={type === "finance" ? "transaction-header" : ""}>
+    <div className={type === "transaction" ? "transaction-item" : ""}>
+      <div className={type === "transaction" ? "transaction-header" : ""}>
         <h4>
           <span className="fw-bold">{title}</span>
           <span className="opacity-50"> • {date} • </span>

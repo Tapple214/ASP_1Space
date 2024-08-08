@@ -28,7 +28,7 @@ export default function Form({ type, fetchData }) {
     });
     try {
       await axios.post(
-        "http://localhost:3001/expense-add",
+        `http://localhost:3001/add/${type}`,
         {
           title,
           date: todayDate,
@@ -47,7 +47,7 @@ export default function Form({ type, fetchData }) {
   };
 
   return (
-    <div className={type === "finance" ? "transaction-form" : ""}>
+    <div className={type === "transaction" ? "transaction-form" : ""}>
       <form onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="form-row">
@@ -84,7 +84,7 @@ export default function Form({ type, fetchData }) {
               onChange={(e) => setDescription(e.target.value)}
             />
 
-            {type === "finance" ? (
+            {type === "transaction" ? (
               <input
                 type="number"
                 placeholder="$"

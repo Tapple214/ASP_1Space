@@ -117,42 +117,74 @@ app.get("/home", requireLogin, (req, res) => {
   });
 });
 
-// Adding expense entry
-app.post("/expense-add", requireLogin, (req, res) => {
+// Adding transaction or task entry
+app.post("/add/:type", requireLogin, (req, res) => {
+  const { type } = req.params;
   const { title, category, description, amount } = req.body;
   const { email, name } = req.session.user;
 
   console.log(req.body);
   console.log(req.session.user);
 
-  // Query to get the user_id based on email and name
-  db.get(
-    `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`,
-    [email, name],
-    (err, row) => {
-      if (err) {
-        return res.status(500).json({ error: "Database error" });
-      }
-
-      if (!row) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      const userId = row.user_id;
-
-      db.run(
-        `INSERT INTO expense (expense_name, expense_description, expense_category, expense_amount, user_id)
-         VALUES (?, ?, ?, ?, ?)`,
-        [title, description, category, amount, userId],
-        function (err) {
-          if (err) {
-            return res.status(500).json({ error: "Failed to add expense" });
-          }
-          res.status(201).json({ message: "Expense added successfully" });
+  if (type === "transaction") {
+    // Query to get the user_id based on email and name
+    db.get(
+      `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`,
+      [email, name],
+      (err, row) => {
+        if (err) {
+          return res.status(500).json({ error: "Database error" });
         }
-      );
-    }
-  );
+
+        if (!row) {
+          return res.status(404).json({ error: "User not found" });
+        }
+
+        const userId = row.user_id;
+
+        db.run(
+          `INSERT INTO expense (expense_name, expense_description, expense_category, expense_amount, user_id)
+         VALUES (?, ?, ?, ?, ?)`,
+          [title, description, category, amount, userId],
+          function (err) {
+            if (err) {
+              return res.status(500).json({ error: "Failed to add expense" });
+            }
+            res.status(201).json({ message: "Expense added successfully" });
+          }
+        );
+      }
+    );
+  } else {
+    // Query to get the user_id based on email and name
+    db.get(
+      `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`,
+      [email, name],
+      (err, row) => {
+        if (err) {
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        if (!row) {
+          return res.status(404).json({ error: "User not found" });
+        }
+
+        const userId = row.user_id;
+
+        db.run(
+          `INSERT INTO task (task_name, task_description, task_category, finish_by, user_id)
+         VALUES (?, ?, ?, ?, ?)`,
+          [title, description, category, amount, userId],
+          function (err) {
+            if (err) {
+              return res.status(500).json({ error: "Failed to add task" });
+            }
+            res.status(201).json({ message: "task added successfully" });
+          }
+        );
+      }
+    );
+  }
 });
 
 app.get("/expense-get", requireLogin, async (req, res) => {
