@@ -85,6 +85,7 @@ app.post("/authenticate", (req, res) => {
   });
 });
 
+// Home page
 app.get("/home", requireLogin, (req, res) => {
   res.json({
     Title: "Dashboard",
@@ -117,7 +118,7 @@ app.get("/home", requireLogin, (req, res) => {
   });
 });
 
-// Adding transaction or task entry
+// Transaction or task entry handling/management
 app.post("/add/:type", requireLogin, (req, res) => {
   const { type } = req.params;
   const { title, category, description, amount } = req.body;
