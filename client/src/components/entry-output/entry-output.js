@@ -9,6 +9,9 @@ export default function EntryOutput({
   onDelete,
   amount,
 }) {
+  //   const currentDateTime = new Date();
+  //   const date = currentDateTime.toDateString();
+
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:3001/delete/${type}/${id}`);

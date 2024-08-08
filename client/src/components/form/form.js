@@ -47,7 +47,7 @@ export default function Form({ type, fetchData }) {
   };
 
   return (
-    <div className={type === "transaction" ? "transaction-form" : ""}>
+    <div className={type === "transaction" ? "transaction-form" : "form-left"}>
       <form onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="form-row">
@@ -75,9 +75,19 @@ export default function Form({ type, fetchData }) {
               onChange={(e) => setCategory(e.target.value)}
             >
               <option value="">Category</option>
-              <option value="food">Food</option>
-              <option value="transport">Transport</option>
-              <option value="entertainment">Entertainment</option>
+              {type === "transaction" ? (
+                <>
+                  <option value="food">Food</option>
+                  <option value="transport">Transport</option>
+                  <option value="entertainment">Entertainment</option>
+                </>
+              ) : (
+                <>
+                  <option value="urget">Urgent</option>
+                  <option value="chill">Chill</option>
+                  <option value="undefined">Undefined</option>
+                </>
+              )}
             </select>
           </div>
 

@@ -11,10 +11,11 @@ axios.defaults.withCredentials = true;
 
 export default function FinancialOrganizer() {
   const [expenses, setExpenses] = useState([]);
+  const type = "transaction";
 
   const fetchExpenses = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/expense-get");
+      const res = await axios.get(`http://localhost:3001/get/${type}`);
       console.log(res.data);
       setExpenses(res.data);
     } catch (error) {
@@ -27,8 +28,6 @@ export default function FinancialOrganizer() {
   }, []);
 
   const handleDelete = async (id) => {
-    const type = "transaction";
-
     try {
       await axios.delete(`http://localhost:3001/delete/${type}/${id}`, {
         withCredentials: true,

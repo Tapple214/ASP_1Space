@@ -1,41 +1,35 @@
 import "../task-manager/task-manager.css";
 import NavBar from "../../components/navbar/navbar";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Navbar } from "react-bootstrap";
+import Form from "../../components/form/form";
 
-export default function taskManager() {
-  const currentDateTime = new Date();
-  const date = currentDateTime.toDateString();
+export default function TaskManager() {
+  const [tasks, setTasks] = useState([]);
+  const type = "task";
+
+  const fetchTasks = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3001/get/${type}`);
+      console.log(res.data);
+      setTasks(res.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <>
       <NavBar />
       <div className="task-manager-container">
         <div className="left-section">
+          {/* Form component */}
           <div className="task-form">
-            <form>
-              <div className="form-left">
-                <input type="text" placeholder="Title" />
-                <input type="date" placeholder={date} value={date} />
-                <select className="category">
-                  <option value="default">Choose a category</option>
-                  <option value="Type1">Urgent</option>
-                  <option value="Type2">OTOT</option>
-                  <option value="Type3">Important</option>
-                  <option value="Type4">Chill</option>
-                  <option value="Type5">Undefined</option>
-                </select>
-                <input
-                  type="text"
-                  placeholder="Description of task"
-                  className="description"
-                />
-              </div>
-              <div className="form-right">
-                <button type="submit">+</button>
-              </div>
-            </form>
+            <Form type="task" fetchData={fetchTasks} />
           </div>
 
           {/* Entry-output component; type = task */}

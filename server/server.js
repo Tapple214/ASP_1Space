@@ -187,22 +187,43 @@ app.post("/add/:type", requireLogin, (req, res) => {
   }
 });
 
-app.get("/expense-get", requireLogin, async (req, res) => {
-  try {
-    const query = "SELECT * FROM expense;";
-    const rows = await new Promise((resolve, reject) => {
-      db.all(query, (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
+app.get("/get/:type", requireLogin, async (req, res) => {
+  const { type } = req.params;
+
+  if (type === "transaction") {
+    try {
+      const query = "SELECT * FROM expense;";
+      const rows = await new Promise((resolve, reject) => {
+        db.all(query, (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
+        });
       });
-    });
-    res.json(rows);
-  } catch (error) {
-    console.error("Error fetching expenses: ", error);
-    res.status(500).json({ error: "Internal Server Error" });
+      res.json(rows);
+    } catch (error) {
+      console.error("Error fetching expenses: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  } else {
+    try {
+      const query = "SELECT * FROM task;";
+      const rows = await new Promise((resolve, reject) => {
+        db.all(query, (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
+        });
+      });
+      res.json(rows);
+    } catch (error) {
+      console.error("Error fetching task: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 });
 
