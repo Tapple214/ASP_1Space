@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default function EntryOutput({
+  type,
   id,
   date,
   title,
@@ -20,8 +21,8 @@ export default function EntryOutput({
   };
 
   return (
-    <div className="transaction-item">
-      <div className="transaction-header">
+    <div className={type === "finance" ? "transaction-item" : ""}>
+      <div className={type === "finance" ? "transaction-header" : ""}>
         <h4>
           <span className="fw-bold">{title}</span>
           <span className="opacity-50"> • {date} • </span>

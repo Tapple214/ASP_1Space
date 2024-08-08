@@ -107,11 +107,12 @@ export default function FinancialOrganizer() {
               {/* Form component */}
               <Form type="finance" fetchData={fetchExpenses} />
 
-              {/* Entry-output component */}
+              {/* Entry-output component; type = finance */}
               <div className="transaction-list">
                 {expenses.length > 0 ? (
                   expenses.map((expense) => (
                     <EntryOutput
+                      type="finance"
                       key={expense.expense_id}
                       id={expense.expense_id}
                       date={expense.created_at}

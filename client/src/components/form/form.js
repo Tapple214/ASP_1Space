@@ -47,7 +47,7 @@ export default function Form({ type, fetchData }) {
   };
 
   return (
-    <div className="transaction-form">
+    <div className={type === "finance" ? "transaction-form" : ""}>
       <form onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="form-row">
@@ -83,13 +83,18 @@ export default function Form({ type, fetchData }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <input
-              type="number"
-              placeholder="$"
-              className="amount-input"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
+
+            {type === "finance" ? (
+              <input
+                type="number"
+                placeholder="$"
+                className="amount-input"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <button type="submit" className="add-button">
