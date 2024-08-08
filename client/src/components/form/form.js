@@ -83,7 +83,7 @@ export default function Form({ type, fetchData }) {
                 </>
               ) : (
                 <>
-                  <option value="urget">Urgent</option>
+                  <option value="urgent">Urgent</option>
                   <option value="chill">Chill</option>
                   <option value="undefined">Undefined</option>
                 </>
