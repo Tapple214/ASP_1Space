@@ -104,7 +104,10 @@ export default function FinancialOrganizer() {
 
           <Col md={12} lg={8}>
             <div className="transactions-container">
-              <Form type="finance" fetchExpenses={fetchExpenses} />
+              {/* Form component */}
+              <Form type="finance" fetchData={fetchExpenses} />
+
+              {/* Entry-output component */}
               <div className="transaction-list">
                 {expenses.length > 0 ? (
                   expenses.map((expense) => (
