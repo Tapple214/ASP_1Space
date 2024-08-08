@@ -51,6 +51,7 @@ export default function Form({ type, fetchData }) {
       <form onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="form-row">
+            {/* Title */}
             <input
               type="text"
               placeholder="Title"
@@ -58,12 +59,16 @@ export default function Form({ type, fetchData }) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
+
+            {/* Date */}
             <input
               type="date"
               className="date-input"
               value={todayDate}
               readOnly
             />
+
+            {/* Category */}
             <select
               className="category-input"
               value={category}
@@ -75,6 +80,8 @@ export default function Form({ type, fetchData }) {
               <option value="entertainment">Entertainment</option>
             </select>
           </div>
+
+          {/* Description */}
           <div className="form-row">
             <input
               type="text"
@@ -84,6 +91,7 @@ export default function Form({ type, fetchData }) {
               onChange={(e) => setDescription(e.target.value)}
             />
 
+            {/* Amount or Finish by date (depends on type) */}
             {type === "transaction" ? (
               <input
                 type="number"
@@ -93,10 +101,12 @@ export default function Form({ type, fetchData }) {
                 onChange={(e) => setAmount(e.target.value)}
               />
             ) : (
-              ""
+              <input type="date" className="date-input" />
             )}
           </div>
         </div>
+
+        {/* Submit */}
         <button type="submit" className="add-button">
           +
         </button>
