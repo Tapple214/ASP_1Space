@@ -92,6 +92,7 @@ export default function FinancialOrganizer() {
       <NavBar />
       <div className="ps-5 ms-4 me-4 mt-4">
         <Row>
+          {/* Left side of the page */}
           <Col md={12} lg={4} className="mb-4">
             {/* Summary overview */}
             <FinancialOverview />
@@ -112,6 +113,7 @@ export default function FinancialOrganizer() {
             </div>
           </Col>
 
+          {/* Right side of the page */}
           <Col md={12} lg={8}>
             <div className="transactions-container">
               {/* Form component */}
