@@ -75,7 +75,8 @@ export default function TaskManager() {
 
           {/* Right side of the page */}
           <Col md={12} lg={4}>
-            {/* Badges and missions */}
+            {/* TODO: create an in-file component for Badges and missions */}
+            {/* Badges */}
             <div className="badges w-100">
               <button type="button" className="help-button">
                 ❔
@@ -113,6 +114,7 @@ export default function TaskManager() {
               ></img>
             </div>
 
+            {/* TODO: create an in-file component for Mission list */}
             {/* Mission list */}
             <div className="missions w-100">
               <h1 className="text-center">Missions</h1>
