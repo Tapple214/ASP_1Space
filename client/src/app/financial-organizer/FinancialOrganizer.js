@@ -4,108 +4,10 @@ import "./FinancialOrganizer.css";
 import EntryOutput from "../../components/entry-output/entry-output";
 import axios from "axios";
 import { Row, Col, Table } from "react-bootstrap";
+import Form from "../../components/form/form";
 
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
-
-// Input form component
-const ExpenseForm = ({ fetchExpenses }) => {
-  const [todayDate, setTodayDate] = useState("");
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-
-  useEffect(() => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
-    setTodayDate(`${year}-${month}-${day}`);
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form submitted with data:", {
-      title,
-      todayDate,
-      category,
-      description,
-      amount,
-    });
-    try {
-      await axios.post(
-        "http://localhost:3001/expense-add",
-        {
-          title,
-          date: todayDate,
-          category,
-          description,
-          amount,
-        },
-        { withCredentials: true }
-      );
-
-      // Refresh the expense list after adding a new expense
-      fetchExpenses();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
-
-  return (
-    <div className="transaction-form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-inputs">
-          <div className="form-row">
-            <input
-              type="text"
-              placeholder="Title"
-              className="title-input"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <input
-              type="date"
-              className="date-input"
-              value={todayDate}
-              readOnly
-            />
-            <select
-              className="category-input"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">Category</option>
-              <option value="food">Food</option>
-              <option value="transport">Transport</option>
-              <option value="entertainment">Entertainment</option>
-            </select>
-          </div>
-          <div className="form-row">
-            <input
-              type="text"
-              placeholder="Description for transaction"
-              className="description-input"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="$"
-              className="amount-input"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-          </div>
-        </div>
-        <button type="submit" className="add-button">
-          +
-        </button>
-      </form>
-    </div>
-  );
-};
 
 export default function FinancialOrganizer() {
   const [expenses, setExpenses] = useState([]);
@@ -202,7 +104,7 @@ export default function FinancialOrganizer() {
 
           <Col md={12} lg={8}>
             <div className="transactions-container">
-              <ExpenseForm fetchExpenses={fetchExpenses} />
+              <Form type="finance" fetchExpenses={fetchExpenses} />
               <div className="transaction-list">
                 {expenses.length > 0 ? (
                   expenses.map((expense) => (
