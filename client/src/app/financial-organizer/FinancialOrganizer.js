@@ -9,6 +9,55 @@ import Form from "../../components/form/form";
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
 
+const FinancialOverview = () => {
+  return (
+    <div className="financial-overview">
+      <h2>Enter your financial overview!</h2>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th></th>
+            <th>$</th>
+            <th>%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Income</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Rent</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Debt</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Invest</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Others</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Month's Budget</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </Table>
+    </div>
+  );
+};
+
 export default function FinancialOrganizer() {
   const [expenses, setExpenses] = useState([]);
   const type = "transaction";
@@ -41,53 +90,13 @@ export default function FinancialOrganizer() {
   return (
     <>
       <NavBar />
-      <div className="ps-5 ms-4 me-3 mt-4">
+      <div className="ps-5 ms-4 me-4 mt-4">
         <Row>
           <Col md={12} lg={4} className="mb-4">
-            <div className="financial-overview">
-              <h2>Enter your financial overview!</h2>
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>$</th>
-                    <th>%</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Income</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Rent</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Debt</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Invest</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Others</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>Month's Budget</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
+            {/* Summary overview */}
+            <FinancialOverview />
+
+            {/* TODO: create an in-file component for "Summary" */}
             <div className="summary">
               <h3>Your Summary</h3>
               <div className="summary-details">
