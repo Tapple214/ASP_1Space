@@ -22,8 +22,14 @@ export default function EntryOutput({
   };
 
   return (
-    <div className={type === "transaction" ? "transaction-item" : ""}>
-      <div className={type === "transaction" ? "transaction-header" : ""}>
+    <div
+      className="transaction-item"
+      style={{
+        backgroundColor: type === "transaction" ? "#9731b1" : "#F6D0EE",
+        color: type === "transaction" ? "white" : "black",
+      }}
+    >
+      <div className="transaction-header">
         {/* Header area */}
         <div className="d-flex align-items-center">
           <h4>
