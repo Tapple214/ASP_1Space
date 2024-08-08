@@ -47,7 +47,12 @@ export default function Form({ type, fetchData }) {
   };
 
   return (
-    <div className={type === "transaction" ? "transaction-form" : "form-left"}>
+    <div
+      className="transaction-form"
+      style={{
+        backgroundColor: type === "transaction" ? "#9731b1" : "#F6D0EE",
+      }}
+    >
       <form onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="form-row">
