@@ -1,18 +1,61 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./app/home/Home";
 import Login from "./app/login/Login";
 import FinancialOrganizer from "./app/financial-organizer/FinancialOrganizer";
 import TaskManager from "./app/task-manager/task-manager";
+import { useAuth } from "./lib/data-access/auth/auth";
+
+// ProtectedRoute Component
+function ProtectedRoute({ children }) {
+  const { isAuthenticated, loading } = useAuth();
+
+  console.log(isAuthenticated);
+  console.log(loading);
+
+  if (loading) {
+    // Loading indicator while checking authentication
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    // Redirect to login if not authenticated
+    return <Navigate to="/" replace />;
+  }
+
+  return children; // Render protected content if authenticated
+}
 
 function App() {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
       <Route path="/" element={<Login />} />
-      <Route path="/financial-organizer" element={<FinancialOrganizer />} />
-      <Route path="/taskManager" element={<TaskManager />} />
-      {/* Add other routes here */}
+      {/* Protected Routes */}
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/financial-organizer"
+        element={
+          <ProtectedRoute>
+            <FinancialOrganizer />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/task-manager"
+        element={
+          <ProtectedRoute>
+            <TaskManager />
+          </ProtectedRoute>
+        }
+      />
+      {/* Add other protected routes here */}
     </Routes>
   );
 }

@@ -3,19 +3,24 @@ const app = express();
 const port = 3001;
 const cors = require("cors");
 const path = require("path");
-const { url } = require("inspector");
 const corsOptions = {
   origin: "http://localhost:3000",
+  credentials: true,
 };
+app.use(express.static(path.join(__dirname, "public")));
 
 const session = require("express-session");
+app.use(cors(corsOptions));
+app.use(express.json());
 
 app.use(
   session({
     secret: "1SPacESeSSIonSecReT",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
+    cookie: {
+      secure: false,
+    },
   })
 );
 
@@ -31,29 +36,74 @@ global.db = new sqlite3.Database("./db/database.db", function (err) {
   }
 });
 
-// Middleware function
-function requireLogin(req, res, next) {
-  if (req.session.token) {
-    next();
+app.get("/api/auth/check", (req, res) => {
+  if (req.session.user) {
+    res.status(200).json({ authenticated: true });
   } else {
-    res.redirect("/login");
+    res.status(200).json({ authenticated: false });
+  }
+});
+
+// Middleware to check if the user is logged in
+function requireLogin(req, res, next) {
+  console.log("Checking login status...");
+  if (req.session.user) {
+    console.log("User is logged in:", req.session.user);
+    return next();
+  } else {
+    console.log("User is not logged in. Redirecting to home.");
+    return res.redirect("/");
   }
 }
 
-app.use(cors(corsOptions));
-app.use(express.json());
+app.get("/", (req, res) => {
+  // Send the HTML file to the client
+  res.sendFile(path.join(__dirname, "../client/public", "index.html"));
+});
 
-// Sending data to http://localhost:3001/Home - Home page
-app.get("/home", (req, res) => {
+// Login handling
+app.post("/authenticate", (req, res) => {
+  const { idToken, email, name } = req.body;
+
+  req.session.token = { id: idToken };
+  req.session.user = { name: name, email: email };
+
+  db.get(`SELECT * FROM user WHERE user_email = ?`, [email], (err, row) => {
+    if (err) {
+      console.error(err.message);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (row) {
+      res.json({ message: "User authenticated and session created" });
+    } else {
+      db.run(
+        `INSERT INTO user (user_email, user_name) VALUES (?, ?)`,
+        [email, name],
+        function (err) {
+          if (err) {
+            console.error(err.message);
+            return res.status(500).json({ error: "Database error" });
+          }
+
+          res.json({ message: "User authenticated and session created" });
+        }
+      );
+    }
+  });
+});
+
+// Home page
+app.get("/home", requireLogin, (req, res) => {
   res.json({
     Title: "Dashboard",
-    Subtitle: "Hi (username) Explore your 1Space!",
+    Subtitle: `Hi ${req.session.user.name}, Explore your 1Space!`,
     Links: [
       {
         name: "Task Manager",
         description:
           "Stay on top of your to-dos! Add, label, and manage tasks while earning fun badges along the way!",
-        url: "/taskManager",
+        url: "/task-manager",
         img: "/images/task-manager.png",
         alt: "Task Manager",
       },
@@ -76,37 +126,153 @@ app.get("/home", (req, res) => {
   });
 });
 
-// Sending data to http://localhost:3001/login - Login page
-app.get("/login", (req, res) => {
-  res.json({
-    Title: "Welcome to 1Space",
-    Subtitle: "Login to begin your adventure",
-    Logo: "/images/logo.png",
-    Rocket: "/images/rocket.png",
-  });
+// Transaction or task entry handling/management
+app.post("/add/:type", requireLogin, (req, res) => {
+  const { type } = req.params;
+  const { title, category, description, amount } = req.body;
+  const { email, name } = req.session.user;
+
+  if (type === "transaction") {
+    // Query to get the user_id based on email and name
+    db.get(
+      `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`,
+      [email, name],
+      (err, row) => {
+        if (err) {
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        if (!row) {
+          return res.status(404).json({ error: "User not found" });
+        }
+
+        const userId = row.user_id;
+
+        db.run(
+          `INSERT INTO expense (expense_name, expense_description, expense_category, expense_amount, user_id)
+         VALUES (?, ?, ?, ?, ?)`,
+          [title, description, category, amount, userId],
+          function (err) {
+            if (err) {
+              return res.status(500).json({ error: "Failed to add expense" });
+            }
+            res.status(201).json({ message: "Expense added successfully" });
+          }
+        );
+      }
+    );
+  } else {
+    // Query to get the user_id based on email and name
+    db.get(
+      `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`,
+      [email, name],
+      (err, row) => {
+        if (err) {
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        if (!row) {
+          return res.status(404).json({ error: "User not found" });
+        }
+
+        const userId = row.user_id;
+
+        db.run(
+          `INSERT INTO task (task_name, task_description, task_category, finish_by, user_id)
+         VALUES (?, ?, ?, ?, ?)`,
+          [title, description, category, amount, userId],
+          function (err) {
+            if (err) {
+              return res.status(500).json({ error: "Failed to add task" });
+            }
+            res.status(201).json({ message: "task added successfully" });
+          }
+        );
+      }
+    );
+  }
 });
 
-// Login handling
-app.post("/authenticate", (req, res) => {
-  const { idToken } = req.body;
-  console.log("Received ID Token:", idToken);
+app.get("/get/:type", requireLogin, async (req, res) => {
+  const { type } = req.params;
 
-  // Insert or update user token
-  db.run(
-    `INSERT OR REPLACE INTO user (user_token) VALUES (?)`,
-    [idToken],
-    function (err) {
-      if (err) {
-        console.error("Error processing token:", err.message);
-        return res.status(500).json({ message: "Failed to process token." });
-      }
-
-      // Store token in session
-      req.session.token = idToken;
-      console.log("Token processed and session created.");
-      res.json({ message: "Token received and processed." });
+  if (type === "transaction") {
+    try {
+      const query = "SELECT * FROM expense;";
+      const rows = await new Promise((resolve, reject) => {
+        db.all(query, (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
+        });
+      });
+      res.json(rows);
+    } catch (error) {
+      console.error("Error fetching expenses: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
-  );
+  } else {
+    try {
+      const query = "SELECT * FROM task;";
+      const rows = await new Promise((resolve, reject) => {
+        db.all(query, (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
+        });
+      });
+      res.json(rows);
+    } catch (error) {
+      console.error("Error fetching task: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+});
+
+app.delete("/delete/:type/:id", requireLogin, async (req, res) => {
+  const { type, id } = req.params;
+
+  if (type === "transaction") {
+    try {
+      await new Promise((resolve, reject) => {
+        db.run(
+          "DELETE FROM expense WHERE expense_id = ?",
+          [id],
+          function (err) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
+          }
+        );
+      });
+      res.status(200).json({ message: "Expense deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting expense:", error);
+      res.status(500).json({ message: "Error deleting expense" });
+    }
+  } else {
+    try {
+      await new Promise((resolve, reject) => {
+        db.run("DELETE FROM task WHERE task_id = ?", [id], function (err) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+      res.status(200).json({ message: "task deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      res.status(500).json({ message: "Error deleting task" });
+    }
+  }
 });
 
 // Logout handling
@@ -118,7 +284,6 @@ app.post("/logout", (req, res) => {
       return res.status(500).json({ message: "Failed to logout." });
     }
 
-    // Optionally clear session cookies here if necessary
     res.clearCookie("connect.sid");
 
     console.log("User logged out and session destroyed.");
@@ -132,20 +297,32 @@ app.post("/logout", (req, res) => {
  * @desc Check to see users
  */
 app.get("/list-users", (req, res, next) => {
-  // Define the query
-  query = "SELECT * FROM user;";
+  const query = "SELECT * FROM user;";
 
-  // Execute the query and render the page with the results
   global.db.all(query, function (err, rows) {
     if (err) {
-      next(err); // Send the error on to the error handler
+      next(err);
     } else {
-      res.json(rows); // Render page as simple json
+      res.json(rows);
     }
   });
 });
 
-// Make the web application listen for HTTP requests
+/**
+ * @desc Check to see expense entries
+ */
+app.get("/list-expense-entries", (req, res, next) => {
+  const query = "SELECT * FROM expense;";
+
+  global.db.all(query, function (err, rows) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
