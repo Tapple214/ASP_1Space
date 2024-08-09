@@ -1,0 +1,82 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    margin-left: 60px; 
+    gap: 40px;
+  }
+  
+  /* FAQ Section */
+  .faq-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-container h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-item h3 {
+    font-size: 1.3em;
+    color: #9731b1;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .faq-item p {
+    font-size: 1em;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Page Guides Section */
+  .page-guides-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-guides-container h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .page-guide-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-guide-item h3 {
+    font-size: 1.3em;
+    color: #9731b1;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .page-guide-item p {
+    font-size: 1em;
+    color: #666;
+    margin: 0;
+  }
+  
