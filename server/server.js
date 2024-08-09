@@ -36,6 +36,14 @@ global.db = new sqlite3.Database("./db/database.db", function (err) {
   }
 });
 
+app.get("/api/auth/check", (req, res) => {
+  if (req.session.user) {
+    res.status(200).json({ authenticated: true });
+  } else {
+    res.status(200).json({ authenticated: false });
+  }
+});
+
 // Middleware to check if the user is logged in
 function requireLogin(req, res, next) {
   console.log("Checking login status...");
@@ -50,7 +58,7 @@ function requireLogin(req, res, next) {
 
 app.get("/", (req, res) => {
   // Send the HTML file to the client
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/public", "index.html"));
 });
 
 // Login handling
@@ -95,7 +103,7 @@ app.get("/home", requireLogin, (req, res) => {
         name: "Task Manager",
         description:
           "Stay on top of your to-dos! Add, label, and manage tasks while earning fun badges along the way!",
-        url: "/taskManager",
+        url: "/task-manager",
         img: "/images/task-manager.png",
         alt: "Task Manager",
       },
