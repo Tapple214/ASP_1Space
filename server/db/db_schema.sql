@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS task (
     finish_by DATETIME,
     user_id INTEGER,
     is_complete BOOLEAN DEFAULT false,
+    completed_at DATETIME,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 

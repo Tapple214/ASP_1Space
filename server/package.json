@@ -10,7 +10,7 @@
     "build-db": "cat ./db/db_schema.sql | sqlite3 ./db/database.db #build anew database from the sql file",
     "clean-db": "rm -f ./db/database.db",
     "build-db-win": "sqlite3 ./db/database.db < ./db/db_schema.sql",
-    "clean-db-win": "del ./db/database.db"
+    "clean-db-win": "del .\\db\\database.db"
   },
   "keywords": [],
   "author": "",

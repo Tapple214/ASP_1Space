@@ -93,13 +93,23 @@ export default function Form({ type, fetchData }) {
 
           {/* Description */}
           <div className="form-row">
-            <input
+            {type === "transaction" ? (
+              <input
               type="text"
               placeholder="Description for transaction"
               className="description-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            ) : (
+              <input
+              type="text"
+              placeholder="Description for task"
+              className="description-input"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            )}
 
             {/* Amount or Finish by date (depends on type) */}
             {type === "transaction" ? (
