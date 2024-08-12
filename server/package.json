@@ -8,9 +8,9 @@
     "start": "node server",
     "dev": "nodemon server",
     "build-db": "cat ./db/db_schema.sql | sqlite3 ./db/database.db #build anew database from the sql file",
-    "clean-db": "rm database.db #remove the old database",
-    "build-db-win": "sqlite3 database.db < db_schema.sql",
-    "clean-db-win": "del database.db"
+    "clean-db": "rm -f ./db/database.db",
+    "build-db-win": "sqlite3 ./db/database.db < ./db/db_schema.sql",
+    "clean-db-win": "del ./db/database.db"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +18,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {

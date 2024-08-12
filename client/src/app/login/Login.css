@@ -41,19 +41,19 @@
   }
 
   .rocket-container {
-    bottom: 290px;
+    bottom: 250px;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   #rocket {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
   }
 
   .rocket-container {
-    bottom: 260px;
+    bottom: 250px;
   }
 }
 

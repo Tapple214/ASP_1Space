@@ -23,6 +23,16 @@
   border: none;
 }
 
+.logout-btn {
+  background-color: transparent;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #a139a2;
+}
+
 /* Icon widget */
 
 .icon-widget-container {
@@ -56,7 +66,8 @@
   background-color: #e29dd4;
 }
 
-.finance-organizer {
+.finance-organizer,
+.logout {
   background-color: #a139a2;
 }
 
