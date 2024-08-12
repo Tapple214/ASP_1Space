@@ -1,0 +1,21 @@
+.photo {
+    height:250px;
+    width: 250px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.left {
+    padding-left: 100px;
+}
+
+.heading {
+    font-size: 30px;
+    font-weight: bold;
+    color: blueviolet;
+}
+
+h1 {
+    font-weight: bold;
+    color:blueviolet;
+}
