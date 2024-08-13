@@ -1,0 +1,10 @@
+.photo {
+    height:250px;
+    width: 250px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.left {
+    padding-left: 100px;
+}
