@@ -28,7 +28,6 @@ const BudgetHub = () => {
             <Modal.Body>
                 <img 
                     src={eachCard.image}  
-                    // style={{ width: '50%', height: '50%' }}
                     className='photo' 
                 />
                 <p>{eachCard.description}</p>
