@@ -28,7 +28,7 @@ const BudgetHub = () => {
             <Modal.Body>
                 <img 
                     src={eachCard.image}  
-                    className='photo' 
+                    className='photoModal' 
                 />
                 <p>{eachCard.description}</p>
                 <p>Location: {eachCard.location}</p>
@@ -50,7 +50,7 @@ const BudgetHub = () => {
                 {foodArr.map((eachCard, index) => (
                     <React.Fragment key={index}>
                         <img 
-                            className="photo" 
+                            className="photoAlbum" 
                             src={eachCard.image} 
                             onClick={() => handleShow('food', index)} 
                             style={{ cursor: 'pointer' }} 
@@ -63,7 +63,7 @@ const BudgetHub = () => {
                 {shopArr.map((eachCard, index) => (
                     <React.Fragment key={index}>
                         <img 
-                            className="photo" 
+                            className="photoAlbum" 
                             src={eachCard.image} 
                             onClick={() => handleShow('shop', index)} 
                             style={{ cursor: 'pointer' }} 
@@ -76,7 +76,7 @@ const BudgetHub = () => {
                 {placeArr.map((eachCard, index) => (
                     <React.Fragment key={index}>
                         <img 
-                            className="photo" 
+                            className="photoAlbum" 
                             src={eachCard.image} 
                             onClick={() => handleShow('place', index)} 
                             style={{ cursor: 'pointer' }} 

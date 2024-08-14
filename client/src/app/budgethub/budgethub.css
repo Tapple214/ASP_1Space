@@ -1,10 +1,15 @@
-.photo {
+.photoAlbum {
     height:250px;
     width: 250px;
     border-radius: 25px;
     padding: 10px;
 }
 
+.photoModal {
+    height:250px;
+    width:250px;
+}
+
 .left {
-    padding-left: 100px;
+    padding-left: 150px;
 }
