@@ -13,3 +13,12 @@
 .left {
     padding-left: 150px;
 }
+
+.heading {
+    background-color: blueviolet;
+    color:azure;
+    display:inline-block;
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 15px;
+}

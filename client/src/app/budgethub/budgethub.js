@@ -46,7 +46,9 @@ const BudgetHub = () => {
         <>
             <NavBar />
             <div className='left'>
-                <h1>Food</h1>
+                <br></br>
+                <h1 className='heading'>Food</h1>
+                <br></br>
                 {foodArr.map((eachCard, index) => (
                     <React.Fragment key={index}>
                         <img 
@@ -59,7 +61,9 @@ const BudgetHub = () => {
                     </React.Fragment>
                 ))}
 
-                <h1>Shop</h1>
+                <br></br>
+                <h1 className='heading'>Shop</h1>
+                <br></br>
                 {shopArr.map((eachCard, index) => (
                     <React.Fragment key={index}>
                         <img 
@@ -72,7 +76,9 @@ const BudgetHub = () => {
                     </React.Fragment>
                 ))}
 
-                <h1>Place</h1>
+                <br></br>
+                <h1 className='heading'>Place</h1>
+                <br></br>
                 {placeArr.map((eachCard, index) => (
                     <React.Fragment key={index}>
                         <img 
