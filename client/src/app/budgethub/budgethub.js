@@ -38,10 +38,6 @@ const BudgetHub = () => {
                 <Button href={eachCard.link}>
                     Link
                 </Button>
-
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
             </Modal.Footer>
         </Modal>
     );
