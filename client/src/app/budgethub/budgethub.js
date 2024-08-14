@@ -9,7 +9,7 @@ import place from '../../components/json/place.json';
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-const BudgetHub = () => {
+export default function BudgetHub() {
     const [showModal, setShowModal] = useState({ category: null, index: null });
 
     const handleShow = (category, index) => setShowModal({ category, index });
@@ -95,4 +95,3 @@ const BudgetHub = () => {
     );
 };
 
-export default BudgetHub;

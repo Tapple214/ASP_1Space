@@ -62,6 +62,14 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/budgethub"
+        element={
+          <ProtectedRoute>
+            <BudgetHub />
+          </ProtectedRoute>
+        }
+      />
       {/* Add other protected routes here */}
     </Routes>
   );
