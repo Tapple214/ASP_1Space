@@ -77,7 +77,7 @@ export default function BudgetHub() {
             <NavBar />
             <div className='left'>
                 <br></br>
-                <h1 className='heading'>Food</h1>
+                <h2 className='heading'>Food</h2>
                 <br></br>
                 <div className="slider">
                     <Slider {...settings}>
@@ -96,8 +96,7 @@ export default function BudgetHub() {
                     </Slider>
                 </div>
 
-                <br></br>
-                <h1 className='heading'>Shop</h1>
+                <h2 className='heading'>Shop</h2>
                 <br></br>
                 <div className="slider">
                     <Slider {...settings}>
@@ -116,8 +115,7 @@ export default function BudgetHub() {
                     </Slider>
                 </div>
 
-                <br></br>
-                <h1 className='heading'>Place</h1>
+                <h2 className='heading'>Place</h2>
                 <br></br>
                 <div className="slider">
                     <Slider {...settings}>
