@@ -2,7 +2,7 @@
     height:250px;
     width: 250px;
     border-radius: 25px;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .photoModal {
@@ -11,7 +11,7 @@
 }
 
 .left {
-    padding-left: 150px;
+    padding-left: 250px;
 }
 
 .heading {
@@ -21,4 +21,30 @@
     padding: 5px;
     border-radius: 10px;
     margin-left: 15px;
+}
+
+.slider {
+    position: relative;
+    width: 90%; 
+    
+}
+
+.slider .slick-prev:before, 
+.slider .slick-next:before {
+    color:blueviolet;  
+    font-size: 25px; 
+}
+
+.slider .slick-prev, 
+.slider .slick-next {
+    display: block; 
+    z-index: 1; 
+}
+
+.slider .slick-prev {
+    left: -40px; 
+}
+
+.slider .slick-next {
+    right: -15px; 
 }
