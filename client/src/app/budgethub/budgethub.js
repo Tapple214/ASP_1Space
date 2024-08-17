@@ -1,4 +1,4 @@
-//import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../../components/navbar/navbar';
 import './budgethub.css';
 import "slick-carousel/slick/slick.css";
@@ -8,7 +8,6 @@ import food from '../../components/json/food.json';
 import shop from '../../components/json/shop.json';
 import place from '../../components/json/place.json';
 
-import React, { useState } from 'react';
 import Slider from "react-slick";
 import { Modal, Button } from 'react-bootstrap';
 
@@ -58,6 +57,7 @@ export default function BudgetHub() {
             <Modal.Body>
                 <img 
                     src={eachCard.image}  
+                    alt={eachCard.alt}
                     className='photoModal' 
                 />
                 <p>{eachCard.description}</p>
@@ -86,6 +86,7 @@ export default function BudgetHub() {
                                 <img 
                                     className="photoAlbum" 
                                     src={eachCard.image} 
+                                    alt={eachCard.alt}
                                     onClick={() => handleShow('food', index)} 
                                     style={{ cursor: 'pointer' }} 
                                 />
@@ -105,6 +106,7 @@ export default function BudgetHub() {
                                 <img 
                                     className="photoAlbum" 
                                     src={eachCard.image} 
+                                    alt={eachCard.alt}
                                     onClick={() => handleShow('shop', index)} 
                                     style={{ cursor: 'pointer' }} 
                                 />
@@ -124,6 +126,7 @@ export default function BudgetHub() {
                                 <img 
                                     className="photoAlbum" 
                                     src={eachCard.image} 
+                                    alt={eachCard.alt}
                                     onClick={() => handleShow('place', index)} 
                                     style={{ cursor: 'pointer' }} 
                                 />
