@@ -47,9 +47,20 @@
   font-size: 1em;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.financial-overview input[type="number"] {
+  width: 55%; 
+  height: 75%;
+  margin: 0 auto; 
+  display: block; 
+}
+
 .financial-overview th,
 .financial-overview td {
-  padding: 4px;
+  padding: 8px;
   padding-left: 30px;
   text-align: left;
   font-weight: bold;
@@ -74,6 +85,26 @@
 .financial-overview tbody tr:last-child td {
   border-top: 1px solid #f0f0f0;
 }
+
+/* For Chrome, Safari, Edge, Opera */
+.financial-overview input[type="number"]::-webkit-inner-spin-button,
+.financial-overview input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Remove default arrows in WebKit browsers */
+  margin: 0; /* Remove default spacing */
+}
+
+/* For Firefox */
+.financial-overview input[type="number"]::-moz-focus-inner,
+.financial-overview input[type="number"]::-moz-range-track {
+  -moz-appearance: none; /* Remove default arrows in Firefox */
+}
+
+/* For IE11 and MS Edge legacy (if needed) */
+.financial-overview input[type="number"]::-ms-clear,
+.financial-overview input[type="number"]::-ms-reveal {
+  display: none; /* Remove IE-specific clear button and reveal password button */
+}
+
 
 .summary {
   width: 100%;
