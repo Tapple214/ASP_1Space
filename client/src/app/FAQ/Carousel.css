@@ -1,0 +1,37 @@
+.carousel-caption {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(226, 157, 212, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+  text-align: center;
+  white-space: normal;
+}
+
+.carousel-caption h3 {
+  color: #6248a8;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.carousel-caption p {
+  color: #000000;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #a139a2;
+  padding: 10px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: #a139a2;
+}

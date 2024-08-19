@@ -3,9 +3,11 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./app/home/Home";
 import Login from "./app/login/Login";
 
-import FinancialOrganizer from './app/financial-organizer/FinancialOrganizer';
+import FinancialOrganizer from "./app/financial-organizer/FinancialOrganizer";
 import BudgetHub from "./app/budgethub/budgethub";
 import TaskManager from "./app/task-manager/task-manager";
+import FAQ from "./app/FAQ/FAQ";
+
 import { useAuth } from "./lib/data-access/auth/auth";
 
 // ProtectedRoute Component
@@ -35,6 +37,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/financial-organizer" element={<FinancialOrganizer />} />
       <Route path="/budgethub" element={<BudgetHub />} />
+      <Route path="/help" element={<FAQ />} />
       {/* Add other routes here */}
       <Route path="/" element={<Login />} />
       {/* Protected Routes */}
