@@ -2,6 +2,7 @@
     {
         "name": "1-for-1 movie tickets at Shaw Theatres",
         "image": "/images/place_movie.png",
+        "alt": "Movie",
         "description": "Enjoy one-for-one movie tickets at Shaw Theatres from now until 29 September 2024 when you book online using a SAFRA card",
         "location": "Shaw Theatres",
         "details": "Only available online and exclusive to SAFRA members. limited to the first 300 redemptions each day.",
@@ -10,6 +11,7 @@
     {
         "name": "VR space experience",
         "image": "/images/place_vr.png",
+        "alt": "VR space experience",
         "description": "Embark on a journey into space and live the life of a NASA astronaut at the world largest immersive 360° VR space experience coming to Singapore in October 2024",
         "location": "Annexe Hall 2 & 3, 15 Science Centre Road, Singapore 609081",
         "details": "10am–8pm (Weekends, School Holidays, Public Holidays), 10am–5pm (Weekdays), ",
@@ -18,6 +20,7 @@
     {
         "name": "POP Toy Show",
         "image": "/images/place_poptoy.png",
+        "alt": "POP Toy Show",
         "description": "The POP Toy Show is making a comeback this August 2024 with event-exclusive collectibles, meet-and-greets with over 50 artists and many more for three days only",
         "location": "10 Bayfront Avenue, Singapore 018956",
         "details": "11am–8pm",
@@ -26,6 +29,7 @@
     {
         "name": "Singapore Night Festival",
         "image": "/images/place_nightfest.png",
+        "alt": "Singapore Night Festival",
         "description": "Singapore Night Festival 2024 lights up the Bras Basah.Bugis precinct with night light installations, festival villages, food and retail experiences & more",
         "location": "Bras Basah-Bugis precinct",
         "details": "7.30pm—12am",
@@ -34,6 +38,7 @@
     {
         "name": "Bubble Planet: An Immersive Experience",
         "image": "/images/place_bubble.png",
+        "alt": "Bubble Planet",
         "description": "This multisensory experience is coming to Singapore in August 2024, offering 11 themed areas with a bubble bath ball pit, VR hot air balloon ride, photo spots and more",
         "location": "Hall 8B, 1 Expo Drive, #02-01, Singapore EXPO, Singapore 486150",
         "details": "11am–9.30pm (Mon, Wed to Thu), 9am–10.30pm (Fri to Sat), 9am–9.30pm (Sun), Closed on Tue",

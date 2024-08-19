@@ -119,6 +119,7 @@ app.get("/home", requireLogin, (req, res) => {
         name: "Budget Hub",
         description:
           "Join piggy bank the astronaut to hunt for the latest budget deals around you!",
+        url: "/budgethub",
         img: "/images/budget-hub.png",
         alt: "Budget Hub",
       },

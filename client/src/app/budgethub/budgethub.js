@@ -1,15 +1,17 @@
-//import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../../components/navbar/navbar';
 import './budgethub.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import food from '../../components/json/food.json';
 import shop from '../../components/json/shop.json';
 import place from '../../components/json/place.json';
 
-import React, { useState } from 'react';
+import Slider from "react-slick";
 import { Modal, Button } from 'react-bootstrap';
 
-const BudgetHub = () => {
+export default function BudgetHub() {
     const [showModal, setShowModal] = useState({ category: null, index: null });
 
     const handleShow = (category, index) => setShowModal({ category, index });
@@ -18,6 +20,33 @@ const BudgetHub = () => {
     let foodArr = food;
     let shopArr = shop;
     let placeArr = place;
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    arrows: true
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: true
+                },
+            },
+        ]
+      };
 
     const renderModal = (category, eachCard, index) => (
         <Modal show={showModal.category === category && showModal.index === index} onHide={handleClose}>
@@ -28,7 +57,8 @@ const BudgetHub = () => {
             <Modal.Body>
                 <img 
                     src={eachCard.image}  
-                    className='photo' 
+                    alt={eachCard.alt}
+                    className='photoModal' 
                 />
                 <p>{eachCard.description}</p>
                 <p>Location: {eachCard.location}</p>
@@ -38,10 +68,6 @@ const BudgetHub = () => {
                 <Button href={eachCard.link}>
                     Link
                 </Button>
-
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
             </Modal.Footer>
         </Modal>
     );
@@ -50,47 +76,65 @@ const BudgetHub = () => {
         <>
             <NavBar />
             <div className='left'>
-                <h1>Food</h1>
-                {foodArr.map((eachCard, index) => (
-                    <React.Fragment key={index}>
-                        <img 
-                            className="photo" 
-                            src={eachCard.image} 
-                            onClick={() => handleShow('food', index)} 
-                            style={{ cursor: 'pointer' }} 
-                        />
-                        {renderModal('food', eachCard, index)}
-                    </React.Fragment>
-                ))}
+                <br></br>
+                <h2 className='heading'>Food</h2>
+                <br></br>
+                <div className="slider">
+                    <Slider {...settings}>
+                        {foodArr.map((eachCard, index) => (
+                            <React.Fragment key={index}>
+                                <img 
+                                    className="photoAlbum" 
+                                    src={eachCard.image} 
+                                    alt={eachCard.alt}
+                                    onClick={() => handleShow('food', index)} 
+                                    style={{ cursor: 'pointer' }} 
+                                />
+                                {renderModal('food', eachCard, index)}
+                            </React.Fragment>
+                        ))}
+                    </Slider>
+                </div>
 
-                <h1>Shop</h1>
-                {shopArr.map((eachCard, index) => (
-                    <React.Fragment key={index}>
-                        <img 
-                            className="photo" 
-                            src={eachCard.image} 
-                            onClick={() => handleShow('shop', index)} 
-                            style={{ cursor: 'pointer' }} 
-                        />
-                        {renderModal('shop', eachCard, index)}
-                    </React.Fragment>
-                ))}
+                <h2 className='heading'>Shop</h2>
+                <br></br>
+                <div className="slider">
+                    <Slider {...settings}>
+                        {shopArr.map((eachCard, index) => (
+                            <React.Fragment key={index}>
+                                <img 
+                                    className="photoAlbum" 
+                                    src={eachCard.image} 
+                                    alt={eachCard.alt}
+                                    onClick={() => handleShow('shop', index)} 
+                                    style={{ cursor: 'pointer' }} 
+                                />
+                                {renderModal('shop', eachCard, index)}
+                            </React.Fragment>
+                        ))}
+                    </Slider>
+                </div>
 
-                <h1>Place</h1>
-                {placeArr.map((eachCard, index) => (
-                    <React.Fragment key={index}>
-                        <img 
-                            className="photo" 
-                            src={eachCard.image} 
-                            onClick={() => handleShow('place', index)} 
-                            style={{ cursor: 'pointer' }} 
-                        />
-                        {renderModal('place', eachCard, index)}
-                    </React.Fragment>
-                ))}
+                <h2 className='heading'>Place</h2>
+                <br></br>
+                <div className="slider">
+                    <Slider {...settings}>
+                        {placeArr.map((eachCard, index) => (
+                            <React.Fragment key={index}>
+                                <img 
+                                    className="photoAlbum" 
+                                    src={eachCard.image} 
+                                    alt={eachCard.alt}
+                                    onClick={() => handleShow('place', index)} 
+                                    style={{ cursor: 'pointer' }} 
+                                />
+                                {renderModal('place', eachCard, index)}
+                            </React.Fragment>
+                        ))}
+                    </Slider>
+                </div>
             </div>
         </>
     );
 };
 
-export default BudgetHub;
