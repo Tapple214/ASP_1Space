@@ -33,11 +33,6 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/financial-organizer" element={<FinancialOrganizer />} />
-      <Route path="/budgethub" element={<BudgetHub />} />
-      <Route path="/help" element={<FAQ />} />
       {/* Add other routes here */}
       <Route path="/" element={<Login />} />
       {/* Protected Routes */}
@@ -70,6 +65,14 @@ function App() {
         element={
           <ProtectedRoute>
             <BudgetHub />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/help"
+        element={
+          <ProtectedRoute>
+            <FAQ />
           </ProtectedRoute>
         }
       />
