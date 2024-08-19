@@ -12,18 +12,18 @@ const FinancialOverview = ({ financialData, setFinancialData }) => {
   const [customPercentages, setCustomPercentages] = useState({});
   const handleChangeAmount = (field, value) => {
     const numValue = parseFloat(value) || 0;
-    setFinancialData(prev => ({
+    setFinancialData((prev) => ({
       ...prev,
-      [field]: numValue
+      [field]: numValue,
     }));
   };
 
   const handleChangePercentage = (field, percentage) => {
     const numPercentage = parseFloat(percentage) || 0;
     const newAmount = (financialData.income * numPercentage) / 100;
-    setFinancialData(prev => ({
+    setFinancialData((prev) => ({
       ...prev,
-      [field]: newAmount
+      [field]: newAmount,
     }));
   };
 
@@ -32,7 +32,7 @@ const FinancialOverview = ({ financialData, setFinancialData }) => {
       const result = (amount / income) * 100;
       return result.toFixed(2);
     }
-    return '';
+    return "";
   };
 
   return (
@@ -49,34 +49,41 @@ const FinancialOverview = ({ financialData, setFinancialData }) => {
         <tbody>
           {Object.entries(financialData).map(([key, value], index) => (
             <tr key={index}>
-              <td>{key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}</td>
-              <td className="text-center">
-              <input
-                type="number"
-                className="form-control"
-                placeholder="Input $"
-                value={value || ''} // Ensures the input is controlled when value is 0
-                onChange={(e) => handleChangeAmount(key, e.target.value)}
-                // onFocus={(e) => e.target.placeholder = ''} // Remove placeholder on focus
-                // onBlur={(e) => e.target.placeholder = 'Input Amount'} // Reapply placeholder when not focused
-              />
+              <td>
+                {key.charAt(0).toUpperCase() +
+                  key.slice(1).replace(/([A-Z])/g, " $1")}
               </td>
               <td className="text-center">
-                {key === 'income' ? '100%' : (
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Input %"
-                      value={calculatePercentage(value, financialData.income) || ''}
-                      onChange={(e) => handleChangePercentage(key, e.target.value)}
-                      onFocus={(e) => e.target.placeholder = ''}
-                      onBlur={(e) => {
-                        if (e.target.value === '') {
-                          e.target.placeholder = 'Input %';
-                        }
-                      }}
-                    />
-                  )}
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Input $"
+                  value={value || ""} // Ensures the input is controlled when value is 0
+                  onChange={(e) => handleChangeAmount(key, e.target.value)}
+                />
+              </td>
+              <td className="text-center">
+                {key === "income" ? (
+                  "100%"
+                ) : (
+                  <input
+                    type="number"
+                    className="form-control"
+                    placeholder="Input %"
+                    value={
+                      calculatePercentage(value, financialData.income) || ""
+                    }
+                    onChange={(e) =>
+                      handleChangePercentage(key, e.target.value)
+                    }
+                    onFocus={(e) => (e.target.placeholder = "")}
+                    onBlur={(e) => {
+                      if (e.target.value === "") {
+                        e.target.placeholder = "Input %";
+                      }
+                    }}
+                  />
+                )}
               </td>
             </tr>
           ))}
@@ -93,7 +100,7 @@ const FinancialOrganizer = () => {
     rent: 0,
     debt: 0,
     invest: 0,
-    others: 0
+    others: 0,
   });
 
   const [expenses, setExpenses] = useState([]);
@@ -124,9 +131,9 @@ const FinancialOrganizer = () => {
   };
 
   const totalSpent = Object.entries(financialData)
-    .filter(([key]) => key !== 'income' && key !== 'monthBudget')
+    .filter(([key]) => key !== "income" && key !== "monthBudget")
     .reduce((total, [_, value]) => total + value, 0);
-  
+
   const budgetLeft = financialData.monthBudget - totalSpent;
 
   return (
@@ -135,7 +142,10 @@ const FinancialOrganizer = () => {
       <div className="ps-5 ms-4 me-4 mt-4">
         <Row>
           <Col md={12} lg={4} className="mb-4">
-            <FinancialOverview financialData={financialData} setFinancialData={setFinancialData} />
+            <FinancialOverview
+              financialData={financialData}
+              setFinancialData={setFinancialData}
+            />
             <div className="summary">
               <h3>Your Summary</h3>
               <div className="summary-details">
