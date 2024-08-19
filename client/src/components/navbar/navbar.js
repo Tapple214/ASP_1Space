@@ -147,10 +147,10 @@ export default function NavBar() {
         </Nav.Link>
 
         <Nav className="nav-links">
-          <Nav.Link href="#Help" className="mb-2">
+          <Nav.Link href="/help" className="mb-2">
             Help
           </Nav.Link>
-          <Nav.Link href="/" className="mb-4">
+          <Nav.Link href="/home" className="mb-4">
             Dashboard
           </Nav.Link>
           <Nav.Link href="/task-manager" className="mb-2">
