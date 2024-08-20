@@ -37,8 +37,6 @@ export default function Login() {
       // Extract user information
       const email = decodedToken.email;
       const name = decodedToken.name;
-      console.log("Email:", email);
-      console.log("Name:", name);
 
       // Send token to backend for authentication
       await axios.post("http://localhost:3001/authenticate", {

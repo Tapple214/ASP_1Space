@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import NavBar from "../../components/navbar/navbar";
-import CarouselComponent from "./Carousel";
-import "./FAQ.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import CarouselComponent from "../../components/carousel/Carousel";
+import "./help.css";
+import "../home/Home.css";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -14,7 +12,7 @@ const FAQ = () => {
 
   return (
     <>
-      <div className="faq-page">
+      <div className="App p-3">
         <div className="header-container">
           <h1>Help</h1>
         </div>

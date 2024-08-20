@@ -7,7 +7,7 @@ import "../main/main.css";
 import FinancialOrganizer from "../financial-organizer/FinancialOrganizer";
 import BudgetHub from "../budgethub/budgethub";
 import TaskManager from "../task-manager/task-manager";
-import FAQ from "../FAQ/FAQ";
+import Help from "../help/help";
 import Home from "../home/Home";
 
 // Page mapping
@@ -16,7 +16,7 @@ const pageComponents = {
   "budget-hub": BudgetHub,
   "task-manager": TaskManager,
   "finance-board": FinancialOrganizer,
-  help: FAQ,
+  help: Help,
 };
 
 export default function MainDisplay() {
@@ -48,7 +48,7 @@ export default function MainDisplay() {
       <div
         className="w-100 h-auto"
         style={{
-          marginLeft: isOpen ? "200px" : "0",
+          marginLeft: isOpen ? "170px" : "0",
           transition: "margin-left 0.3s ease",
         }}
       >

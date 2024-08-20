@@ -2,11 +2,15 @@ import React from "react";
 import "./Carousel.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import loginImage from "./images/login.jpg";
-import dashboardImage from "./images/dashboard.jpg";
-import taskManagerImage from "./images/taskManager.jpg";
-import financeBoardImage from "./images/financeBoard.jpg";
-import budgetHubImage from "./images/budgetHub.jpg";
+// import loginImage from "../../../public/images/login.jpg";
+// import dashboardImage from "../../../public/images/dashboard.jpg";
+// import taskManagerImage from "../../../public/images/taskManager.jpg";
+// import financeBoardImage from "../../../public/images/financeBoard.jpg";
+// import budgetHubImage from "../../../public/images/budgetHub.jpg";
+
+// To enable carousel
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const CarouselComponent = () => {
   return (
@@ -51,7 +55,11 @@ const CarouselComponent = () => {
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src={loginImage} className="d-block w-100" alt="First slide" />
+          <img
+            src="/images/login.jpg"
+            className="d-block w-100"
+            alt="First slide"
+          />
           <div className="carousel-caption">
             <h3>Login</h3>
             <p>
@@ -67,7 +75,7 @@ const CarouselComponent = () => {
         </div>
         <div className="carousel-item">
           <img
-            src={dashboardImage}
+            src="/images/dashboard.jpg"
             className="d-block w-100"
             alt="Second slide"
           />
@@ -83,7 +91,7 @@ const CarouselComponent = () => {
         </div>
         <div className="carousel-item">
           <img
-            src={taskManagerImage}
+            src="/images/dashboard.jpg"
             className="d-block w-100"
             alt="Third slide"
           />
@@ -102,7 +110,7 @@ const CarouselComponent = () => {
         </div>
         <div className="carousel-item">
           <img
-            src={financeBoardImage}
+            src="/images/dashboard.jpg"
             className="d-block w-100"
             alt="Fourth slide"
           />
@@ -120,7 +128,7 @@ const CarouselComponent = () => {
         </div>
         <div className="carousel-item">
           <img
-            src={budgetHubImage}
+            src="/images/dashboard.jpg"
             className="d-block w-100"
             alt="Fifth slide"
           />

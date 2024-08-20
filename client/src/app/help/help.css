@@ -1,17 +1,6 @@
-.faq-page {
-  display: flex;
-  flex-direction: column;
-  padding: 40px 20px;
-}
-
 .header-container {
   text-align: center;
   margin-bottom: 20px;
-}
-
-.content {
-  display: flex;
-  gap: 20px;
 }
 
 .carousel-section {
