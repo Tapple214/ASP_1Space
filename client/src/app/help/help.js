@@ -12,9 +12,16 @@ const FAQ = () => {
   };
 
   return (
-    <>
+    <div className="d-flex flex-column  p-3">
+      <img
+        src="./images/astronaut.png"
+        className="position-absolute z-3"
+        style={{ top: "5px", right: "20px" }}
+        width={"200"}
+        height={"200"}
+      />
       <div className="App p-3">
-        <div className="header-container card p-4 rounded-4 bg-img">
+        <div className="header-container card p-4 rounded-4 bg-img mb-5">
           <h1 className="fw-bold">Help</h1>
         </div>
 
@@ -22,7 +29,7 @@ const FAQ = () => {
           <div className="row w-100 g-4">
             {/* Carousel Section */}
             <div
-              className="col-xs-12 col-md-12 col-lg-8 p-0"
+              className="col-12 col-lg-8 p-0 m-0 mt-4"
               style={{ zIndex: "1000" }}
             >
               <CarouselComponent />
@@ -30,7 +37,7 @@ const FAQ = () => {
 
             {/* FAQ Section */}
             <div className="col-xs-12 col-md-12 col-lg-4 p-0 ps-3">
-              <h2>FAQ</h2>
+              <h2 className="fw-bold text-center">FAQ</h2>
               {faqData.map((item, index) => (
                 <div
                   className="faq-item p-3 mb-3 bg-secondary card rounded-4 bg-opacity-10"
@@ -54,7 +61,7 @@ const FAQ = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

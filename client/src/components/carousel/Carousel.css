@@ -1,3 +1,15 @@
+button {
+  background-color: #a139a2;
+}
+
+button p {
+  font-size: 12px;
+}
+
+.more-info {
+  height: 26px;
+}
+
 .carousel-caption {
   position: absolute;
   top: 40%;
@@ -37,4 +49,33 @@
 .carousel-control-next-icon:hover {
   background-color: #a139a2;
   opacity: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+}
+
+.overlay-content h3 {
+  margin-top: 0;
+}
+
+.overlay-content button {
+  margin-top: 20px;
 }

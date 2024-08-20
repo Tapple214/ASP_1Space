@@ -25,7 +25,7 @@ export default function NavBar({
 
   return (
     <div className={`navbar-container ${isOpen ? "navbar-open" : ""}`}>
-      <div className="cover-layer" onClick={toggleNavbar}>
+      <div className="cover-layer bg-black" onClick={toggleNavbar}>
         <Button
           variant="dark"
           onClick={toggleNavbar}
@@ -134,13 +134,13 @@ export default function NavBar({
       </div>
 
       <div className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}>
-        <Nav.Link
-          href="/"
+        <div
+          onClick={() => handlePageChange("dashboard")}
           id="oneSpace"
-          className="oneSpace py-0 pt-1 ps-5 m-0 ms-2"
+          className="oneSpace py-0 pt-1 m-0"
         >
           <h5 className="fw-bold">1Space</h5>
-        </Nav.Link>
+        </div>
 
         <div className="nav-links">
           <div onClick={() => handlePageChange("help")} className="mb-2">
