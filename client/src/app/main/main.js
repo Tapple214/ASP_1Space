@@ -4,7 +4,7 @@ import NavBar from "../../components/navbar/navbar";
 import "../main/main.css";
 
 // Pages
-import FinancialOrganizer from "../financial-organizer/FinancialOrganizer";
+import FinanceBoard from "../financial-board/Financial-board";
 import BudgetHub from "../budgethub/budgethub";
 import TaskManager from "../task-manager/task-manager";
 import Help from "../help/help";
@@ -15,7 +15,7 @@ const pageComponents = {
   dashboard: Home,
   "budget-hub": BudgetHub,
   "task-manager": TaskManager,
-  "finance-board": FinancialOrganizer,
+  "finance-board": FinanceBoard,
   help: Help,
 };
 

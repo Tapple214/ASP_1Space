@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../../components/navbar/navbar";
-import "./FinancialOrganizer.css";
+import "./Finance-board.css";
 import EntryOutput from "../../components/entry-output/entry-output";
 import axios from "axios";
 import { Row, Col } from "react-bootstrap";
@@ -138,14 +137,14 @@ const FinancialOrganizer = () => {
 
   return (
     <>
-      <div className="ps-5 ms-4 me-4 mt-4">
-        <Row>
-          <Col md={12} lg={4} className="mb-4">
+      <div className="ps-5 ms-4 me-4 mt-4" style={{ height: "95vh" }}>
+        <Row className="h-100">
+          <Col md={12} lg={5} className="mb-4">
             <FinancialOverview
               financialData={financialData}
               setFinancialData={setFinancialData}
             />
-            <div className="summary">
+            <div className="summary mt-4">
               <h3>Your Summary</h3>
               <div className="summary-details">
                 <div>
@@ -159,8 +158,9 @@ const FinancialOrganizer = () => {
               </div>
             </div>
           </Col>
-          <Col md={12} lg={8}>
-            <div className="transactions-container">
+
+          <Col md={12} lg={7} className="h-100">
+            <div className="transactions-container h-100 overflow-scroll">
               <Form type="transaction" fetchData={fetchExpenses} />
               <div className="transaction-list">
                 {expenses.length > 0 ? (
