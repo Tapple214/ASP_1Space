@@ -79,7 +79,7 @@ export default function Home({ handlePageChange }) {
           )}
         </div>
       </div>
-      <div className="col-lg-4 col-md-4 col-xs-12 p-3 ps-5">
+      <div className="col-lg-4 col-md-4 col-xs-12 p-3 ps-4">
         <div
           className="card quote-display p-3 rounded-4 text-center"
           style={{ fontSize: "13px" }}
@@ -102,6 +102,7 @@ export default function Home({ handlePageChange }) {
         {/* Deal preview */}
         <div
           className="card rounded-4 mt-4 p-3"
+          style={{ cursor: "pointer" }}
           onClick={() => handlePageChange("budget-hub")}
         >
           {randomDeal ? (
