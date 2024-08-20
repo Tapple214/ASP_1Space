@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/navbar";
 import "./budgethub.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../home/Home.css";
 
 import food from "../../components/json/food.json";
 import shop from "../../components/json/shop.json";
@@ -71,7 +72,7 @@ export default function BudgetHub() {
 
   return (
     <>
-      <div className="left">
+      <div className="App">
         <br></br>
         <h2 className="heading">Food</h2>
         <br></br>
