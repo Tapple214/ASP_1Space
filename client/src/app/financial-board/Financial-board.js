@@ -8,7 +8,6 @@ import Form from "../../components/form/form";
 axios.defaults.withCredentials = true;
 
 const FinancialOverview = ({ financialData, setFinancialData }) => {
-  const [customPercentages, setCustomPercentages] = useState({});
   const handleChangeAmount = (field, value) => {
     const numValue = parseFloat(value) || 0;
     setFinancialData((prev) => ({

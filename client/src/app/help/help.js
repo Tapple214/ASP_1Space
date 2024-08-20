@@ -12,7 +12,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="d-flex flex-column  p-3">
+    <div className="d-flex flex-column p-3" style={{ maxHeight: "100vh" }}>
       <img
         src="./images/astronaut.png"
         className="position-absolute z-3"

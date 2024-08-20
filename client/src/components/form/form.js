@@ -57,6 +57,7 @@ export default function Form({ type, fetchData }) {
               className="title-input"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
 
             {/* Date */}
@@ -108,9 +109,10 @@ export default function Form({ type, fetchData }) {
                 className="amount-input"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                required
               />
             ) : (
-              <input type="date" className="date-input" />
+              <input type="date" className="date-input" required />
             )}
           </div>
         </div>
