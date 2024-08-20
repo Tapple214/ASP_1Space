@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
 import "./Carousel.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import ModalPopup from "../modal/modal";
 
 const CarouselComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -108,31 +108,12 @@ const CarouselComponent = () => {
         </button>
       </div>
 
-      {/* TODO: make modal into  component */}
-
-      <Modal
-        show={showModal}
-        onHide={handleCloseModal}
-        dialogClassName="modal-dialog-centered"
-        size="lg"
-      >
-        <Modal.Body>
-          <Modal.Title className="pb-3">
-            {carouselItems[activeIndex].title}
-          </Modal.Title>
-
-          <p className="pb-3">{carouselItems[activeIndex].text}</p>
-
-          <div className="d-flex justify-content-end">
-            <button
-              className="px-4 py-2 border-0 text-white rounded-2"
-              onClick={handleCloseModal}
-            >
-              Close
-            </button>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <ModalPopup
+        showModal={showModal}
+        handleCloseModal={handleCloseModal}
+        title={carouselItems[activeIndex].title}
+        content={carouselItems[activeIndex].text}
+      />
     </div>
   );
 };
