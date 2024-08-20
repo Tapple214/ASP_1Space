@@ -103,7 +103,7 @@ app.get("/home", requireLogin, (req, res) => {
         name: "Task Manager",
         description:
           "Stay on top of your to-dos! Add, label, and manage tasks while earning fun badges along the way!",
-        url: "/task-manager",
+        url: "task-manager",
         img: "/images/task-manager.png",
         alt: "Task Manager",
       },
@@ -111,7 +111,7 @@ app.get("/home", requireLogin, (req, res) => {
         name: "Finance Board",
         description:
           "Keep your budget in check! Easily track income and expenses to stay financially savvy.",
-        url: "/financial-organizer",
+        url: "finance-board",
         img: "/images/finance-board.png",
         alt: "Finance Board",
       },
@@ -119,7 +119,7 @@ app.get("/home", requireLogin, (req, res) => {
         name: "Budget Hub",
         description:
           "Join piggy bank the astronaut to hunt for the latest budget deals around you!",
-        url: "/budgethub",
+        url: "budget-hub",
         img: "/images/budget-hub.png",
         alt: "Budget Hub",
       },

@@ -39,6 +39,7 @@ export default function MainDisplay() {
 
   const pageProps = {
     isOpen: pageName === "budget-hub" ? isOpen : undefined,
+    handlePageChange: pageName === "dashboard" ? handlePageChange : undefined,
   };
 
   return (
