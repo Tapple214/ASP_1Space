@@ -25,7 +25,7 @@ export default function NavBar({
 
   return (
     <div className={`navbar-container ${isOpen ? "navbar-open" : ""}`}>
-      <div className="cover-layer bg-black" onClick={toggleNavbar}>
+      <div className="cover-layer" onClick={toggleNavbar}>
         <Button
           variant="dark"
           onClick={toggleNavbar}
@@ -139,29 +139,38 @@ export default function NavBar({
           id="oneSpace"
           className="oneSpace py-0 pt-1 m-0"
         >
-          <h5 className="fw-bold">1Space</h5>
+          <h5 className="fw-bold me-3">1Space</h5>
         </div>
 
         <div className="nav-links">
-          <div onClick={() => handlePageChange("help")} className="mb-2">
+          <div
+            onClick={() => handlePageChange("help")}
+            className="nav-link-help mb-2 ps-4 mt-2"
+          >
             Help
           </div>
-          <div onClick={() => handlePageChange("dashboard")} className="mb-4">
+          <div
+            onClick={() => handlePageChange("dashboard")}
+            className="nav-link-dashboard mb-4 ps-4 mt-4"
+          >
             Dashboard
           </div>
           <div
             onClick={() => handlePageChange("task-manager")}
-            className="mb-2"
+            className="nav-link-task mb-2 ps-4 pt-3"
           >
             Task Manager
           </div>
           <div
             onClick={() => handlePageChange("finance-board")}
-            className="mb-2"
+            className="nav-link-finance mb-2 ps-4 mt-4"
           >
             Finance Board
           </div>
-          <div onClick={() => handlePageChange("budget-hub")} className="mb-2">
+          <div
+            onClick={() => handlePageChange("budget-hub")}
+            className=" nav-link-budget mb-2 ps-4 mt-4"
+          >
             Budget Hub
           </div>
         </div>
@@ -171,7 +180,7 @@ export default function NavBar({
             className="logout-btn rounded-4 w-100 ms-5 p-2"
             onClick={handleLogout}
           >
-            <div className="ps-2">Logout</div>
+            <div className="ps-3">Logout</div>
           </div>
         </div>
       </div>
