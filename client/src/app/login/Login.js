@@ -48,8 +48,8 @@ export default function Login() {
       });
       console.log("Token sent successfully");
 
-      // Redirect to home page
-      navigate("/home");
+      // Redirect to main display page
+      navigate("/main");
     } catch (error) {
       console.error("Error handling login:", error);
     }

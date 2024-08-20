@@ -39,7 +39,6 @@ export default function TaskManager() {
 
   return (
     <>
-      <NavBar />
       <div className="ps-5 ms-4 me-4 mt-4">
         <Row>
           {/* Left side of the page */}

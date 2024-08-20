@@ -6,13 +6,12 @@ import axios from "axios";
 
 // TODO: add this to app and use conditionals instead to toggle between different pages to prevent navbar from closing
 
-export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
+export default function NavBar({
+  isOpen,
+  setIsOpen,
+  toggleNavbar,
+  handlePageChange,
+}) {
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:3001/logout");
@@ -134,10 +133,7 @@ export default function NavBar() {
         </div>
       </div>
 
-      <div
-        className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}
-        onClick={toggleNavbar}
-      >
+      <div className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}>
         <Nav.Link
           href="/"
           id="oneSpace"
@@ -146,23 +142,29 @@ export default function NavBar() {
           <h5 className="fw-bold">1Space</h5>
         </Nav.Link>
 
-        <Nav className="nav-links">
-          <Nav.Link href="/help" className="mb-2">
+        <div className="nav-links">
+          <div onClick={() => handlePageChange("help")} className="mb-2">
             Help
-          </Nav.Link>
-          <Nav.Link href="/home" className="mb-4">
+          </div>
+          <div onClick={() => handlePageChange("dashboard")} className="mb-4">
             Dashboard
-          </Nav.Link>
-          <Nav.Link href="/task-manager" className="mb-2">
+          </div>
+          <div
+            onClick={() => handlePageChange("task-manager")}
+            className="mb-2"
+          >
             Task Manager
-          </Nav.Link>
-          <Nav.Link href="/financial-organizer" className="mb-2">
+          </div>
+          <div
+            onClick={() => handlePageChange("finance-board")}
+            className="mb-2"
+          >
             Finance Board
-          </Nav.Link>
-          <Nav.Link href="/budgethub" className="mb-2">
+          </div>
+          <div onClick={() => handlePageChange("budget-hub")} className="mb-2">
             Budget Hub
-          </Nav.Link>
-        </Nav>
+          </div>
+        </div>
 
         <div className="d-flex align-items-center w-100 pe-3">
           <div

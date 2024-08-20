@@ -14,7 +14,6 @@ const FAQ = () => {
 
   return (
     <>
-      <NavBar />
       <div className="faq-page">
         <div className="header-container">
           <h1>Help</h1>

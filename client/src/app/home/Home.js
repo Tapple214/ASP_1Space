@@ -34,7 +34,6 @@ export default function Home() {
 
   return (
     <>
-      <NavBar />
       <div className="App p-3">
         <h1>{homeData.Title || "Loading..."}</h1>
         <p>{homeData.Subtitle || ""}</p>
