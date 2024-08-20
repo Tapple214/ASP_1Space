@@ -19,7 +19,7 @@ export default function ModalPopup({
       <Modal.Body>
         <Modal.Title className="pb-3">{title}</Modal.Title>
 
-        <p className="pb-3">{content}</p>
+        {content}
 
         <div className="d-flex justify-content-end">
           <button

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../../components/navbar/navbar";
 import "./budgethub.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,7 +8,7 @@ import shop from "../../components/json/shop.json";
 import place from "../../components/json/place.json";
 
 import Slider from "react-slick";
-import { Modal, Button } from "react-bootstrap";
+import ModalPopup from "../../components/modal/modal";
 
 export default function BudgetHub({ isOpen }) {
   // State to manage which modal is shown
@@ -49,24 +48,31 @@ export default function BudgetHub({ isOpen }) {
 
   // Render a modal with details about each card
   const renderModal = (category, eachCard, index) => (
-    <Modal
-      show={showModal.category === category && showModal.index === index}
-      onHide={handleClose}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>{eachCard.name}</Modal.Title>
-      </Modal.Header>
-
-      <Modal.Body>
-        <img src={eachCard.image} alt={eachCard.alt} className="photoModal" />
-        <p>{eachCard.description}</p>
-        <p>Location: {eachCard.location}</p>
-        <p>Opening Times: {eachCard.details}</p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button href={eachCard.link}>Link</Button>
-      </Modal.Footer>
-    </Modal>
+    <ModalPopup
+      showModal={showModal.category === category && showModal.index === index}
+      handleCloseModal={handleClose}
+      title={<p className="fw-bold text-center m-0">{eachCard.name}</p>}
+      content={
+        <div className="d-flex flex-column justify-content-center align-items-center">
+          <img
+            src={eachCard.image}
+            alt={eachCard.alt}
+            className="photoModal mb-3 rounded-4"
+          />
+          <p className="mx-3 text-center">{eachCard.description}</p>
+          <p className="text-center">
+            <span className="fw-bold">Location:</span>
+            <br />
+            {eachCard.location}
+          </p>
+          <p className="text-center">
+            <span className="fw-bold">Opening Times:</span>
+            <br />
+            {eachCard.details}
+          </p>
+        </div>
+      }
+    />
   );
 
   // Slider component

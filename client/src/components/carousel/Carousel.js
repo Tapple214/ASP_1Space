@@ -111,8 +111,14 @@ const CarouselComponent = () => {
       <ModalPopup
         showModal={showModal}
         handleCloseModal={handleCloseModal}
-        title={carouselItems[activeIndex].title}
-        content={carouselItems[activeIndex].text}
+        title={
+          <h3 className="text-center m-0 fw-bold">
+            {carouselItems[activeIndex].title}
+          </h3>
+        }
+        content={
+          <p className="text-center">{carouselItems[activeIndex].text}</p>
+        }
       />
     </div>
   );
