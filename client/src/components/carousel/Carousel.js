@@ -108,18 +108,30 @@ const CarouselComponent = () => {
         </button>
       </div>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>{carouselItems[activeIndex].title}</Modal.Title>
-        </Modal.Header>
+      {/* TODO: make modal into  component */}
+
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        dialogClassName="modal-dialog-centered"
+        size="lg"
+      >
         <Modal.Body>
-          <p>{carouselItems[activeIndex].text}</p>
+          <Modal.Title className="pb-3">
+            {carouselItems[activeIndex].title}
+          </Modal.Title>
+
+          <p className="pb-3">{carouselItems[activeIndex].text}</p>
+
+          <div className="d-flex justify-content-end">
+            <button
+              className="px-4 py-2 border-0 text-white rounded-2"
+              onClick={handleCloseModal}
+            >
+              Close
+            </button>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

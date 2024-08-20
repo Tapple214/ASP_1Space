@@ -40,7 +40,7 @@ const FAQ = () => {
               <h2 className="fw-bold text-center">FAQ</h2>
               {faqData.map((item, index) => (
                 <div
-                  className="faq-item p-3 mb-3 bg-secondary card rounded-4 bg-opacity-10"
+                  className="faq-item p-3 mb-3 card rounded-4 bg-opacity-10"
                   key={index}
                 >
                   <div

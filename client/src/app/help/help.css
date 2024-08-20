@@ -17,6 +17,7 @@
   opacity: 25%;
   border-radius: 15px;
 }
+
 .carousel-section {
   width: 65%;
   flex: 0 0 65%;
@@ -44,6 +45,10 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+}
+
+.faq-item {
+  background-color: #e29dd445;
 }
 
 .toggle-icon {
