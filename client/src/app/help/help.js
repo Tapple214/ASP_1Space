@@ -16,12 +16,12 @@ const FAQ = () => {
       <img
         src="./images/astronaut.png"
         className="position-absolute z-3"
-        style={{ top: "5px", right: "20px" }}
+        style={{ top: "15px", right: "20px" }}
         width={"200"}
         height={"200"}
       />
       <div className="App p-3">
-        <div className="header-container card p-4 rounded-4 bg-img mb-5">
+        <div className="header-container card p-4 rounded-4 bg-img mb-5 mt-3">
           <h1 className="fw-bold">Help</h1>
         </div>
 

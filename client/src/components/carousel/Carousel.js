@@ -1,19 +1,20 @@
 import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 import "./Carousel.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const CarouselComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleMoreInfoClick = (index) => {
     setActiveIndex(index);
-    setShowOverlay(true);
+    setShowModal(true);
   };
 
-  const handleCloseOverlay = () => {
-    setShowOverlay(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const carouselItems = [
@@ -107,17 +108,19 @@ const CarouselComponent = () => {
         </button>
       </div>
 
-      {showOverlay && (
-        <div className="overlay" onClick={handleCloseOverlay}>
-          <div className="overlay-content">
-            <h3>{carouselItems[activeIndex].title}</h3>
-            <p>{carouselItems[activeIndex].text}</p>
-            <button className="btn btn-secondary" onClick={handleCloseOverlay}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{carouselItems[activeIndex].title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{carouselItems[activeIndex].text}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
