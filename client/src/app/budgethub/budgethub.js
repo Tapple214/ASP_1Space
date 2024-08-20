@@ -3,7 +3,6 @@ import NavBar from "../../components/navbar/navbar";
 import "./budgethub.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../home/Home.css";
 
 import food from "../../components/json/food.json";
 import shop from "../../components/json/shop.json";
@@ -12,7 +11,7 @@ import place from "../../components/json/place.json";
 import Slider from "react-slick";
 import { Modal, Button } from "react-bootstrap";
 
-export default function BudgetHub() {
+export default function BudgetHub({ isOpen }) {
   const [showModal, setShowModal] = useState({ category: null, index: null });
 
   const handleShow = (category, index) => setShowModal({ category, index });
@@ -76,7 +75,7 @@ export default function BudgetHub() {
         <br></br>
         <h2 className="heading">Food</h2>
         <br></br>
-        <div className="slider">
+        <div className="slider" style={{ width: isOpen ? "80%" : "95%" }}>
           <Slider {...settings}>
             {foodArr.map((eachCard, index) => (
               <React.Fragment key={index}>
@@ -93,9 +92,9 @@ export default function BudgetHub() {
           </Slider>
         </div>
 
-        <h2 className="heading">Shop</h2>
+        <h2 className="heading mt-5 text-white ms-3 px-2 rounded-4">Shop</h2>
         <br></br>
-        <div className="slider">
+        <div className="slider" style={{ width: isOpen ? "80%" : "95%" }}>
           <Slider {...settings}>
             {shopArr.map((eachCard, index) => (
               <React.Fragment key={index}>
@@ -112,9 +111,9 @@ export default function BudgetHub() {
           </Slider>
         </div>
 
-        <h2 className="heading">Place</h2>
+        <h2 className="heading mt-5">Place</h2>
         <br></br>
-        <div className="slider">
+        <div className="slider" style={{ width: isOpen ? "80%" : "95%" }}>
           <Slider {...settings}>
             {placeArr.map((eachCard, index) => (
               <React.Fragment key={index}>

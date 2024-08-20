@@ -37,6 +37,10 @@ export default function MainDisplay() {
   // Get the component for the current page based on navbar click
   const PageComponent = pageComponents[pageName] || null;
 
+  const pageProps = {
+    isOpen: pageName === "budget-hub" ? isOpen : undefined,
+  };
+
   return (
     <Col className="d-flex flex-row">
       <NavBar
@@ -52,7 +56,7 @@ export default function MainDisplay() {
           transition: "margin-left 0.3s ease",
         }}
       >
-        {PageComponent && <PageComponent />}
+        {PageComponent && <PageComponent {...pageProps} />}
       </div>
     </Col>
   );
