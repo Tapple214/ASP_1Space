@@ -24,12 +24,9 @@
   text-align: center;
 }
 
-h2 {
-  font-size: 12px;
-}
-
 .heading {
   background-color: #6248a8;
+  font-size: 15px;
 }
 
 .slider {
@@ -40,7 +37,7 @@ h2 {
 
 .slider .slick-prev:before,
 .slider .slick-next:before {
-  color: blueviolet;
+  color: #6248a8;
   font-size: 25px;
 }
 
