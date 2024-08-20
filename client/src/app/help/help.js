@@ -37,7 +37,7 @@ const FAQ = () => {
 
             {/* FAQ Section */}
             <div className="col-xs-12 col-md-12 col-lg-4 p-0 ps-3">
-              <h2 className="fw-bold text-center">FAQ</h2>
+              <h2 className="fw-bold text-center mb-4">FAQ</h2>
               {faqData.map((item, index) => (
                 <div
                   className="faq-item p-3 mb-3 card rounded-4 bg-opacity-10"

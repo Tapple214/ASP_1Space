@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Nav } from "react-bootstrap";
+import React from "react";
+import { Button } from "react-bootstrap";
 import "../navbar/navbar.css";
 import logo from "../navbar/logo.png";
 import axios from "axios";

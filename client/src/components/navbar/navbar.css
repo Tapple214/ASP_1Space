@@ -133,6 +133,7 @@
   background-color: #1f1f1f;
   border-radius: 15px;
   transition: color 0.3s ease, font-weight 0.3s ease;
+  cursor: pointer;
 }
 
 .navbar .nav-link-help:hover,
