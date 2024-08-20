@@ -2,12 +2,6 @@ import React from "react";
 import "./Carousel.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// import loginImage from "../../../public/images/login.jpg";
-// import dashboardImage from "../../../public/images/dashboard.jpg";
-// import taskManagerImage from "../../../public/images/taskManager.jpg";
-// import financeBoardImage from "../../../public/images/financeBoard.jpg";
-// import budgetHubImage from "../../../public/images/budgetHub.jpg";
-
 // To enable carousel
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -19,45 +13,11 @@ const CarouselComponent = () => {
       className="carousel slide"
       data-bs-ride="carousel"
     >
-      <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="3"
-          aria-label="Slide 4"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="4"
-          aria-label="Slide 5"
-        ></button>
-      </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
             src="/images/login.jpg"
-            className="d-block w-100"
+            className="d-block w-100 rounded-3"
             alt="First slide"
           />
           <div className="carousel-caption">
@@ -76,7 +36,7 @@ const CarouselComponent = () => {
         <div className="carousel-item">
           <img
             src="/images/dashboard.jpg"
-            className="d-block w-100"
+            className="d-block w-100 rounded-3"
             alt="Second slide"
           />
           <div className="carousel-caption">
@@ -92,7 +52,7 @@ const CarouselComponent = () => {
         <div className="carousel-item">
           <img
             src="/images/dashboard.jpg"
-            className="d-block w-100"
+            className="d-block w-100 rounded-3"
             alt="Third slide"
           />
           <div className="carousel-caption">
@@ -111,7 +71,7 @@ const CarouselComponent = () => {
         <div className="carousel-item">
           <img
             src="/images/dashboard.jpg"
-            className="d-block w-100"
+            className="d-block w-100 rounded-3"
             alt="Fourth slide"
           />
           <div className="carousel-caption">
@@ -129,7 +89,7 @@ const CarouselComponent = () => {
         <div className="carousel-item">
           <img
             src="/images/dashboard.jpg"
-            className="d-block w-100"
+            className="d-block w-100 rounded-3"
             alt="Fifth slide"
           />
           <div className="carousel-caption">

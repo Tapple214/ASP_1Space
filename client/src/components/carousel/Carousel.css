@@ -28,10 +28,13 @@
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: #a139a2;
-  padding: 10px;
+  padding: 25px;
+  opacity: 100%;
+  border-radius: 15px;
 }
 
 .carousel-control-prev-icon:hover,
 .carousel-control-next-icon:hover {
   background-color: #a139a2;
+  opacity: 100%;
 }
