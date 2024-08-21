@@ -128,9 +128,16 @@ const FinancialOrganizer = () => {
     }
   };
 
-  const totalSpent = Object.entries(financialData)
+  const totalSpentFromExpenses = expenses.reduce(
+    (total, expense) => total + expense.expense_amount,
+    0
+  );
+
+  const totalSpentFromOverview = Object.entries(financialData)
     .filter(([key]) => key !== "income" && key !== "monthBudget")
     .reduce((total, [_, value]) => total + value, 0);
+
+  const totalSpent = totalSpentFromExpenses + totalSpentFromOverview;
 
   const budgetLeft = financialData.monthBudget - totalSpent;
 
