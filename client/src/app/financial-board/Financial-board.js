@@ -27,6 +27,7 @@ ChartJS.register(
   Legend
 );
 
+// Create a get for financial overview and then use that to do graph calcs
 const FinancialOverview = ({ financialData, setFinancialData }) => {
   const createFinancialOverview = async () => {
     try {
