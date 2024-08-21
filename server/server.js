@@ -127,11 +127,34 @@ app.get("/home", requireLogin, (req, res) => {
   });
 });
 
-app.get("/get/FinancialOverview", requireLogin, async (res, req) => {
+app.get("/get/FinancialOverview", requireLogin, async (req, res) => {
+  const { email, name } = req.session.user;
+
   try {
-    const query = "SELECT * FROM financial_overview;";
-    const rows = await new Promise((resolve, reject) => {
-      db.all(query, (err, rows) => {
+    // Step 1: Fetch the user_id based on email and name
+    const userIdQuery =
+      "SELECT user_id FROM user WHERE user_email = ? AND user_name = ?;";
+    const userIdResult = await new Promise((resolve, reject) => {
+      db.get(userIdQuery, [email, name], (err, row) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(row);
+        }
+      });
+    });
+
+    if (!userIdResult) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const { user_id } = userIdResult;
+
+    // Step 2: Fetch the financial overview data based on the user_id
+    const financialOverviewQuery =
+      "SELECT * FROM financial_overview WHERE user_id = ?;";
+    const financialOverviewRows = await new Promise((resolve, reject) => {
+      db.all(financialOverviewQuery, [user_id], (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -139,9 +162,11 @@ app.get("/get/FinancialOverview", requireLogin, async (res, req) => {
         }
       });
     });
-    res.json(rows);
+
+    res.json(financialOverviewRows);
   } catch (error) {
     console.error("Error fetching financial overview: ", error);
+    res.status(500).json({ error: "Failed to fetch financial overview" });
   }
 });
 
@@ -150,7 +175,9 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
   const { income, monthBudget, rent, debt, invest, others } = req.body;
   const { email, name } = req.session.user;
 
-  console.log(income, monthBudget, rent, debt, invest, others);
+  console.log("req.session IM HEREEE", req.session.user);
+  console.log("req.body", req.body);
+
   // Validate the input data
   if (
     typeof income !== "number" ||
@@ -164,56 +191,109 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
   }
 
   try {
+    console.log("finding using", email, name);
+
     // Fetch the user ID from the database based on email and name
     const userQuery = `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`;
-    const userResult = await db.get(userQuery, [email, name]);
+    const userResult = await new Promise((resolve, reject) => {
+      db.get(userQuery, [email, name], (err, row) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(row);
+      });
+    });
 
     if (!userResult) {
       return res.status(404).json({ error: "User not found" });
     }
 
+    console.log("userResult", userResult);
     const userId = userResult.user_id;
+    console.log("userId", userId);
 
-    // Check if an entry already exists for the user and month
+    // Check if an entry already exists for the user
     const checkQuery = `SELECT overview_id FROM financial_overview WHERE user_id = ?`;
-    const existingEntry = await db.get(checkQuery, [userId]);
+    const existingEntry = await new Promise((resolve, reject) => {
+      db.get(checkQuery, [userId], (err, row) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(row);
+      });
+    });
 
     if (existingEntry) {
       // Update the existing entry
       const updateQuery = `UPDATE financial_overview 
                            SET income = ?, month_budget = ?, rent = ?, debt = ?, invest = ?, others = ? 
                            WHERE overview_id = ?`;
-      await db.run(updateQuery, [
-        income,
-        monthBudget,
-        rent,
-        debt,
-        invest,
-        others,
-        existingEntry.overview_id,
-      ]);
+      await new Promise((resolve, reject) => {
+        db.run(
+          updateQuery,
+          [
+            income,
+            monthBudget,
+            rent,
+            debt,
+            invest,
+            others,
+            existingEntry.overview_id,
+          ],
+          function (err) {
+            if (err) {
+              return reject(err);
+            }
+            resolve();
+          }
+        );
+      });
 
       res
         .status(200)
         .json({ message: "Financial overview updated successfully" });
-    } else {
-      // Insert a new entry
-      const insertQuery = `INSERT INTO financial_overview (income, month_budget, rent, debt, invest, others, user_id) 
-                           VALUES (?, ?, ?, ?, ?, ?, ?)`;
-      const result = await db.run(insertQuery, [
+      console.log(
+        "update",
         income,
         monthBudget,
         rent,
         debt,
         invest,
         others,
-        userId,
-      ]);
+        existingEntry.overview_id
+      );
+    } else {
+      // Insert a new entry
+      const insertQuery = `INSERT INTO financial_overview (income, month_budget, rent, debt, invest, others, user_id) 
+                           VALUES (?, ?, ?, ?, ?, ?, ?)`;
+      const result = await new Promise((resolve, reject) => {
+        db.run(
+          insertQuery,
+          [income, monthBudget, rent, debt, invest, others, userId],
+          function (err) {
+            if (err) {
+              return reject(err);
+            }
+            resolve(this);
+          }
+        );
+      });
 
       res.status(201).json({
         message: "Financial overview created successfully",
         overviewId: result.lastID,
       });
+
+      console.log(
+        "create",
+        income,
+        monthBudget,
+        rent,
+        debt,
+        invest,
+        others,
+        userId
+      );
     }
   } catch (error) {
     console.error("Error creating or updating financial overview:", error);
@@ -290,41 +370,53 @@ app.post("/add/:type", requireLogin, (req, res) => {
 
 app.get("/get/:type", requireLogin, async (req, res) => {
   const { type } = req.params;
+  const { email, name } = req.session.user;
 
-  if (type === "transaction") {
-    try {
-      const query = "SELECT * FROM expense;";
-      const rows = await new Promise((resolve, reject) => {
-        db.all(query, (err, rows) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(rows);
-          }
-        });
+  try {
+    // Step 1: Fetch the user_id based on email and name
+    const userIdQuery =
+      "SELECT user_id FROM user WHERE user_email = ? AND user_name = ?;";
+    const userIdResult = await new Promise((resolve, reject) => {
+      db.get(userIdQuery, [email, name], (err, row) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(row);
+        }
       });
-      res.json(rows);
-    } catch (error) {
-      console.error("Error fetching expenses: ", error);
-      res.status(500).json({ error: "Internal Server Error" });
+    });
+
+    if (!userIdResult) {
+      return res.status(404).json({ error: "User not found" });
     }
-  } else {
-    try {
-      const query = "SELECT * FROM task;";
-      const rows = await new Promise((resolve, reject) => {
-        db.all(query, (err, rows) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(rows);
-          }
-        });
+
+    const { user_id } = userIdResult;
+
+    // Step 2: Fetch the data based on the user_id and type
+    let query;
+    if (type === "transaction") {
+      query = "SELECT * FROM expense WHERE user_id = ?;";
+    } else {
+      query = "SELECT * FROM task WHERE user_id = ?;";
+    }
+
+    const rows = await new Promise((resolve, reject) => {
+      db.all(query, [user_id], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
       });
-      res.json(rows);
-    } catch (error) {
-      console.error("Error fetching task: ", error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
+    });
+
+    res.json(rows);
+  } catch (error) {
+    console.error(
+      `Error fetching ${type === "transaction" ? "expenses" : "tasks"}: `,
+      error
+    );
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
