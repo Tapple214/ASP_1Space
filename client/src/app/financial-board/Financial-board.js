@@ -142,7 +142,21 @@ const FinancialOverview = ({ financialData, setFinancialData }) => {
   );
 };
 
-const FinancialOrganizer = () => {
+export default function FinancialOrganizer() {
+  const [financeOverview, setFinanceOverview] = useState({});
+
+  // Fetch data from server
+  const fetchFinancialOverview = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:3001/get/FinancialOverview"
+      );
+      setFinanceOverview(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
   const [financialData, setFinancialData] = useState({
     income: 0,
     monthBudget: 0,
@@ -166,6 +180,7 @@ const FinancialOrganizer = () => {
 
   useEffect(() => {
     fetchExpenses();
+    fetchFinancialOverview();
   }, []);
 
   const handleDelete = async (id) => {
@@ -285,6 +300,4 @@ const FinancialOrganizer = () => {
       </div>
     </>
   );
-};
-
-export default FinancialOrganizer;
+}

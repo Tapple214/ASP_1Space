@@ -127,6 +127,24 @@ app.get("/home", requireLogin, (req, res) => {
   });
 });
 
+app.get("/get/FinancialOverview", requireLogin, async (res, req) => {
+  try {
+    const query = "SELECT * FROM financial_overview;";
+    const rows = await new Promise((resolve, reject) => {
+      db.all(query, (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching financial overview: ", error);
+  }
+});
+
 // POST route to create or update a financial overview entry
 app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
   const { income, monthBudget, rent, debt, invest, others } = req.body;
@@ -390,6 +408,21 @@ app.get("/list-users", (req, res, next) => {
  */
 app.get("/list-expense-entries", (req, res, next) => {
   const query = "SELECT * FROM expense;";
+
+  global.db.all(query, function (err, rows) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+/**
+ * @desc Check to see financial overview
+ */
+app.get("/list-finance-overview", (req, res, next) => {
+  const query = "SELECT * FROM financial_overview;";
 
   global.db.all(query, function (err, rows) {
     if (err) {
