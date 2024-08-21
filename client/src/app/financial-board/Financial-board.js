@@ -28,7 +28,28 @@ ChartJS.register(
 );
 
 // Create a get for financial overview and then use that to do graph calcs
-const FinancialOverview = ({ financialData, setFinancialData }) => {
+
+const FinancialOverview = ({
+  financialData,
+  setFinancialData,
+  financeOverview,
+}) => {
+  useEffect(() => {
+    // Initialize financialData state with values from financeOverview when it changes
+
+    console.log("inside", financeOverview);
+    if (financeOverview) {
+      setFinancialData({
+        income: financeOverview.income || 0,
+        monthBudget: financeOverview.month_budget || 0,
+        rent: financeOverview.rent || 0,
+        debt: financeOverview.debt || 0,
+        invest: financeOverview.invest || 0,
+        others: financeOverview.others || 0,
+      });
+    }
+  }, [financeOverview, setFinancialData]);
+
   const createFinancialOverview = async () => {
     try {
       const response = await axios.post(
@@ -151,7 +172,7 @@ export default function FinancialOrganizer() {
       const res = await axios.get(
         "http://localhost:3001/get/FinancialOverview"
       );
-      setFinanceOverview(res.data);
+      setFinanceOverview(res.data[0]);
       console.log(res.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -249,6 +270,7 @@ export default function FinancialOrganizer() {
             <FinancialOverview
               financialData={financialData}
               setFinancialData={setFinancialData}
+              financeOverview={financeOverview}
             />
             <div className="summary mt-4">
               <h3>Your Summary</h3>
