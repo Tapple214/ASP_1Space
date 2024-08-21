@@ -47,5 +47,18 @@ CREATE TABLE IF NOT EXISTS expense (
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
+-- Table for financial overview data
+CREATE TABLE IF NOT EXISTS financial_overview (
+    overview_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    income DOUBLE NOT NULL,
+    month_budget DOUBLE NOT NULL,
+    rent DOUBLE,
+    debt DOUBLE,
+    invest DOUBLE,
+    others DOUBLE,
+    user_id INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
 
 COMMIT;

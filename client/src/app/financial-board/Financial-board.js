@@ -4,10 +4,54 @@ import EntryOutput from "../../components/entry-output/entry-output";
 import axios from "axios";
 import { Row, Col } from "react-bootstrap";
 import Form from "../../components/form/form";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 axios.defaults.withCredentials = true;
 
+// Register Chart.js components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const FinancialOverview = ({ financialData, setFinancialData }) => {
+  const createFinancialOverview = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/add/FinancialOverview",
+        {
+          income: financialData.income,
+          monthBudget: financialData.monthBudget,
+          rent: financialData.rent,
+          debt: financialData.debt,
+          invest: financialData.invest,
+          others: financialData.others,
+        }
+      );
+      console.log("Financial overview created successfully:", response.data);
+    } catch (error) {
+      console.error("Error creating financial overview:", error);
+    }
+  };
+
+  const handleSave = () => {
+    createFinancialOverview();
+    console.log("handle Save");
+  };
+
   const handleChangeAmount = (field, value) => {
     const numValue = parseFloat(value) || 0;
     setFinancialData((prev) => ({
@@ -87,6 +131,12 @@ const FinancialOverview = ({ financialData, setFinancialData }) => {
           ))}
         </tbody>
       </table>
+      <button
+        className="border-0 px-4 mb-1 py-2 text-white rounded-3"
+        onClick={() => handleSave()}
+      >
+        Save
+      </button>
     </div>
   );
 };
@@ -141,6 +191,40 @@ const FinancialOrganizer = () => {
 
   const budgetLeft = financialData.monthBudget - totalSpent;
 
+  // Data for the chart
+  const chartData = {
+    labels: Object.keys(financialData).filter(
+      (key) => key !== "income" && key !== "monthBudget"
+    ),
+    datasets: [
+      {
+        label: "Amount Spent",
+        data: Object.values(financialData).filter(
+          (_, index) => index !== 0 && index !== 1
+        ), // Exclude 'income' and 'monthBudget'
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem) {
+            return `$${tooltipItem.raw}`;
+          },
+        },
+      },
+    },
+  };
+
   return (
     <>
       <div className="ps-5 ms-4 me-4 mt-4" style={{ height: "95vh" }}>
@@ -163,6 +247,13 @@ const FinancialOrganizer = () => {
                 </div>
               </div>
             </div>
+
+            <Col md={12} lg={4} className="h-auto w-100">
+              <div className="chart-container">
+                <h3>Category Breakdown</h3>
+                <Bar data={chartData} options={chartOptions} />
+              </div>
+            </Col>
           </Col>
 
           <Col md={12} lg={7} className="h-100">

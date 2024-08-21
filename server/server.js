@@ -127,6 +127,82 @@ app.get("/home", requireLogin, (req, res) => {
   });
 });
 
+// POST route to create or update a financial overview entry
+app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
+  const { income, monthBudget, rent, debt, invest, others } = req.body;
+  const { email, name } = req.session.user;
+
+  console.log(income, monthBudget, rent, debt, invest, others);
+  // Validate the input data
+  if (
+    typeof income !== "number" ||
+    typeof monthBudget !== "number" ||
+    typeof rent !== "number" ||
+    typeof debt !== "number" ||
+    typeof invest !== "number" ||
+    typeof others !== "number"
+  ) {
+    return res.status(400).json({ error: "Invalid input data" });
+  }
+
+  try {
+    // Fetch the user ID from the database based on email and name
+    const userQuery = `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`;
+    const userResult = await db.get(userQuery, [email, name]);
+
+    if (!userResult) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const userId = userResult.user_id;
+
+    // Check if an entry already exists for the user and month
+    const checkQuery = `SELECT overview_id FROM financial_overview WHERE user_id = ?`;
+    const existingEntry = await db.get(checkQuery, [userId]);
+
+    if (existingEntry) {
+      // Update the existing entry
+      const updateQuery = `UPDATE financial_overview 
+                           SET income = ?, month_budget = ?, rent = ?, debt = ?, invest = ?, others = ? 
+                           WHERE overview_id = ?`;
+      await db.run(updateQuery, [
+        income,
+        monthBudget,
+        rent,
+        debt,
+        invest,
+        others,
+        existingEntry.overview_id,
+      ]);
+
+      res
+        .status(200)
+        .json({ message: "Financial overview updated successfully" });
+    } else {
+      // Insert a new entry
+      const insertQuery = `INSERT INTO financial_overview (income, month_budget, rent, debt, invest, others, user_id) 
+                           VALUES (?, ?, ?, ?, ?, ?, ?)`;
+      const result = await db.run(insertQuery, [
+        income,
+        monthBudget,
+        rent,
+        debt,
+        invest,
+        others,
+        userId,
+      ]);
+
+      res.status(201).json({
+        message: "Financial overview created successfully",
+        overviewId: result.lastID,
+      });
+    }
+  } catch (error) {
+    console.error("Error creating or updating financial overview:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Transaction or task entry handling/management
 app.post("/add/:type", requireLogin, (req, res) => {
   const { type } = req.params;
