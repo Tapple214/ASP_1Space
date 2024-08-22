@@ -77,7 +77,12 @@ export default function BudgetHub({ isOpen }) {
 
   // Slider component
   const CategorySlider = ({ items, category }) => (
-    <div className="slider" style={{ width: isOpen ? "80%" : "95%" }}>
+    <div
+      className="slider"
+      style={{
+        width: isOpen ? "70vw" : "90vw",
+      }}
+    >
       <Slider {...settings}>
         {items.map((eachCard, index) => (
           <React.Fragment key={index}>
@@ -98,9 +103,14 @@ export default function BudgetHub({ isOpen }) {
   return (
     <>
       <div className="App">
+        <h1 className="m-0 fw-bold ms-4 mt-3">Task Manager</h1>
+        <p className="m-0 ms-4" style={{ fontSize: "12px" }}>
+          Catch the latest Singaporean budget deals!
+        </p>
+
         <br />
         <h2
-          className="heading text-white ms-3 p-2 px-3 rounded-4 fw-bold"
+          className="heading ms-3 p-2 fw-bold mb-0"
           style={{ width: "fit-content" }}
         >
           Food and Beverages
@@ -109,7 +119,7 @@ export default function BudgetHub({ isOpen }) {
         <CategorySlider items={food} category="food" />
 
         <h2
-          className="heading mt-5 text-white ms-3 p-2 px-3 rounded-4 fw-bold"
+          className="heading mt-3 ms-3 p-2 fw-bold mb-0"
           style={{ width: "fit-content" }}
         >
           Shop
@@ -118,7 +128,7 @@ export default function BudgetHub({ isOpen }) {
         <CategorySlider items={shop} category="shop" />
 
         <h2
-          className="heading mt-5 text-white ms-3 p-2 px-3 rounded-4 fw-bold"
+          className="heading mt-3 ms-3 p-2 fw-bold mb-0"
           style={{ width: "fit-content" }}
         >
           Place

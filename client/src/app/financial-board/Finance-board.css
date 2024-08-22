@@ -300,3 +300,11 @@
   border-radius: 15px;
   font-size: 13px;
 }
+
+.table-save {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.table-save:hover {
+  background-color: #591d5a;
+}

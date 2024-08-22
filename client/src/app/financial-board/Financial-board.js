@@ -175,7 +175,7 @@ const FinancialOverview = ({
         </tbody>
       </table>
       <button
-        className="border-0 px-4 mb-1 py-1 text-white rounded-3"
+        className="table-save border-0 px-4 mb-1 py-1 text-white rounded-3 fw-bold"
         onClick={() => handleSave()}
       >
         Save
@@ -253,7 +253,7 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
     <>
       <div className="ps-5 ms-4 me-4 mt-4" style={{ height: "95vh" }}>
         <Row className="h-100">
-          <Col md={12} lg={5} className="mb-4">
+          <Col md={12} lg={5} className="mb-4" style={{ zIndex: "1000" }}>
             <FinancialOverview
               financialData={financialData}
               setFinancialData={setFinancialData}
@@ -278,7 +278,14 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
           </Col>
 
           <Col md={12} lg={7} className="h-100">
-            <div className="transactions-container h-100 overflow-scroll">
+            <h1 className="m-0 fw-bold">Finance Board</h1>
+            <p className="mb-3" style={{ fontSize: "12px" }}>
+              Track your daily and monthly expenses!
+            </p>
+            <div
+              className="transactions-container h-100 overflow-scroll"
+              style={{ maxHeight: "85vh" }}
+            >
               <Form type="transaction" fetchData={fetchExpenses} />
               <div className="transaction-list">
                 {expenses.length > 0 ? (

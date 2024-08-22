@@ -104,13 +104,13 @@
   position: fixed;
   top: 0;
   left: -190px;
-  width: 225px;
+  width: 220px;
   height: 100vh;
   background-color: #1f1f1f;
   color: white;
   transition: left 0.3s ease;
   z-index: 999;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .navbar-open .navbar {

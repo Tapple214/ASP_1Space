@@ -9,10 +9,6 @@
   width: 250px;
 }
 
-.left {
-  padding-left: 250px;
-}
-
 .slick-dots {
   position: absolute;
   bottom: -35px;
@@ -25,8 +21,8 @@
 }
 
 .heading {
-  background-color: #6248a8;
-  font-size: 15px;
+  color: #6248a8;
+  font-size: 20px;
 }
 
 .slider {
@@ -52,5 +48,5 @@
 }
 
 .slider .slick-next {
-  right: 45px;
+  right: 0px;
 }

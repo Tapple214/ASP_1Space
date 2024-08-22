@@ -10,48 +10,6 @@ import ModalPopup from "../../components/modal/modal";
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
 
-const Mission = () => {
-  return (
-    <>
-      {/* Mission list */}
-      <div className="missions w-100 mt-4">
-        <h3 className="text-center fw-bold">Missions</h3>
-        <div className="mission-content">
-          <p>
-            1. Complete Your First Task: Finish your first task to kickstart
-            your productivity journey.
-          </p>
-          <p>
-            2. Three-Day Streak: Complete at least three tasks for three
-            consecutive days.
-          </p>
-          <p>
-            3. Morning Productivity: Complete your first task of the day before
-            10 AM for a week.
-          </p>
-          <p>4. Task Marathon: Finish 10 tasks in a single day.</p>
-          <p>
-            5. Weekly Goal: Successfully complete 20 tasks by the end of the
-            week.
-          </p>
-          <p>
-            6. Habit Builder: Work on the same task at the same time every day
-            for a week.
-          </p>
-          <p>
-            7. Focus Hour: Spend one uninterrupted hour on a single task without
-            distractions.
-          </p>
-          <p>
-            8. Top Priorities: Complete the three most important tasks on your
-            list each day for five days.
-          </p>
-        </div>
-      </div>
-    </>
-  );
-};
-
 const Badges = () => {
   const [show, setShow] = useState(false);
 
@@ -65,7 +23,7 @@ const Badges = () => {
   return (
     <>
       {/* Badges */}
-      <div className="badges w-100">
+      <div className="badges w-100 mt-4">
         <button
           type="button ms-0"
           className="help-button position-absolute me-5 mt-1 text-white"
@@ -120,6 +78,37 @@ const Badges = () => {
   );
 };
 
+const Mission = () => {
+  return (
+    <>
+      {/* Mission list */}
+      <div className="missions w-100 mt-4">
+        <h3 className="text-center fw-bold m-0">Missions</h3>
+        <div className="mission-content">
+          <p>
+            1. Complete Your First Task: Finish your first task to kickstart
+            your productivity journey.
+          </p>
+          <p>
+            2. Three-Day Streak: Complete at least three tasks for three
+            consecutive days.
+          </p>
+          <p>
+            3. Consistent Productivity: Complete your 5 tasks before 5pm for 3
+            days straight
+          </p>
+          <p>4. Staying Alert: Completed 3 urgent tasks in 5 days.</p>
+          <p>
+            5. Weekly Consistency: Complete your 10 tasks before 5pm for 6 days
+            straight
+          </p>
+          <p>6. The Collector: Collected 5 badges.</p>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
   const type = "task";
@@ -150,7 +139,7 @@ export default function TaskManager() {
 
   return (
     <>
-      <div className="ps-5 ms-4 me-4 mt-4">
+      <div className="ps-5 ms-4 me-4 mt-4" style={{ zIndex: "1000" }}>
         <Row className="h-100">
           {/* Left side of the page */}
           <Col md={12} lg={8} className="mb-4">
@@ -193,8 +182,10 @@ export default function TaskManager() {
 
           {/* Right side of the page */}
           <Col md={12} lg={4}>
-            <h1>Task Manager</h1>
-            <p>Take note of To-dos and achieve badges!</p>
+            <h1 className="m-0 fw-bold">Task Manager</h1>
+            <p className="m-0 ms-2" style={{ fontSize: "12px" }}>
+              Mark down To-dos and complete missions achieve badges and rewards!
+            </p>
             {/* TODO: create an in-file component for Badges and missions */}
             <Badges />
 
