@@ -1,9 +1,16 @@
 .content {
   display: flex;
   justify-content: space-between;
-  padding: 40px 20px;
-  margin-left: 60px;
-  gap: 40px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: auto;
+  border: none;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
 .left-section,
@@ -34,7 +41,7 @@
 }
 
 .financial-overview h2 {
-  font-size: 1.5em;
+  font-size: 17px;
   color: #333;
   margin-bottom: 10px;
   font-weight: bold;
@@ -44,7 +51,7 @@
 .financial-overview table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 1em;
+  font-size: 15px;
 }
 
 .text-center {
@@ -52,10 +59,10 @@
 }
 
 .financial-overview input[type="number"] {
-  width: 55%; 
-  height: 75%;
-  margin: 0 auto; 
-  display: block; 
+  width: 100%;
+  height: 25px;
+  margin: 0 auto;
+  display: block;
 }
 
 .financial-overview th,
@@ -105,11 +112,9 @@
   display: none; /* Remove IE-specific clear button and reveal password button */
 }
 
-
 .summary {
   width: 100%;
   text-align: center;
-  padding: 20px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -119,8 +124,9 @@
   justify-content: center;
 }
 
-.summary h3 {
-  font-size: 1.5em;
+.summary h3,
+.chart-container h3 {
+  font-size: 17px;
   color: #333;
   margin-bottom: 20px;
   font-weight: bold;
@@ -130,7 +136,7 @@
   display: flex;
   justify-content: space-between;
   width: 80%;
-  font-size: 1.2em;
+  font-size: 15px;
   color: #666;
 }
 
@@ -151,11 +157,9 @@
 }
 
 .transaction-form {
-  padding: 20px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   position: relative;
   width: calc(100% - 50px);
 }
@@ -176,10 +180,10 @@
 .transaction-form .category-input,
 .transaction-form .description-input,
 .transaction-form .amount-input {
-  padding: 10px;
+  padding: 5px;
   border-radius: 25px;
   border: none;
-  font-size: 1em;
+  font-size: 15px;
 }
 
 .transaction-form .date-input {
@@ -192,19 +196,16 @@
 .transaction-form .title-input,
 .transaction-form .date-input {
   flex: 1;
-  height: 25px;
-}
-
-.transaction-form .title-input {
-  margin-right: 50px;
+  height: 20px;
+  font-size: 12px;
 }
 
 .transaction-form .category-input {
   width: calc(100% / 3);
-  height: 25px;
+  height: 20px;
   line-height: 25px;
-  padding: 0 10px;
-  font-size: 1em;
+  padding: 0;
+  font-size: 13px;
   border-radius: 25px;
   border: none;
   background-color: #fff;
@@ -214,13 +215,14 @@
 .transaction-form .amount-input {
   flex: right;
   width: calc(100% / 3);
-  height: calc(2.5 * 1.5em);
+  height: 40px;
 }
 
 .transaction-form .description-input {
   flex: 1;
   width: calc(100% / 3) * 2;
-  height: calc(2.5 * 1.5em);
+  height: 40px;
+  font-size: 13px;
 }
 
 .add-button {
@@ -268,15 +270,13 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-
-  padding: 10px;
   border-radius: 15px 15px 0 0;
   width: 100%;
 }
 
 .transaction-header h4 {
   margin: 0;
-  font-size: 1em;
+  font-size: 15px;
 }
 
 .transaction-buttons {
@@ -288,16 +288,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 15px;
   color: #fff;
-}
-
-.transaction-buttons .edit-button {
-  color: #ffc107;
-}
-
-.transaction-buttons .delete-button {
-  color: #f44336;
 }
 
 .transaction-item p {
@@ -306,5 +298,13 @@
   color: black;
   background-color: white;
   border-radius: 15px;
-  font-size: 0.9em;
+  font-size: 13px;
+}
+
+.table-save {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.table-save:hover {
+  background-color: #591d5a;
 }

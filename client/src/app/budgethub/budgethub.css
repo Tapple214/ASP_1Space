@@ -1,49 +1,52 @@
 .photoAlbum {
-    height: 200px;
-    width: 200px;
-    border-radius: 25px;
+  height: 150px;
+  width: 150px;
+  border-radius: 25px;
 }
 
 .photoModal {
-    height:250px;
-    width:250px;
+  height: 250px;
+  width: 250px;
 }
 
-.left {
-    padding-left: 250px;
+.slick-dots {
+  position: absolute;
+  bottom: -35px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
 }
 
 .heading {
-    background-color: blueviolet;
-    color:azure;
-    display:inline-block;
-    padding: 5px;
-    border-radius: 10px;
-    margin-left: 15px;
-    margin-top: 15px;
+  color: #6248a8;
+  font-size: 20px;
 }
 
 .slider {
-    position: relative;
-    width: 90%;    
+  position: relative;
+  margin-left: 60px;
+  z-index: 1000;
 }
 
-.slider .slick-prev:before, 
+.slider .slick-prev:before,
 .slider .slick-next:before {
-    color:blueviolet;  
-    font-size: 25px; 
+  color: #6248a8;
+  font-size: 25px;
 }
 
-.slider .slick-prev, 
+.slider .slick-prev,
 .slider .slick-next {
-    display: block; 
-    z-index: 1; 
+  display: block;
+  z-index: 1;
 }
 
 .slider .slick-prev {
-    left: -40px; 
+  left: -40px;
 }
 
 .slider .slick-next {
-    right: 45px; 
+  right: 15px;
 }

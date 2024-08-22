@@ -1,18 +1,12 @@
-import React, { useState } from "react";
-import { Button, Nav } from "react-bootstrap";
+import React from "react";
+import { Button } from "react-bootstrap";
 import "../navbar/navbar.css";
 import logo from "../navbar/logo.png";
 import axios from "axios";
 
 // TODO: add this to app and use conditionals instead to toggle between different pages to prevent navbar from closing
 
-export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
+export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:3001/logout");
@@ -134,42 +128,60 @@ export default function NavBar() {
         </div>
       </div>
 
-      <div
-        className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}
-        onClick={toggleNavbar}
-      >
-        <Nav.Link
-          href="/"
+      <div className={`navbar flex-column py-4 ${isOpen ? "open" : ""}`}>
+        <div
+          onClick={() => handlePageChange("dashboard")}
           id="oneSpace"
-          className="oneSpace py-0 pt-1 ps-5 m-0 ms-2"
+          className="oneSpace py-0 pt-1 m-0"
         >
-          <h5 className="fw-bold">1Space</h5>
-        </Nav.Link>
+          <h5 className="fw-bold me-3">1Space</h5>
+        </div>
 
-        <Nav className="nav-links">
-          <Nav.Link href="#Help" className="mb-2">
+        <div className="nav-links">
+          <div
+            onClick={() => handlePageChange("help")}
+            className="nav-link-help mb-2 ps-4 mt-2"
+            style={{ cursor: "pointer" }}
+          >
             Help
-          </Nav.Link>
-          <Nav.Link href="/" className="mb-4">
+          </div>
+          <div
+            onClick={() => handlePageChange("dashboard")}
+            className="nav-link-dashboard mb-4 ps-4 mt-4"
+            style={{ cursor: "pointer" }}
+          >
             Dashboard
-          </Nav.Link>
-          <Nav.Link href="/task-manager" className="mb-2">
+          </div>
+          <div
+            onClick={() => handlePageChange("task-manager")}
+            className="nav-link-task mb-2 ps-4 pt-3"
+            style={{ cursor: "pointer" }}
+          >
             Task Manager
-          </Nav.Link>
-          <Nav.Link href="/financial-organizer" className="mb-2">
+          </div>
+          <div
+            onClick={() => handlePageChange("finance-board")}
+            className="nav-link-finance mb-2 ps-4 mt-4"
+            style={{ cursor: "pointer" }}
+          >
             Finance Board
-          </Nav.Link>
-          <Nav.Link href="/budgethub" className="mb-2">
+          </div>
+          <div
+            onClick={() => handlePageChange("budget-hub")}
+            className=" nav-link-budget mb-2 ps-4 mt-4"
+            style={{ cursor: "pointer" }}
+          >
             Budget Hub
-          </Nav.Link>
-        </Nav>
+          </div>
+        </div>
 
         <div className="d-flex align-items-center w-100 pe-3">
           <div
             className="logout-btn rounded-4 w-100 ms-5 p-2"
             onClick={handleLogout}
+            style={{ cursor: "pointer" }}
           >
-            <div className="ps-2">Logout</div>
+            <div className="ps-3">Logout</div>
           </div>
         </div>
       </div>

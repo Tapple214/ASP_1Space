@@ -1,0 +1,92 @@
+{
+  "study_hacks": [
+    {
+      "name": "The Pomodoro Technique",
+      "description": "Study for 25 minutes, then take a 5-minute break. Repeat this cycle four times, then take a longer break. This helps improve focus and productivity."
+    },
+    {
+      "name": "Teach What You Learn",
+      "description": "Explaining concepts to someone else or even just out loud to yourself reinforces your understanding and retention."
+    },
+    {
+      "name": "Use Feynman’s Technique",
+      "description": "Try to explain a concept in simple terms as if you were teaching it to a child. If you can do this successfully, it means you've mastered the material."
+    },
+    {
+      "name": "Mind Mapping",
+      "description": "Create a visual diagram that links key ideas and concepts. This method helps in better understanding and recalling information."
+    },
+    {
+      "name": "Flashcards with Spaced Repetition",
+      "description": "Use apps like Anki or physical flashcards to study with spaced repetition, which helps with long-term retention of information."
+    },
+    {
+      "name": "Study in Multiple Locations",
+      "description": "Changing your study environment can improve information retention and prevent your brain from associating learning with just one place."
+    },
+    {
+      "name": "Chew Gum While Studying and During the Exam",
+      "description": "Chewing the same flavor of gum while studying and during an exam can help you recall information due to context-dependent memory."
+    }
+  ],
+  "life_hacks": [
+    {
+      "name": "Two-Minute Rule",
+      "description": "If something can be done in two minutes or less, do it immediately. This keeps tasks from piling up and reduces procrastination."
+    },
+    {
+      "name": "Digital Declutter",
+      "description": "Organize your desktop and phone to minimize distractions. Use folders and keep only essential apps and files on the home screen."
+    },
+    {
+      "name": "Meal Prepping",
+      "description": "Plan and prepare your meals for the week on Sundays. This saves time, reduces stress, and helps you maintain a healthy diet."
+    },
+    {
+      "name": "Use White Noise for Better Sleep",
+      "description": "Apps like Rain Rain or simply a fan can create white noise, which helps in blocking out disturbances and improving sleep quality."
+    },
+    {
+      "name": "One-Minute Rule for Tidying Up",
+      "description": "Spend just one minute tidying up every time you leave a room. This small effort can keep your living space consistently clean."
+    },
+    {
+      "name": "Save Time by Bundling Tasks",
+      "description": "Combine small, similar tasks together (like making all your phone calls at once) to increase efficiency."
+    },
+    {
+      "name": "Learn Keyboard Shortcuts",
+      "description": "Whether it's for your computer, phone, or favorite apps, keyboard shortcuts can save you hours in the long run."
+    }
+  ],
+  "fun_facts": [
+    {
+      "fact": "The Eiffel Tower Can Grow Taller",
+      "description": "Due to thermal expansion, the Eiffel Tower can grow by about 6 inches during the summer."
+    },
+    {
+      "fact": "Honey Never Spoils",
+      "description": "Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible."
+    },
+    {
+      "fact": "Octopuses Have Three Hearts",
+      "description": "Two pump blood to the gills, and one pumps it to the rest of the body."
+    },
+    {
+      "fact": "Bananas Are Berries, But Strawberries Aren't",
+      "description": "Botanically, bananas qualify as berries, while strawberries do not."
+    },
+    {
+      "fact": "Your Brain Uses 20% of Your Body’s Energy",
+      "description": "Even though the brain is only about 2% of your body weight, it consumes 20% of the energy your body uses."
+    },
+    {
+      "fact": "A Day on Venus is Longer Than a Year on Venus",
+      "description": "Venus takes longer to rotate on its axis than it does to complete one orbit of the sun."
+    },
+    {
+      "fact": "Blue Whales’ Hearts",
+      "description": "The heart of a blue whale is so large that a human could swim through its arteries."
+    }
+  ]
+}

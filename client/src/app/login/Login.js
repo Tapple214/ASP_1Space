@@ -37,8 +37,6 @@ export default function Login() {
       // Extract user information
       const email = decodedToken.email;
       const name = decodedToken.name;
-      console.log("Email:", email);
-      console.log("Name:", name);
 
       // Send token to backend for authentication
       await axios.post("http://localhost:3001/authenticate", {
@@ -46,10 +44,9 @@ export default function Login() {
         email: email,
         name: name,
       });
-      console.log("Token sent successfully");
 
-      // Redirect to home page
-      navigate("/home");
+      // Redirect to main display page
+      navigate("/main");
     } catch (error) {
       console.error("Error handling login:", error);
     }
