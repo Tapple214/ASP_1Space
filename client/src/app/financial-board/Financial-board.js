@@ -236,8 +236,14 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
         withCredentials: true,
       });
       setExpenses(expenses.filter((expense) => expense.expense_id !== id));
+      toast.setSuccessMessage(
+        "Your expense entry has been deleted successfully!"
+      );
     } catch (error) {
       console.error("Error deleting expense:", error);
+      toast.setErrorMessage(
+        "Uh oh! We can't seem to delete your expense entry"
+      );
     }
   };
 

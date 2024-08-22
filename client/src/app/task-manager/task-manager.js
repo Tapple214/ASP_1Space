@@ -1,12 +1,12 @@
 import "../task-manager/task-manager.css";
-import NavBar from "../../components/navbar/navbar";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Form from "../../components/form/form";
 import { Row, Col } from "react-bootstrap";
 import EntryOutput from "../../components/entry-output/entry-output";
 import ModalPopup from "../../components/modal/modal";
-import { Toast } from "react-bootstrap";
+import Toaster from "../../components/toaster/toaster";
+import { useShowToaster } from "../../components/toaster/toastHook";
 
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
@@ -113,6 +113,7 @@ const Mission = () => {
 export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
   const type = "task";
+  const toast = useShowToaster();
 
   const fetchTasks = async () => {
     try {
@@ -141,6 +142,8 @@ export default function TaskManager() {
   return (
     <>
       <div className="ps-5 ms-4 me-4 mt-4" style={{ zIndex: "1000" }}>
+        <Toaster toast={toast} />
+
         <Row className="h-100">
           {/* Left side of the page */}
           <Col md={12} lg={8} className="mb-4" style={{ zIndex: "1000" }}>
