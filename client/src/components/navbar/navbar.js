@@ -6,12 +6,7 @@ import axios from "axios";
 
 // TODO: add this to app and use conditionals instead to toggle between different pages to prevent navbar from closing
 
-export default function NavBar({
-  isOpen,
-  setIsOpen,
-  toggleNavbar,
-  handlePageChange,
-}) {
+export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:3001/logout");

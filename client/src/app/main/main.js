@@ -32,7 +32,7 @@ export default function MainDisplay() {
   });
 
   const toggleNavbar = () => {
-    setIsOpen((prevState) => !prevState);
+    setIsOpen(!isOpen);
   };
 
   // Page handling
@@ -58,7 +58,6 @@ export default function MainDisplay() {
       <NavBar
         handlePageChange={handlePageChange}
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
         toggleNavbar={toggleNavbar}
       />
       <div
