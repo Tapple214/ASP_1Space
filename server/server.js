@@ -434,6 +434,134 @@ app.delete("/delete/:type/:id", requireLogin, async (req, res) => {
   }
 });
 
+// Handles task completions
+app.put("/api/tasks/:id", requireLogin, async (req, res) => {
+  const {id} = req.params;
+  const {is_complete, completed_at} = req.body;
+  const {email} = req.session.user;
+  
+  try {
+    const userId = await new Promise((resolve, reject) => {
+      db.get(`SELECT user_id FROM user WHERE user_email = ?`, [email], (err, row) => {
+        if (err) {
+          reject(err);
+        } else if (row) {
+          resolve(row.user_id);
+        } else {
+          reject(new Error("User not found"));
+        }
+      })
+    })
+
+    await new Promise((resolve, reject) => {
+      db.run(`UPDATE task SET is_complete = ?, completed_at = ? WHERE task_id = ? AND user_id = ?`, [is_complete, completed_at, id, userId], function (err) {
+        if(err) {
+          reject(err);
+        } else if (this.changes === 0) {
+          reject(new Error("Task not found or does not belong to the user"));
+        } else {
+          resolve();
+        }
+      })
+    })
+
+    res.status(200).json({message: "Task updated successfully"});
+  } catch (error) {
+    console.error("Error updating task:", error.message);
+    res.status(500).json({message: "Error updating task"});
+  }
+})
+
+// Handles adding of badges
+app.post("/api/badges", requireLogin, async (req, res) => {
+  const { badgeName, badgeDescription } = req.body;
+  const { email } = req.session.user;
+
+  try {
+    const userId = await new Promise((resolve, reject) => {
+      db.get(`SELECT user_id FROM user WHERE user_email = ?`, [email], (err, row) => {
+        if (err) {
+          reject(err);
+        } else if (row) {
+          resolve(row.user_id);
+        } else {
+          reject(new Error("User not found"));
+        }
+      });
+    });
+
+    const badgeExists = await new Promise((resolve, reject) => {
+      db.get(`SELECT * FROM badge WHERE badge_name = ? AND user_id = ?`, [badgeName, userId], (err, row) => {
+        if (err) {
+          reject(err);
+        } else if (row) {
+          resolve(true);  // Badge already exists
+        } else {
+          resolve(false); // Badge does not exist
+        }
+      });
+    });
+
+    if (badgeExists) {
+      return res.status(200).json({ message: "Badge already awarded to the user" });
+    }
+
+    await new Promise((resolve, reject) => {
+      db.run(
+        `INSERT INTO badge (badge_name, badge_description, user_id) VALUES (?, ?, ?)`,
+        [badgeName, badgeDescription, userId],
+        function (err) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
+
+    res.status(201).json({ message: "Badge added successfully" });
+  } catch (error) {
+    console.error("Error adding badge to database:", error.message);
+    res.status(500).json({ message: "Error adding badge to database" });
+  }
+});
+
+
+//Handles fetching the badges
+app.get("/api/badges", requireLogin, async (req,res) => {
+  const {email} = req.session.user;
+
+  try {
+    const userId = await new Promise((resolve, reject) => {
+      db.get(`SELECT user_id FROM user WHERE user_email = ?`, [email], (err, row) => {
+        if(err) {
+          reject(err);
+        } else if (row) {
+          resolve(row.user_id);
+        } else {
+          reject(new Error("User not found"));
+        }
+      })
+    })
+
+    const badges = await new Promise((resolve, reject) => {
+      db.all(`SELECT * FROM badge WHERE user_id = ?`, [userId], (err, rows) => {
+        if(err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      })
+    })
+
+    res.json(badges);
+  } catch (error) {
+    console.error("Error fetching badges:", error.message);
+    res.status(500).json({message: "Error fetching badges"});
+  }
+})
+
 app.get("/complete/task/:id", requireLogin, async (req, res) => {
   const { id } = req.params;
 

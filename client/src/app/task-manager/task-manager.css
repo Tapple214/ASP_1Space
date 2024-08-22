@@ -26,6 +26,22 @@
   align-items: center;
 }
 
+.task-form form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* TODO: Some issues found here */
+.task-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
 .form-left {
   padding: 10px;
   border-radius: 30px;
@@ -139,7 +155,19 @@
   height: auto;
 }
 
-.badges h1 {
+.badges img:hover {
+    background-color: #F6D0EE;
+    cursor: pointer;
+    border-radius: 35px;
+}
+
+.badges img:hover {
+    background-color: #F6D0EE;
+    cursor: pointer;
+    border-radius: 35px;
+}
+
+.badges h1{
   padding-left: 10%;
 }
 
