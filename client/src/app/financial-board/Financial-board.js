@@ -154,7 +154,7 @@ const FinancialOverview = ({
         </tbody>
       </table>
       <button
-        className="border-0 px-4 mb-1 py-2 text-white rounded-3"
+        className="border-0 px-4 mb-1 py-1 text-white rounded-3"
         onClick={() => handleSave()}
       >
         Save
@@ -239,8 +239,8 @@ export default function FinancialOrganizer() {
         data: Object.values(financialData).filter(
           (_, index) => index !== 0 && index !== 1
         ), // Exclude 'income' and 'monthBudget'
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(115, 11, 158, 0.2)",
+        borderColor: "rgba(115, 11, 158, 1)",
         borderWidth: 1,
       },
     ],
@@ -272,7 +272,7 @@ export default function FinancialOrganizer() {
               setFinancialData={setFinancialData}
               financeOverview={financeOverview}
             />
-            <div className="summary mt-4">
+            <div className="summary mt-4 p-2">
               <h3>Your Summary</h3>
               <div className="summary-details">
                 <div>
@@ -286,8 +286,8 @@ export default function FinancialOrganizer() {
               </div>
             </div>
 
-            <Col md={12} lg={4} className="h-auto w-100">
-              <div className="chart-container">
+            <Col md={12} lg={4} className="h-auto w-100 ">
+              <div className="chart-container mt-4 text-center">
                 <h3>Category Breakdown</h3>
                 <Bar data={chartData} options={chartOptions} />
               </div>
