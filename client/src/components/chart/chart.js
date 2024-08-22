@@ -13,7 +13,7 @@ export default function chartDisplay({ financialData }) {
         data: Object.values(financialData).filter(
           (_, index) => index !== 0 && index !== 1
         ), // Exclude 'income' and 'monthBudget'
-        backgroundColor: "rgba(115, 11, 158, 0.5)",
+        backgroundColor: "rgba(129, 29, 112, 0.5)",
         borderColor: "rgba(115, 11, 158, 0.7)",
         borderWidth: 1,
       },

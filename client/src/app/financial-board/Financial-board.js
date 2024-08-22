@@ -297,7 +297,7 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
                   ))
                 ) : (
                   <div
-                    className="d-flex flex-column justify-content-center align-items-center"
+                    className="d-flex flex-column justify-content-center align-items-center mt-5 pt-5"
                     style={{ color: "#6248a8" }}
                   >
                     <p className="m-0 fw-bold">No expenses to display.</p>

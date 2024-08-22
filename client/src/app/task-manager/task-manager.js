@@ -67,8 +67,10 @@ export default function TaskManager() {
                   ))
                 ) : (
                   <div
-                    className="d-flex flex-column justify-content-center align-items-center"
-                    style={{ color: "#6248a8" }}
+                    className="d-flex flex-column justify-content-center align-items-center position-relative mt-5 pt-5"
+                    style={{
+                      color: "#6248a8",
+                    }}
                   >
                     <p className="m-0 fw-bold">No tasks to display.</p>
                     <img src="/images/no-item.png" width={150} height={150} />
