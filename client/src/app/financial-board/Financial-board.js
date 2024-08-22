@@ -4,7 +4,8 @@ import EntryOutput from "../../components/entry-output/entry-output";
 import axios from "axios";
 import { Row, Col } from "react-bootstrap";
 import Form from "../../components/form/form";
-import { Bar } from "react-chartjs-2";
+import ChartDisplay from "../../components/chart/chart";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -228,40 +229,6 @@ export default function FinancialOrganizer() {
 
   const budgetLeft = financialData.monthBudget - totalSpent;
 
-  // Data for the chart
-  const chartData = {
-    labels: Object.keys(financialData).filter(
-      (key) => key !== "income" && key !== "monthBudget"
-    ),
-    datasets: [
-      {
-        label: "Amount Spent",
-        data: Object.values(financialData).filter(
-          (_, index) => index !== 0 && index !== 1
-        ), // Exclude 'income' and 'monthBudget'
-        backgroundColor: "rgba(115, 11, 158, 0.2)",
-        borderColor: "rgba(115, 11, 158, 1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      tooltip: {
-        callbacks: {
-          label: function (tooltipItem) {
-            return `$${tooltipItem.raw}`;
-          },
-        },
-      },
-    },
-  };
-
   return (
     <>
       <div className="ps-5 ms-4 me-4 mt-4" style={{ height: "95vh" }}>
@@ -274,7 +241,7 @@ export default function FinancialOrganizer() {
             />
             <div className="summary mt-4 p-2">
               <h3>Your Summary</h3>
-              <div className="summary-details">
+              <div className="summary-details pb-2">
                 <div>
                   <p>You've spent</p>
                   <p>SGD {totalSpent}</p>
@@ -286,12 +253,13 @@ export default function FinancialOrganizer() {
               </div>
             </div>
 
-            <Col md={12} lg={4} className="h-auto w-100 ">
+            <ChartDisplay financialData={financialData} />
+            {/* <Col md={12} lg={4} className="h-auto w-100 ">
               <div className="chart-container mt-4 text-center">
                 <h3>Category Breakdown</h3>
                 <Bar data={chartData} options={chartOptions} />
               </div>
-            </Col>
+            </Col> */}
           </Col>
 
           <Col md={12} lg={7} className="h-100">

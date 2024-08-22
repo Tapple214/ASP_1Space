@@ -201,10 +201,6 @@
   height: 25px;
 }
 
-.transaction-form .title-input {
-  margin-right: 50px;
-}
-
 .transaction-form .category-input {
   width: calc(100% / 3);
   height: 25px;
