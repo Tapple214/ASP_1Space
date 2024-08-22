@@ -462,6 +462,30 @@ app.delete("/delete/:type/:id", requireLogin, async (req, res) => {
   }
 });
 
+app.get("/complete/task/:id", requireLogin, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await new Promise((resolve, reject) => {
+      db.run(
+        "UPDATE task SET is_complete = true WHERE task_id = ?",
+        [id],
+        function (err) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
+    res.status(200).json({ message: "Task updated successfully" });
+  } catch (error) {
+    console.error("Error updating task:", error);
+    res.status(500).json({ message: "Error updating task" });
+  }
+});
+
 // Logout handling
 app.post("/logout", (req, res) => {
   // Destroy session

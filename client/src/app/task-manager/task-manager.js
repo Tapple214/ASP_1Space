@@ -142,7 +142,7 @@ export default function TaskManager() {
       <div className="ps-5 ms-4 me-4 mt-4" style={{ zIndex: "1000" }}>
         <Row className="h-100">
           {/* Left side of the page */}
-          <Col md={12} lg={8} className="mb-4">
+          <Col md={12} lg={8} className="mb-4" style={{ zIndex: "1000" }}>
             <div className="left-section">
               {/* Form component */}
               <div className="task-form">
