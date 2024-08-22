@@ -107,23 +107,29 @@ export default function Home({ handlePageChange, homeFinanceData }) {
           )}
         </div>
 
+        <div>
+          <ChartDisplay financialData={homeFinanceData} />
+        </div>
+
         {/* Deal preview */}
         <div
-          className="card rounded-4 mt-4 p-3"
-          style={{ cursor: "pointer" }}
+          className="card rounded-4 mt-4 p-2"
+          style={{ cursor: "pointer", maxHeight: "425px" }}
           onClick={() => handlePageChange("budget-hub")}
         >
           {randomDeal ? (
             <div
               className="d-flex flex-column justify-content-center align-items-center"
-              style={{ fontSize: "13px" }}
+              style={{ fontSize: "10px" }}
             >
-              <p className="fw-bold text-center">{randomDeal.name}</p>
+              <p className="fw-bold text-center" style={{ fontSize: "15px" }}>
+                {randomDeal.name}
+              </p>
               <img
                 src={randomDeal.image}
                 alt={randomDeal.alt}
-                width={150}
-                height={150}
+                width={100}
+                height={100}
                 className="mb-3 rounded-4"
               />
               <p className="mx-3 text-center">{randomDeal.description}</p>
@@ -141,10 +147,6 @@ export default function Home({ handlePageChange, homeFinanceData }) {
           ) : (
             <p>Loading...</p>
           )}
-        </div>
-
-        <div>
-          <ChartDisplay financialData={homeFinanceData} />
         </div>
       </div>
     </div>

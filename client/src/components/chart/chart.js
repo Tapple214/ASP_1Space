@@ -39,7 +39,7 @@ export default function chartDisplay({ financialData }) {
     <>
       <Col md={12} lg={4} className="h-auto w-100 ">
         <div className="chart-container mt-4 text-center">
-          <h3>Category Breakdown</h3>
+          <h3>Financial Breakdown</h3>
           <Bar data={chartData} options={chartOptions} />
         </div>
       </Col>
