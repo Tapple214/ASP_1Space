@@ -146,30 +146,35 @@ export default function NavBar({
           <div
             onClick={() => handlePageChange("help")}
             className="nav-link-help mb-2 ps-4 mt-2"
+            style={{ cursor: "pointer" }}
           >
             Help
           </div>
           <div
             onClick={() => handlePageChange("dashboard")}
             className="nav-link-dashboard mb-4 ps-4 mt-4"
+            style={{ cursor: "pointer" }}
           >
             Dashboard
           </div>
           <div
             onClick={() => handlePageChange("task-manager")}
             className="nav-link-task mb-2 ps-4 pt-3"
+            style={{ cursor: "pointer" }}
           >
             Task Manager
           </div>
           <div
             onClick={() => handlePageChange("finance-board")}
             className="nav-link-finance mb-2 ps-4 mt-4"
+            style={{ cursor: "pointer" }}
           >
             Finance Board
           </div>
           <div
             onClick={() => handlePageChange("budget-hub")}
             className=" nav-link-budget mb-2 ps-4 mt-4"
+            style={{ cursor: "pointer" }}
           >
             Budget Hub
           </div>
@@ -179,6 +184,7 @@ export default function NavBar({
           <div
             className="logout-btn rounded-4 w-100 ms-5 p-2"
             onClick={handleLogout}
+            style={{ cursor: "pointer" }}
           >
             <div className="ps-3">Logout</div>
           </div>
