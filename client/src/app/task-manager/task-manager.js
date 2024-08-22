@@ -6,6 +6,7 @@ import Form from "../../components/form/form";
 import { Row, Col } from "react-bootstrap";
 import EntryOutput from "../../components/entry-output/entry-output";
 import ModalPopup from "../../components/modal/modal";
+import { Toast } from "react-bootstrap";
 
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;

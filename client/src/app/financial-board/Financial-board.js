@@ -5,6 +5,8 @@ import axios from "axios";
 import { Row, Col } from "react-bootstrap";
 import Form from "../../components/form/form";
 import ChartDisplay from "../../components/chart/chart";
+import { useShowToaster } from "../../components/toaster/toastHook";
+import Toaster from "../../components/toaster/toaster";
 
 import {
   Chart as ChartJS,
@@ -35,6 +37,7 @@ const FinancialOverview = ({
   setFinancialData,
   financeOverview,
   setHomeFinanceData,
+  toast,
 }) => {
   useEffect(() => {
     // Initialize financialData state with values from financeOverview when it changes
@@ -74,7 +77,8 @@ const FinancialOverview = ({
           others: financialData.others,
         }
       );
-      console.log("Financial overview created successfully:", response.data);
+      console.log("Financial overview created successfully", response.data);
+      toast.setSuccessMessage("Your financial overview has been saved!");
     } catch (error) {
       console.error("Error creating financial overview:", error);
     }
@@ -186,6 +190,7 @@ const FinancialOverview = ({
 
 export default function FinancialOrganizer({ setHomeFinanceData }) {
   const [financeOverview, setFinanceOverview] = useState({});
+  const toast = useShowToaster();
 
   // Fetch data from server
   const fetchFinancialOverview = async () => {
@@ -252,6 +257,8 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
   return (
     <>
       <div className="ps-5 ms-4 me-4 mt-4" style={{ height: "95vh" }}>
+        <Toaster toast={toast} />
+
         <Row className="h-100">
           <Col md={12} lg={5} className="mb-4" style={{ zIndex: "1000" }}>
             <FinancialOverview
@@ -259,6 +266,7 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
               setFinancialData={setFinancialData}
               financeOverview={financeOverview}
               setHomeFinanceData={setHomeFinanceData}
+              toast={toast}
             />
             <div className="summary mt-4 p-2">
               <h3>Your Summary</h3>
