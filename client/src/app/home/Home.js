@@ -73,7 +73,11 @@ export default function Home({ handlePageChange, homeFinanceData }) {
                 onClick={() => handlePageChange(link.url)}
                 style={{ cursor: "pointer" }}
               >
-                <img className="thumbnail" src={link.img} alt={link.alt}></img>
+                <img
+                  className="thumbnail rounded-4"
+                  src={link.img}
+                  alt={link.alt}
+                ></img>
                 <div className="d-flex flex-column justify-content-center ms-2">
                   <h4>{link.name}</h4>
                   <p>{link.description}</p>
