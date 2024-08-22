@@ -34,6 +34,7 @@ const FinancialOverview = ({
   financialData,
   setFinancialData,
   financeOverview,
+  setHomeFinanceData,
 }) => {
   useEffect(() => {
     // Initialize financialData state with values from financeOverview when it changes
@@ -41,6 +42,15 @@ const FinancialOverview = ({
     console.log("inside", financeOverview);
     if (financeOverview) {
       setFinancialData({
+        income: financeOverview.income || 0,
+        monthBudget: financeOverview.month_budget || 0,
+        rent: financeOverview.rent || 0,
+        debt: financeOverview.debt || 0,
+        invest: financeOverview.invest || 0,
+        others: financeOverview.others || 0,
+      });
+
+      setHomeFinanceData({
         income: financeOverview.income || 0,
         monthBudget: financeOverview.month_budget || 0,
         rent: financeOverview.rent || 0,
@@ -81,12 +91,22 @@ const FinancialOverview = ({
       ...prev,
       [field]: numValue,
     }));
+
+    setHomeFinanceData((prev) => ({
+      ...prev,
+      [field]: numValue,
+    }));
   };
 
   const handleChangePercentage = (field, percentage) => {
     const numPercentage = parseFloat(percentage) || 0;
     const newAmount = (financialData.income * numPercentage) / 100;
     setFinancialData((prev) => ({
+      ...prev,
+      [field]: newAmount,
+    }));
+
+    setHomeFinanceData((prev) => ({
       ...prev,
       [field]: newAmount,
     }));
@@ -164,7 +184,7 @@ const FinancialOverview = ({
   );
 };
 
-export default function FinancialOrganizer() {
+export default function FinancialOrganizer({ setHomeFinanceData }) {
   const [financeOverview, setFinanceOverview] = useState({});
 
   // Fetch data from server
@@ -238,6 +258,7 @@ export default function FinancialOrganizer() {
               financialData={financialData}
               setFinancialData={setFinancialData}
               financeOverview={financeOverview}
+              setHomeFinanceData={setHomeFinanceData}
             />
             <div className="summary mt-4 p-2">
               <h3>Your Summary</h3>

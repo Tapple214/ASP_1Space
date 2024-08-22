@@ -22,6 +22,14 @@ const pageComponents = {
 export default function MainDisplay() {
   // Navbar management
   const [isOpen, setIsOpen] = useState(false);
+  const [homeFinanceData, setHomeFinanceData] = useState({
+    income: 0,
+    monthBudget: 0,
+    rent: 0,
+    debt: 0,
+    invest: 0,
+    others: 0,
+  });
 
   const toggleNavbar = () => {
     setIsOpen((prevState) => !prevState);
@@ -40,6 +48,9 @@ export default function MainDisplay() {
   const pageProps = {
     isOpen: pageName === "budget-hub" ? isOpen : undefined,
     handlePageChange: pageName === "dashboard" ? handlePageChange : undefined,
+    homeFinanceData: pageName === "dashboard" ? homeFinanceData : undefined,
+    setHomeFinanceData:
+      pageName === "finance-board" ? setHomeFinanceData : undefined,
   };
 
   return (

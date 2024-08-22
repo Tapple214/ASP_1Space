@@ -7,10 +7,12 @@ import food from "../../components/json/food.json";
 import shop from "../../components/json/shop.json";
 import place from "../../components/json/place.json";
 
+import ChartDisplay from "../../components/chart/chart";
+
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
 
-export default function Home({ handlePageChange }) {
+export default function Home({ handlePageChange, homeFinanceData }) {
   // To display the data from data retrieved from API
   const [homeData, setHomeData] = useState({});
   const [pageLinks, setPageLinks] = useState([]);
@@ -136,6 +138,10 @@ export default function Home({ handlePageChange }) {
           ) : (
             <p>Loading...</p>
           )}
+        </div>
+
+        <div>
+          <ChartDisplay financialData={homeFinanceData} />
         </div>
       </div>
     </div>
