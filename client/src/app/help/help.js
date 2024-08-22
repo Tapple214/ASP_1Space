@@ -16,6 +16,7 @@ const FAQ = () => {
       <img
         src="./images/astronaut.png"
         className="position-absolute z-3"
+        alt="astronaut"
         style={{ top: "15px", right: "20px" }}
         width={"200"}
         height={"200"}

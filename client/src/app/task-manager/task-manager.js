@@ -177,7 +177,12 @@ export default function TaskManager() {
                     }}
                   >
                     <p className="m-0 fw-bold">No tasks to display.</p>
-                    <img src="/images/no-item.png" width={150} height={150} />
+                    <img
+                      src="/images/no-item.png"
+                      alt="no items here"
+                      width={150}
+                      height={150}
+                    />
                   </div>
                 )}
               </div>
@@ -190,10 +195,10 @@ export default function TaskManager() {
             <p className="m-0 ms-2" style={{ fontSize: "12px" }}>
               Mark down To-dos and complete missions achieve badges and rewards!
             </p>
-            {/* TODO: create an in-file component for Badges and missions */}
+            {/* Badge component */}
             <Badges />
 
-            {/* TODO: create an in-file component for Mission list */}
+            {/* Mission component */}
             <Mission />
           </Col>
         </Row>

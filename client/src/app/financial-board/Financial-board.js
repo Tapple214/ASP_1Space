@@ -318,7 +318,12 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
                     style={{ color: "#6248a8" }}
                   >
                     <p className="m-0 fw-bold">No expenses to display.</p>
-                    <img src="/images/no-item.png" width={150} height={150} />
+                    <img
+                      src="/images/no-item.png"
+                      alt={"no items here"}
+                      width={150}
+                      height={150}
+                    />
                   </div>
                 )}
               </div>
