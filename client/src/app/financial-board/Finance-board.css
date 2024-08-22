@@ -157,11 +157,9 @@
 }
 
 .transaction-form {
-  padding: 20px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   position: relative;
   width: calc(100% - 50px);
 }
@@ -182,10 +180,10 @@
 .transaction-form .category-input,
 .transaction-form .description-input,
 .transaction-form .amount-input {
-  padding: 10px;
+  padding: 5px;
   border-radius: 25px;
   border: none;
-  font-size: 1em;
+  font-size: 15px;
 }
 
 .transaction-form .date-input {
@@ -198,15 +196,16 @@
 .transaction-form .title-input,
 .transaction-form .date-input {
   flex: 1;
-  height: 25px;
+  height: 20px;
+  font-size: 12px;
 }
 
 .transaction-form .category-input {
   width: calc(100% / 3);
-  height: 25px;
+  height: 20px;
   line-height: 25px;
-  padding: 0 10px;
-  font-size: 1em;
+  padding: 0;
+  font-size: 13px;
   border-radius: 25px;
   border: none;
   background-color: #fff;
@@ -216,13 +215,14 @@
 .transaction-form .amount-input {
   flex: right;
   width: calc(100% / 3);
-  height: calc(2.5 * 1.5em);
+  height: 40px;
 }
 
 .transaction-form .description-input {
   flex: 1;
   width: calc(100% / 3) * 2;
-  height: calc(2.5 * 1.5em);
+  height: 40px;
+  font-size: 13px;
 }
 
 .add-button {
@@ -270,15 +270,13 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-
-  padding: 10px;
   border-radius: 15px 15px 0 0;
   width: 100%;
 }
 
 .transaction-header h4 {
   margin: 0;
-  font-size: 1em;
+  font-size: 15px;
 }
 
 .transaction-buttons {
@@ -290,16 +288,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 15px;
   color: #fff;
-}
-
-.transaction-buttons .edit-button {
-  color: #ffc107;
-}
-
-.transaction-buttons .delete-button {
-  color: #f44336;
 }
 
 .transaction-item p {
@@ -308,5 +298,5 @@
   color: black;
   background-color: white;
   border-radius: 15px;
-  font-size: 0.9em;
+  font-size: 13px;
 }

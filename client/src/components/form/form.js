@@ -42,7 +42,7 @@ export default function Form({ type, fetchData }) {
 
   return (
     <div
-      className="transaction-form"
+      className="transaction-form p-3"
       style={{
         backgroundColor: type === "transaction" ? "#9731b1" : "#F6D0EE",
       }}
@@ -112,7 +112,12 @@ export default function Form({ type, fetchData }) {
                 required
               />
             ) : (
-              <input type="date" className="date-input" required />
+              <div className="d-flex flex-column">
+                <p className="p-0 m-0" style={{ fontSize: "10px" }}>
+                  &nbsp; Deadline:
+                </p>
+                <input type="date" className="date-input" required />
+              </div>
             )}
           </div>
         </div>

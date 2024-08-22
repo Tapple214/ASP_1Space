@@ -40,7 +40,7 @@ export default function TaskManager() {
   return (
     <>
       <div className="ps-5 ms-4 me-4 mt-4">
-        <Row>
+        <Row className="h-100">
           {/* Left side of the page */}
           <Col md={12} lg={8} className="mb-4">
             <div className="left-section">
@@ -66,7 +66,13 @@ export default function TaskManager() {
                     />
                   ))
                 ) : (
-                  <p>No tasks to display.</p>
+                  <div
+                    className="d-flex flex-column justify-content-center align-items-center"
+                    style={{ color: "#6248a8" }}
+                  >
+                    <p className="m-0 fw-bold">No tasks to display.</p>
+                    <img src="/images/no-item.png" width={150} height={150} />
+                  </div>
                 )}
               </div>
             </div>
@@ -77,10 +83,13 @@ export default function TaskManager() {
             {/* TODO: create an in-file component for Badges and missions */}
             {/* Badges */}
             <div className="badges w-100">
-              <button type="button" className="help-button">
+              <button
+                type="button ms-0"
+                className="help-button position-absolute me-5 mt-1"
+              >
                 ❔
               </button>
-              <h1 className="text-center">Badges</h1>
+              <h3 className="text-center fw-bold">Badges</h3>
               <img
                 src="/images/first-launch.png"
                 alt="first-launch"
@@ -115,36 +124,36 @@ export default function TaskManager() {
 
             {/* TODO: create an in-file component for Mission list */}
             {/* Mission list */}
-            <div className="missions w-100">
-              <h1 className="text-center">Missions</h1>
+            <div className="missions w-100 mt-4">
+              <h3 className="text-center fw-bold">Missions</h3>
               <div className="mission-content">
                 <p>
-                  ● Complete Your First Task: Finish your first task to
+                  1. Complete Your First Task: Finish your first task to
                   kickstart your productivity journey.
                 </p>
                 <p>
-                  ● Three-Day Streak: Complete at least three tasks for three
+                  2. Three-Day Streak: Complete at least three tasks for three
                   consecutive days.
                 </p>
                 <p>
-                  ● Morning Productivity: Complete your first task of the day
+                  3. Morning Productivity: Complete your first task of the day
                   before 10 AM for a week.
                 </p>
-                <p>● Task Marathon: Finish 10 tasks in a single day.</p>
+                <p>4. Task Marathon: Finish 10 tasks in a single day.</p>
                 <p>
-                  ● Weekly Goal: Successfully complete 20 tasks by the end of
+                  5. Weekly Goal: Successfully complete 20 tasks by the end of
                   the week.
                 </p>
                 <p>
-                  ● Habit Builder: Work on the same task at the same time every
+                  6. Habit Builder: Work on the same task at the same time every
                   day for a week.
                 </p>
                 <p>
-                  ● Focus Hour: Spend one uninterrupted hour on a single task
+                  7. Focus Hour: Spend one uninterrupted hour on a single task
                   without distractions.
                 </p>
                 <p>
-                  ● Top Priorities: Complete the three most important tasks on
+                  8. Top Priorities: Complete the three most important tasks on
                   your list each day for five days.
                 </p>
               </div>

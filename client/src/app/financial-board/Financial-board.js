@@ -275,12 +275,6 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
             </div>
 
             <ChartDisplay financialData={financialData} />
-            {/* <Col md={12} lg={4} className="h-auto w-100 ">
-              <div className="chart-container mt-4 text-center">
-                <h3>Category Breakdown</h3>
-                <Bar data={chartData} options={chartOptions} />
-              </div>
-            </Col> */}
           </Col>
 
           <Col md={12} lg={7} className="h-100">
@@ -302,7 +296,13 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
                     />
                   ))
                 ) : (
-                  <p>No expenses to display.</p>
+                  <div
+                    className="d-flex flex-column justify-content-center align-items-center"
+                    style={{ color: "#6248a8" }}
+                  >
+                    <p className="m-0 fw-bold">No expenses to display.</p>
+                    <img src="/images/no-item.png" width={150} height={150} />
+                  </div>
                 )}
               </div>
             </div>

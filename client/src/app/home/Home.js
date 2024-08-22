@@ -57,9 +57,10 @@ export default function Home({ handlePageChange, homeFinanceData }) {
 
   return (
     <div
-      className="App p-3 d-flex flex-row col-12"
-      style={{ height: "100vh", width: "95vw", overflow: "hidden" }}
+      className="App row p-3 d-flex flex-row col-12"
+      style={{ width: "95vw" }}
     >
+      {/* Left section */}
       <div className="col-lg-8 col-md-8 col-xs-12 ps-2">
         <h1>{homeData.Title || "Loading..."}</h1>
         <p>{homeData.Subtitle || ""}</p>
@@ -84,6 +85,8 @@ export default function Home({ handlePageChange, homeFinanceData }) {
           )}
         </div>
       </div>
+
+      {/* Right section */}
       <div className="col-lg-4 col-md-4 col-xs-12 ps-4">
         <div
           className="card quote-display p-3 rounded-4 text-center"
