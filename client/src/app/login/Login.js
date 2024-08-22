@@ -44,7 +44,6 @@ export default function Login() {
         email: email,
         name: name,
       });
-      console.log("Token sent successfully");
 
       // Redirect to main display page
       navigate("/main");

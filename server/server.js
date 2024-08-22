@@ -175,9 +175,6 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
   const { income, monthBudget, rent, debt, invest, others } = req.body;
   const { email, name } = req.session.user;
 
-  console.log("req.session IM HEREEE", req.session.user);
-  console.log("req.body", req.body);
-
   // Validate the input data
   if (
     typeof income !== "number" ||
@@ -191,8 +188,6 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
   }
 
   try {
-    console.log("finding using", email, name);
-
     // Fetch the user ID from the database based on email and name
     const userQuery = `SELECT user_id FROM user WHERE user_email = ? AND user_name = ?`;
     const userResult = await new Promise((resolve, reject) => {
@@ -208,9 +203,7 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    console.log("userResult", userResult);
     const userId = userResult.user_id;
-    console.log("userId", userId);
 
     // Check if an entry already exists for the user
     const checkQuery = `SELECT overview_id FROM financial_overview WHERE user_id = ?`;
@@ -252,16 +245,6 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
       res
         .status(200)
         .json({ message: "Financial overview updated successfully" });
-      console.log(
-        "update",
-        income,
-        monthBudget,
-        rent,
-        debt,
-        invest,
-        others,
-        existingEntry.overview_id
-      );
     } else {
       // Insert a new entry
       const insertQuery = `INSERT INTO financial_overview (income, month_budget, rent, debt, invest, others, user_id) 
@@ -283,17 +266,6 @@ app.post("/add/FinancialOverview", requireLogin, async (req, res) => {
         message: "Financial overview created successfully",
         overviewId: result.lastID,
       });
-
-      console.log(
-        "create",
-        income,
-        monthBudget,
-        rent,
-        debt,
-        invest,
-        others,
-        userId
-      );
     }
   } catch (error) {
     console.error("Error creating or updating financial overview:", error);

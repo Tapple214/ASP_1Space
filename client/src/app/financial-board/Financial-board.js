@@ -41,8 +41,6 @@ const FinancialOverview = ({
 }) => {
   useEffect(() => {
     // Initialize financialData state with values from financeOverview when it changes
-
-    console.log("inside", financeOverview);
     if (financeOverview) {
       setFinancialData({
         income: financeOverview.income || 0,
@@ -77,7 +75,7 @@ const FinancialOverview = ({
           others: financialData.others,
         }
       );
-      console.log("Financial overview created successfully", response.data);
+
       toast.setSuccessMessage("Your financial overview has been saved!");
     } catch (error) {
       console.error("Error creating financial overview:", error);
@@ -86,7 +84,6 @@ const FinancialOverview = ({
 
   const handleSave = () => {
     createFinancialOverview();
-    console.log("handle Save");
   };
 
   const handleChangeAmount = (field, value) => {
@@ -199,7 +196,6 @@ export default function FinancialOrganizer({ setHomeFinanceData }) {
         "http://localhost:3001/get/FinancialOverview"
       );
       setFinanceOverview(res.data[0]);
-      console.log(res.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
