@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import "../navbar/navbar.css";
 import logo from "../navbar/logo.png";
-
 import ModalPopup from "../modal/modal";
-
-// TODO: add this to app and use conditionals instead to toggle between different pages to prevent navbar from closing
 
 export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
   const [show, setShow] = useState(false);

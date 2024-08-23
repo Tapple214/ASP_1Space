@@ -36,46 +36,46 @@ export default function EntryOutput({
 
   return (
     <>
-    <div
-      className="transaction-item"
-      style={{
-        backgroundColor:
-          type === "transaction"
-            ? "#9731b1"
-            : isComplete === true
-            ? "grey"
-            : "#F6D0EE",
+      <div
+        className="transaction-item"
+        style={{
+          backgroundColor:
+            type === "transaction"
+              ? "#9731b1"
+              : isComplete === true
+              ? "grey"
+              : "#F6D0EE",
 
-        color: type === "transaction" ? "white" : "black",
-      }}
-    >
-      <div className="transaction-header">
-        {/* Header area */}
-        <div className="d-flex align-items-center">
-        {type === "transaction" ? (
-            <h4>
-            <span className="fw-bold">{title}</span>
-            <span className="opacity-50"> • {date} • </span>
-            {amount} SGD
-            </h4>
-          ) : (
-            <h4>
-              <span className="fw-bold">{title}</span>
-              <span className="opacity-50"> • {date} • </span>
-            </h4>
-          )}
-          <span
-            className={`badge ${
-              category === "food" || category === "urgent"
-                ? "bg-danger"
-                : category === "transport" || category === "chill"
-                ? "bg-success"
-                : "bg-secondary"
-            } ms-2`}
-          >
-            {category}
-          </span>
-        </div>
+          color: type === "transaction" ? "white" : "black",
+        }}
+      >
+        <div className="transaction-header">
+          {/* Header area */}
+          <div className="d-flex align-items-center">
+            {type === "transaction" ? (
+              <h4>
+                <span className="fw-bold">{title}</span>
+                <span className="opacity-50"> • {date} • </span>
+                {amount} SGD
+              </h4>
+            ) : (
+              <h4>
+                <span className="fw-bold">{title}</span>
+                <span className="opacity-50"> • {date} • </span>
+              </h4>
+            )}
+            <span
+              className={`badge ${
+                category === "food" || category === "urgent"
+                  ? "bg-danger"
+                  : category === "transport" || category === "chill"
+                  ? "bg-success"
+                  : "bg-secondary"
+              } ms-2`}
+            >
+              {category}
+            </span>
+          </div>
 
           {/* Buttons */}
           <div
@@ -109,7 +109,6 @@ export default function EntryOutput({
             </button>
 
             {/*  If the type is task then show the button else show <></> aka nothing */}
-            {/* TODO: task is completed */}
             {type === "task" ? (
               <button className="task-complete" onClick={handleComplete}>
                 ✔

@@ -440,7 +440,6 @@ export default function TaskManager() {
 
           {/* Right side of the page */}
           <Col md={12} lg={4}>
-            {/* TODO: create an in-file component for Badges and missions */}
             {/* Badges */}
             <Badges tasks={tasks} />
             <Mission />
