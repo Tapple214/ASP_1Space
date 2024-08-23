@@ -129,7 +129,7 @@ const Badges = ({ tasks }) => {
           }
           break;
         case "Stellar Navigator":
-          if (badges.length == 5) {
+          if (badges.length === 5) {
             awardBadge(badge.name, badge.img);
           }
           break;
