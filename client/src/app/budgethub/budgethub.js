@@ -49,6 +49,7 @@ export default function BudgetHub({ isOpen }) {
   // Render a modal with details about each card
   const renderModal = (category, eachCard, index) => (
     <ModalPopup
+      type="none"
       showModal={showModal.category === category && showModal.index === index}
       handleCloseModal={handleClose}
       title={<p className="fw-bold text-center m-0">{eachCard.name}</p>}
