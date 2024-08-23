@@ -175,15 +175,15 @@ export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
           </div>
         </div>
 
-        {/* <div className="d-flex align-items-center w-100 pe-3">
+        <div className="d-flex align-items-center w-100 pe-3">
           <div
             className="logout-btn rounded-4 w-100 ms-5 p-2"
-            onClick={handleLogout}
+            onClick={handleShow}
             style={{ cursor: "pointer" }}
           >
             <div className="ps-3">Logout</div>
           </div>
-        </div> */}
+        </div>
 
         <ModalPopup
           type="logout"

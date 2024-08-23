@@ -36,12 +36,21 @@ export default function ModalPopup({
 
         <div className="d-flex justify-content-end">
           {type === "logout" ? (
-            <button
-              className="px-4 py-2 border-0 text-white rounded-2"
-              onClick={handleLogout}
-            >
-              Confirm
-            </button>
+            <>
+              <button
+                className="px-4 py-2 border-0 text-white rounded-2 me-2"
+                onClick={handleLogout}
+              >
+                Confirm
+              </button>
+
+              <button
+                className="px-4 py-2 border-0 text-white rounded-2"
+                onClick={handleCloseModal}
+              >
+                Close
+              </button>
+            </>
           ) : (
             <button
               className="px-4 py-2 border-0 text-white rounded-2"
