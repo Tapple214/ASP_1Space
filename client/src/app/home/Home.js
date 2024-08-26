@@ -12,7 +12,7 @@ import ChartDisplay from "../../components/chart/chart";
 // To enable cross-origin cookies
 axios.defaults.withCredentials = true;
 
-export default function Home({ handlePageChange, homeFinanceData }) {
+export default function Home({ handlePageChange, homeFinanceData, isOpen }) {
   // To display the data from data retrieved from API
   const [homeData, setHomeData] = useState({});
   const [pageLinks, setPageLinks] = useState([]);
@@ -58,7 +58,9 @@ export default function Home({ handlePageChange, homeFinanceData }) {
   return (
     <div
       className="App row p-3 d-flex flex-row col-12"
-      style={{ width: "95vw" }}
+      style={{
+        width: isOpen ? "82vw" : "96vw",
+      }}
     >
       {/* Left section */}
       <div className="col-lg-8 col-md-8 col-xs-12 ps-2">
@@ -91,7 +93,7 @@ export default function Home({ handlePageChange, homeFinanceData }) {
       </div>
 
       {/* Right section */}
-      <div className="col-lg-4 col-md-4 col-xs-12 ps-4">
+      <div className="col-lg-4 col-md-4 col-xs-12 ps-1">
         <div
           className="card quote-display p-3 rounded-4 text-center"
           style={{ fontSize: "13px" }}

@@ -72,7 +72,7 @@ const Badges = ({ tasks }) => {
     try {
       await axios.post("http://localhost:3001/api/badges", {
         badgeName,
-        badgeDescription
+        badgeDescription,
       });
     } catch (error) {
       console.error("Error awarding badge: ", error);
@@ -80,39 +80,56 @@ const Badges = ({ tasks }) => {
   };
 
   useEffect(() => {
-    const completedTasks = tasks.filter(task => task.is_complete);
-    const taskDates = completedTasks.map(task => new Date(task.created_at).toDateString());
-  
+    const completedTasks = tasks.filter((task) => task.is_complete);
+    const taskDates = completedTasks.map((task) =>
+      new Date(task.created_at).toDateString()
+    );
+
     // if statements to see if user meets the criteria to earn the respective badges
     badgesData.forEach((badge) => {
       switch (badge.name) {
-        case 'First Launch':
-          if (tasks.length > 0 && !badges.find(b => b.name === 'First Launch')) {
+        case "First Launch":
+          if (
+            tasks.length > 0 &&
+            !badges.find((b) => b.name === "First Launch")
+          ) {
             awardBadge(badge.name, badge.img);
           }
           break;
-        case 'First Orbit':
-          if (completedTasks.length >= 3 && !badges.find(b => b.name === 'First Orbit')) {
+        case "First Orbit":
+          if (
+            completedTasks.length >= 3 &&
+            !badges.find((b) => b.name === "First Orbit")
+          ) {
             awardBadge(badge.name, badge.img);
           }
           break;
-        case 'Rocket Rider':
-          if (completeRocketRider(tasks) && !badges.find(b => b.name === 'Rocket Rider')) {
+        case "Rocket Rider":
+          if (
+            completeRocketRider(tasks) &&
+            !badges.find((b) => b.name === "Rocket Rider")
+          ) {
             awardBadge(badge.name, badge.img);
           }
           break;
-        case 'Galactic Traveler':
-          if (completeGalacticTraveler(tasks) && !badges.find(b => b.name === 'Rocket Rider')) {
+        case "Galactic Traveler":
+          if (
+            completeGalacticTraveler(tasks) &&
+            !badges.find((b) => b.name === "Rocket Rider")
+          ) {
             awardBadge(badge.name, badge.img);
           }
           break;
-        case 'Star Seeker':
-          if (checkUrgentTasksInLast5Days(tasks) && !badges.find(b => b.name === 'Rocket Rider')) {
+        case "Star Seeker":
+          if (
+            checkUrgentTasksInLast5Days(tasks) &&
+            !badges.find((b) => b.name === "Rocket Rider")
+          ) {
             awardBadge(badge.name, badge.img);
           }
           break;
-        case 'Stellar Navigator':
-          if (badges.length == 5) {
+        case "Stellar Navigator":
+          if (badges.length === 5) {
             awardBadge(badge.name, badge.img);
           }
           break;
@@ -122,12 +139,11 @@ const Badges = ({ tasks }) => {
     });
   }, [tasks, badges]);
 
-
   // Helper functions to deal with badge requirements
 
   // Collects tasks completed before 5PM
   const completeTaskBefore5PM = (tasks) => {
-    return tasks.filter(task => {
+    return tasks.filter((task) => {
       if (task.is_complete && task.completed_at) {
         const completedAt = new Date(task.completed_at);
         const hours = completedAt.getHours();
@@ -146,54 +162,52 @@ const Badges = ({ tasks }) => {
     });
   };
 
-  // Extracts the Date portion of the tasks 
+  // Extracts the Date portion of the tasks
   const separateTasksByDate = (tasks) => {
     const tasksByDate = {};
-  
-    tasks.forEach(task => {
+
+    tasks.forEach((task) => {
       if (task.is_complete && task.completed_at) {
-        const dateOnly = task.completed_at.split(' ')[0];
+        const dateOnly = task.completed_at.split(" ")[0];
         if (!tasksByDate[dateOnly]) {
           tasksByDate[dateOnly] = [];
         }
         tasksByDate[dateOnly].push(task);
       }
     });
-  
+
     return tasksByDate;
   };
 
   // Checks if there are three consecutive days within the input dates
   const hasThreeConsecutiveDays = (tasksByDate) => {
-
     if (tasksByDate.length < 3) {
       return false;
     }
-  
+
     for (let i = 0; i <= tasksByDate.length - 3; i++) {
       const date1 = new Date(tasksByDate[i]);
       const date2 = new Date(tasksByDate[i + 1]);
       const date3 = new Date(tasksByDate[i + 2]);
-    
+
       const diff1 = (date2 - date1) / 86400000;
-      const diff2 = (date3 - date2) / 86400000; 
-  
+      const diff2 = (date3 - date2) / 86400000;
+
       // checks if both differences are exactly 1 day (consecutive days)
       if (diff1 === 1 && diff2 === 1) {
         return true;
       }
     }
-  
+
     return false;
   };
 
   // Checks if there are six consecutive days within the input dates
   const hasSixConsecutiveDays = (tasksByDate) => {
-
     if (tasksByDate.length < 6) {
       return false;
     }
-  
+
     for (let i = 0; i <= tasksByDate.length - 6; i++) {
       const date1 = new Date(tasksByDate[i]);
       const date2 = new Date(tasksByDate[i + 1]);
@@ -201,19 +215,25 @@ const Badges = ({ tasks }) => {
       const date4 = new Date(tasksByDate[i + 3]);
       const date5 = new Date(tasksByDate[i + 4]);
       const date6 = new Date(tasksByDate[i + 5]);
-  
-      const diff1 = (date2 - date1) / 86400000; 
-      const diff2 = (date3 - date2) / 86400000; 
-      const diff3 = (date4 - date3) / 86400000; 
-      const diff4 = (date5 - date4) / 86400000; 
-      const diff5 = (date6 - date5) / 86400000; 
-  
+
+      const diff1 = (date2 - date1) / 86400000;
+      const diff2 = (date3 - date2) / 86400000;
+      const diff3 = (date4 - date3) / 86400000;
+      const diff4 = (date5 - date4) / 86400000;
+      const diff5 = (date6 - date5) / 86400000;
+
       // checks if all differences are exactly 1 day (consecutive days)
-      if (diff1 === 1 && diff2 === 1 && diff3 === 1 && diff4 === 1 && diff5 === 1) {
+      if (
+        diff1 === 1 &&
+        diff2 === 1 &&
+        diff3 === 1 &&
+        diff4 === 1 &&
+        diff5 === 1
+      ) {
         return true;
       }
     }
-  
+
     return false;
   };
 
@@ -229,7 +249,9 @@ const Badges = ({ tasks }) => {
     const tasksByDate = separateTasksByDate(sortedTasksBefore5PM);
 
     // Step 4: Filter the dates with at least 5 tasks
-    const datesWith5Tasks = Object.keys(tasksByDate).filter(date => tasksByDate[date].length >= 5);
+    const datesWith5Tasks = Object.keys(tasksByDate).filter(
+      (date) => tasksByDate[date].length >= 5
+    );
 
     // Step 5: Checks if there are 3 consecutive dates which has completed at least 5 tasks from the previous functions result
     return hasThreeConsecutiveDays(datesWith5Tasks);
@@ -247,7 +269,9 @@ const Badges = ({ tasks }) => {
     const tasksByDate = separateTasksByDate(sortedTasksBefore5PM);
 
     // Step 4: Filter the dates with at least 10 tasks
-    const datesWith5Tasks = Object.keys(tasksByDate).filter(date => tasksByDate[date].length >= 10);
+    const datesWith5Tasks = Object.keys(tasksByDate).filter(
+      (date) => tasksByDate[date].length >= 10
+    );
 
     // Step 5: Checks if there are 6 consecutive dates which has completed at least 5 tasks from the previous functions result
     return hasSixConsecutiveDays(datesWith5Tasks);
@@ -259,14 +283,14 @@ const Badges = ({ tasks }) => {
     const today = new Date();
     const fiveDaysAgo = new Date(today);
     fiveDaysAgo.setDate(today.getDate() - 5);
-  
+
     // Filter for urgent tasks completed within the last 5 days
-    const urgentTasksInLast5Days = tasks.filter(task => {
-      const isUrgent = task.task_category === 'urgent';
+    const urgentTasksInLast5Days = tasks.filter((task) => {
+      const isUrgent = task.task_category === "urgent";
       const completedAt = new Date(task.completed_at);
       return isUrgent && completedAt >= fiveDaysAgo && completedAt <= today;
     });
-  
+
     // Checks if there are at least 3 such tasks
     return urgentTasksInLast5Days.length >= 3;
   };
@@ -274,34 +298,41 @@ const Badges = ({ tasks }) => {
   return (
     <div className="badges w-100" style={{ marginBottom: "5%" }}>
       <button
-          type="button ms-0"
-          className="help-button position-absolute me-5 mt-1 text-white"
-          onClick={handleShow}
-        >
-          ❔
-        </button>
+        type="button ms-0"
+        className="help-button position-absolute me-5 mt-1 text-white"
+        onClick={handleShow}
+      >
+        ❔
+      </button>
       <h1 className="text-center">Badges</h1>
-      <div className="badge-img-cont" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+      <div
+        className="badge-img-cont"
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
         {badges.map((badge, index) => (
           <div key={index} className="badge-item">
-            <img src={badge.badge_description} alt={badge.alt} className="img-fluid" />
+            <img
+              src={badge.badge_description}
+              alt={badge.alt}
+              className="img-fluid"
+            />
           </div>
         ))}
       </div>
       {show && (
         <ModalPopup
+          type="none"
           showModal={show}
           handleCloseModal={handleClose}
           title={"What are badges?"}
           content={
-            "Badges are rewards earned by completing specific missions below, each representing a significant achievement or milestone. To redeem your rewards, simply take a screenshot of your earned badge and send it via email shown in the help section of the app. Upon verification, your reward will be processed and given accordingly."
+            "Badges are rewards earned by completing specific missions below, each representing a significant achievement or milestone. To redeem your rewards, simply take a screenshot of your earned badge and send it via email shown in the help section of the app, oh and don't forget to write in your username! Upon verification, your reward will be processed and given accordingly."
           }
         />
       )}
     </div>
   );
 };
-
 
 export default function TaskManager() {
   const [tasks, setTasks] = useState([]);
@@ -336,22 +367,25 @@ export default function TaskManager() {
     try {
       const today = new Date();
       const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
-      const hours = String(today.getHours()).padStart(2, '0');
-      const minutes = String(today.getMinutes()).padStart(2, '0');
-      const seconds = String(today.getSeconds()).padStart(2, '0');
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const day = String(today.getDate()).padStart(2, "0");
+      const hours = String(today.getHours()).padStart(2, "0");
+      const minutes = String(today.getMinutes()).padStart(2, "0");
+      const seconds = String(today.getSeconds()).padStart(2, "0");
       const completedAt = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-      await axios.put(`http://localhost:3001/api/tasks/${taskId}`, {is_complete: true, completed_at: completedAt}, {withCredentials: true});
+      await axios.put(
+        `http://localhost:3001/api/tasks/${taskId}`,
+        { is_complete: true, completed_at: completedAt },
+        { withCredentials: true }
+      );
       fetchTasks();
-
     } catch (error) {
       console.error("Error updating task:", error);
     }
-  }
+  };
 
-  const incompleteTasks = tasks.filter(task => !task.is_complete);
+  const incompleteTasks = tasks.filter((task) => !task.is_complete);
 
   return (
     <>
@@ -381,7 +415,7 @@ export default function TaskManager() {
                       description={task.task_description}
                       finishBy={task.finish_by}
                       onDelete={handleDelete}
-                      onComplete={handleComplete} 
+                      onComplete={handleComplete}
                     />
                   ))
                 ) : (
@@ -406,10 +440,13 @@ export default function TaskManager() {
 
           {/* Right side of the page */}
           <Col md={12} lg={4}>
-            {/* TODO: create an in-file component for Badges and missions */}
-             {/* Badges */}
-             <Badges tasks={tasks} />
-             <Mission />
+            <h1 className="m-0 fw-bold">Task Manager</h1>
+            <p style={{ fontSize: "12px" }}>
+              Note your TO-DOs and keep in check!
+            </p>
+            {/* Badges */}
+            <Badges tasks={tasks} />
+            <Mission />
           </Col>
         </Row>
       </div>

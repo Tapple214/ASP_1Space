@@ -49,6 +49,7 @@ export default function BudgetHub({ isOpen }) {
   // Render a modal with details about each card
   const renderModal = (category, eachCard, index) => (
     <ModalPopup
+      type="none"
       showModal={showModal.category === category && showModal.index === index}
       handleCloseModal={handleClose}
       title={<p className="fw-bold text-center m-0">{eachCard.name}</p>}
@@ -80,7 +81,7 @@ export default function BudgetHub({ isOpen }) {
     <div
       className="slider"
       style={{
-        width: isOpen ? "70vw" : "90vw",
+        width: isOpen ? "68vw" : "83vw",
       }}
     >
       <Slider {...settings}>
@@ -103,7 +104,7 @@ export default function BudgetHub({ isOpen }) {
   return (
     <>
       <div className="App">
-        <h1 className="m-0 fw-bold ms-4 mt-3">Task Manager</h1>
+        <h1 className="m-0 fw-bold ms-4 mt-3">Budget Hub</h1>
         <p className="m-0 ms-4" style={{ fontSize: "12px" }}>
           Catch the latest Singaporean budget deals!
         </p>

@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import "../navbar/navbar.css";
 import logo from "../navbar/logo.png";
-import axios from "axios";
-
-// TODO: add this to app and use conditionals instead to toggle between different pages to prevent navbar from closing
+import ModalPopup from "../modal/modal";
 
 export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
-  const handleLogout = async () => {
-    try {
-      await axios.post("http://localhost:3001/logout");
-      // Handle successful logout
-      console.log("Logout successful");
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  const handleClose = () => {
+    setShow(false);
   };
 
   return (
@@ -111,7 +108,7 @@ export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
 
           <div
             className="logout icon-widget d-flex justify-content-center align-items-center mb-4 ms-2 rounded-3 fixed-bottom"
-            onClick={handleLogout}
+            onClick={handleShow}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -178,12 +175,20 @@ export default function NavBar({ isOpen, toggleNavbar, handlePageChange }) {
         <div className="d-flex align-items-center w-100 pe-3">
           <div
             className="logout-btn rounded-4 w-100 ms-5 p-2"
-            onClick={handleLogout}
+            onClick={handleShow}
             style={{ cursor: "pointer" }}
           >
             <div className="ps-3">Logout</div>
           </div>
         </div>
+
+        <ModalPopup
+          type="logout"
+          showModal={show}
+          handleCloseModal={handleClose}
+          title={<p className="fw-bold text-center m-0">Confirm Logout</p>}
+          content={<>Are you sure you would like to logout?</>}
+        />
       </div>
     </div>
   );

@@ -46,7 +46,10 @@ export default function MainDisplay() {
   const PageComponent = pageComponents[pageName] || null;
 
   const pageProps = {
-    isOpen: pageName === "budget-hub" ? isOpen : undefined,
+    isOpen:
+      pageName === "budget-hub" || pageName === "dashboard"
+        ? isOpen
+        : undefined,
     handlePageChange: pageName === "dashboard" ? handlePageChange : undefined,
     homeFinanceData: pageName === "dashboard" ? homeFinanceData : undefined,
     setHomeFinanceData:

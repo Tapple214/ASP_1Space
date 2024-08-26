@@ -109,6 +109,7 @@ const CarouselComponent = () => {
       </div>
 
       <ModalPopup
+        type="none"
         showModal={showModal}
         handleCloseModal={handleCloseModal}
         title={
