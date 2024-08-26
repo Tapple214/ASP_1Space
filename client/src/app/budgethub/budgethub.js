@@ -81,7 +81,7 @@ export default function BudgetHub({ isOpen }) {
     <div
       className="slider"
       style={{
-        width: isOpen ? "70vw" : "90vw",
+        width: isOpen ? "68vw" : "83vw",
       }}
     >
       <Slider {...settings}>
