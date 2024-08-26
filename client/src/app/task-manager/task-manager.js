@@ -326,7 +326,7 @@ const Badges = ({ tasks }) => {
           handleCloseModal={handleClose}
           title={"What are badges?"}
           content={
-            "Badges are rewards earned by completing specific missions below, each representing a significant achievement or milestone. To redeem your rewards, simply take a screenshot of your earned badge and send it via email shown in the help section of the app. Upon verification, your reward will be processed and given accordingly."
+            "Badges are rewards earned by completing specific missions below, each representing a significant achievement or milestone. To redeem your rewards, simply take a screenshot of your earned badge and send it via email shown in the help section of the app, oh and don't forget to write in your username! Upon verification, your reward will be processed and given accordingly."
           }
         />
       )}
