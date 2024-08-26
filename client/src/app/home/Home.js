@@ -93,7 +93,7 @@ export default function Home({ handlePageChange, homeFinanceData, isOpen }) {
       </div>
 
       {/* Right section */}
-      <div className="col-lg-4 col-md-4 col-xs-12 ps-4">
+      <div className="col-lg-4 col-md-4 col-xs-12 ps-1">
         <div
           className="card quote-display p-3 rounded-4 text-center"
           style={{ fontSize: "13px" }}
