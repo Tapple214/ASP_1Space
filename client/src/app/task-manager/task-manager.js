@@ -440,6 +440,10 @@ export default function TaskManager() {
 
           {/* Right side of the page */}
           <Col md={12} lg={4}>
+            <h1 className="m-0 fw-bold">Task Manager</h1>
+            <p style={{ fontSize: "12px" }}>
+              Note your TO-DOs and keep in check!
+            </p>
             {/* Badges */}
             <Badges tasks={tasks} />
             <Mission />
