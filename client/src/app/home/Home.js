@@ -64,7 +64,7 @@ export default function Home({ handlePageChange, homeFinanceData, isOpen }) {
     >
       {/* Left section */}
       <div className="col-lg-8 col-md-8 col-xs-12 ps-2">
-        <h1>{homeData.Title || "Loading..."}</h1>
+        <h1 className="fw-bold">{homeData.Title || "Loading..."}</h1>
         <p>{homeData.Subtitle || ""}</p>
         <div>
           {pageLinks.length > 0 ? (
