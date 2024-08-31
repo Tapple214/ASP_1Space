@@ -395,7 +395,7 @@ export default function TaskManager() {
         <Row className="h-100">
           {/* Left side of the page */}
           <Col md={12} lg={8} className="mb-4" style={{ zIndex: "1000" }}>
-            <div className="left-section">
+            <div className="left-section overflow-auto">
               {/* Form component */}
               <div className="task-form">
                 <Form type="task" fetchData={fetchTasks} />
